@@ -21,6 +21,7 @@ public class SpreadArrow : MonoBehaviour
     public Arrow arrow;
     private bool initialFlag;
     private float burnTime;  // オブジェクトが消えるまでの時間
+    [SerializeField] private GameObject destroyCollider;
     public SpreadArrowManager spreadArrowManager;
     void Start()
     {
@@ -63,6 +64,7 @@ public class SpreadArrow : MonoBehaviour
                         {
                             spreadArrowManager.effectObj[spreadArrowManager.destroyNum].gameObject.SetActive(false);
                             spreadArrowManager.overObj[spreadArrowManager.destroyNum].SetActive(false);
+                            Destroy(spreadArrowManager.overObj[spreadArrowManager.destroyNum].GetComponent<SpreadArrow>().destroyCollider.gameObject);
                             spreadArrowManager.destroyNum++;
                         }
                         if (spreadArrowManager.destroyNum >= spreadArrowManager.overLapColl)
