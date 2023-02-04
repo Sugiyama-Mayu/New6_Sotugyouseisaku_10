@@ -1,0 +1,297 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3843422366899278388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3843422366899278389}
+  m_Layer: 0
+  m_Name: VillageUpdateBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3843422366899278389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422366899278388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3843422367045358455}
+  - {fileID: 3843422367758849685}
+  - {fileID: 3843422367032916682}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3843422367032916679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3843422367032916682}
+  - component: {fileID: 3843422367032916681}
+  - component: {fileID: 3843422367032916680}
+  - component: {fileID: 3843422367032916683}
+  m_Layer: 0
+  m_Name: villageUpdateBox_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3843422367032916682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367032916679}
+  m_LocalRotation: {x: -0, y: 0.5118985, z: -0, w: 0.859046}
+  m_LocalPosition: {x: 1538.7, y: 44.59, z: 1387.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3843422366899278389}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 61.581, z: 0}
+--- !u!65 &3843422367032916681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367032916679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.39, y: 6.08, z: 2.58}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3843422367032916680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367032916679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1f1ed905816e1488a49129d3082702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearShrineNum: 0
+  connectFile: {fileID: 0}
+  questButton1: {fileID: 0}
+  questButton2: {fileID: 0}
+  questButton3: {fileID: 0}
+  questButton4: {fileID: 0}
+  questButton5: {fileID: 0}
+  unQuestStamp1: {fileID: 0}
+  unQuestStamp2: {fileID: 0}
+  unQuestStamp3: {fileID: 0}
+  unQuestStamp4: {fileID: 0}
+  unQuestStamp5: {fileID: 0}
+--- !u!54 &3843422367032916683
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367032916679}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &3843422367045358454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3843422367045358455}
+  - component: {fileID: 3843422367045358458}
+  - component: {fileID: 3843422367045358457}
+  - component: {fileID: 3843422367045358456}
+  m_Layer: 0
+  m_Name: villageUpdateBox_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3843422367045358455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367045358454}
+  m_LocalRotation: {x: -0, y: 0.5118985, z: -0, w: 0.859046}
+  m_LocalPosition: {x: 1409.6, y: 44.59, z: 1299.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3843422366899278389}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 61.581, z: 0}
+--- !u!65 &3843422367045358458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367045358454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.39, y: 6.08, z: 2.58}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3843422367045358457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367045358454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1f1ed905816e1488a49129d3082702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearShrineNum: 0
+  connectFile: {fileID: 0}
+  questButton1: {fileID: 0}
+  questButton2: {fileID: 0}
+  questButton3: {fileID: 0}
+  questButton4: {fileID: 0}
+  questButton5: {fileID: 0}
+  unQuestStamp1: {fileID: 0}
+  unQuestStamp2: {fileID: 0}
+  unQuestStamp3: {fileID: 0}
+  unQuestStamp4: {fileID: 0}
+  unQuestStamp5: {fileID: 0}
+--- !u!54 &3843422367045358456
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367045358454}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &3843422367758849681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3843422367758849685}
+  - component: {fileID: 3843422367758849684}
+  - component: {fileID: 3843422367758849683}
+  - component: {fileID: 3843422367758849682}
+  m_Layer: 0
+  m_Name: villageUpdateBox_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3843422367758849685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367758849681}
+  m_LocalRotation: {x: -0, y: 0.96812475, z: -0, w: 0.2504686}
+  m_LocalPosition: {x: 1500.84, y: 44.59, z: 1293.83}
+  m_LocalScale: {x: 1.2517998, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3843422366899278389}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 150.99, z: 0}
+--- !u!65 &3843422367758849684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367758849681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.39, y: 6.08, z: 2.58}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3843422367758849683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367758849681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1f1ed905816e1488a49129d3082702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearShrineNum: 0
+  connectFile: {fileID: 0}
+  questButton1: {fileID: 0}
+  questButton2: {fileID: 0}
+  questButton3: {fileID: 0}
+  questButton4: {fileID: 0}
+  questButton5: {fileID: 0}
+  unQuestStamp1: {fileID: 0}
+  unQuestStamp2: {fileID: 0}
+  unQuestStamp3: {fileID: 0}
+  unQuestStamp4: {fileID: 0}
+  unQuestStamp5: {fileID: 0}
+--- !u!54 &3843422367758849682
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843422367758849681}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
