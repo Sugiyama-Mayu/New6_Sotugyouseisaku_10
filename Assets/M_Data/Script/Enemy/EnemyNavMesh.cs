@@ -89,6 +89,11 @@ public class EnemyNavMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            PlayerContinue();
+        }
+
         SetAi();
 
         switch (aiState)
@@ -413,7 +418,7 @@ public class EnemyNavMesh : MonoBehaviour
     // ワープクールタイム
     private IEnumerator WapeCoolTime()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         wrpeCoolTime = true;
     }
 
@@ -515,12 +520,17 @@ public class EnemyNavMesh : MonoBehaviour
             fellowManager.FellowNumCount(true);
             aiState = EnemyAiState.NOMALMOVE;
             nextState = EnemyAiState.NOMALMOVE;
+            attackSequence = 0;
             targetList.Clear();
             FollowTarget(playerPos);
-            GetComponent<SphereCollider>().enabled = false;
         }
     }
 
+    public void PlayerContinue()
+    {
+        wait = true;
+        detectTarget = false;
+    }
 
 }
 

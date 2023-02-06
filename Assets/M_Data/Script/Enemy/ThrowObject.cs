@@ -92,7 +92,6 @@ public class ThrowObject : MonoBehaviour
         set 
         { 
             targetObj = value;
-            Debug.Log(value);
         }
     }
 }

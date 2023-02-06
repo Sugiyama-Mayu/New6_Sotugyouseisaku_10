@@ -9,6 +9,7 @@ public class ItemStorageDate : MonoBehaviour
 {
     // アイテムの個データ
     public ConnectionFile connectionFile;
+    public GameManager gameManager;
     //    public ProcessShop processShop;
     //    public int buyItemID;
     //    public int buyKindID;
@@ -26,109 +27,6 @@ public class ItemStorageDate : MonoBehaviour
     public ButtonColor BC;
     public SelectionItem selection;
     public ControllScripts CS;
-
-    void LateUpdate()
-    {
-        /*
-
-    switch (CS.ItemKindId)
-    {
-        case 1:     //  薬
-            drug();
-            break;
-        case 2:     //  道具
-            Tool();
-            break;
-        case 3:      //  証
-            Material();
-            break;
-        case 4:     //  素材
-            Testimony();
-            break;
-    }
-    if (CS.RingCanvasActveSelf)
-    {
-        if (haveItemID != 100)
-        {
-            ItemName();
-            ItemExplanation();
-        }
-        else
-        {
-            haveNumObj.GetComponent<Text>().text = "--";
-            itemNameObj.GetComponent<Text>().text = "-----";
-            explanationObj.GetComponent<Text>().text = "-----";
-        }
-    }
-
-    /*
-    if (Input.GetKeyDown(KeyCode.Alpha1))
-    {
-        if (BC.ButtonId == 0)
-        {
-            haveItemID = 610;
-            haveKindID = 6;
-        }
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha2))
-    {
-        if (BC.ButtonId == 0)
-        {
-            haveItemID = 510;
-            haveKindID = 5;
-        }
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha3))
-    {
-        if (BC.ButtonId == 1)
-        {
-            haveItemID = 401;
-            haveKindID = 4;
-        }
-    }*/
-
-
-    }
-
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        connectionFile.ReadFile(collision.gameObject.GetComponent<ShopItemData>().itemID, textArray);
-        connectionFile.TranslationDataArray(textArray, collision.gameObject.GetComponent<ShopItemData>().kindID);
-        haveNumText.SetActive(true);
-        buyNumText.SetActive(true);
-        haveNum = connectionFile.haveNum;
-        buyNum = connectionFile.buyNum;
-        haveNumText.GetComponent<Text>().text = haveNum.ToString();
-        buyNumText.GetComponent<Text>().text = buyNum.ToString();
-    }
-    */
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        //        UpdateShop();
-    }
-
-    /*
-    public void UpdateShop()
-    {
-        textArray = connectionFile.ReadFile(buyItemID, textArray);
-        connectionFile.TranslationDataArray(textArray, buyKindID);
-        buyNum = connectionFile.buyNum;
-        processShop.SetBuyDatabaseArray(textArray);
-
-        textArray = connectionFile.ReadFile(haveItemID, textArray);
-        connectionFile.TranslationDataArray(textArray, haveKindID);
-        haveNum = connectionFile.haveNum;
-        processShop.SetHaveDatabaseArray(textArray);
-
-        processShop.haveNumObj.GetComponent<Text>().text = haveNum.ToString();
-        processShop.buyNumObj.GetComponent<Text>().text = buyNum.ToString();
-        processShop.priceNumObj.GetComponent<Text>().text = connectionFile.sellPrice.ToString();
-        processShop.SetNowShopItem(this);
-        processShop.SetArrayFlag(true);
-    }
-    */
 
     public void ListUpdate()
     {
@@ -157,7 +55,6 @@ public class ItemStorageDate : MonoBehaviour
         {
             haveNumObj.GetComponent<Text>().text = "--";
             itemNameObj.GetComponent<Text>().text = "-----";
-            //explanationObj.GetComponent<Text>().text = "-----";
         }
 
     }
@@ -179,18 +76,11 @@ public class ItemStorageDate : MonoBehaviour
     {
         array = connectionFile.ReadFile(haveItemID, array);         // 更新
         connectionFile.TranslationDataArray(array, haveKindID);     // 更新
-        switch (haveKindID)
-        {
-            case 1:
-            case 6:
-                haveNumObj.GetComponent<Text>().text = connectionFile.buyNum.ToString();
-                break;
-            case 4:
-            case 5:
-                haveNumObj.GetComponent<Text>().text = connectionFile.haveNum.ToString();
-                break;
-        }
-        itemNameObj.GetComponent<Text>().text = connectionFile.itemName;
+        if (505 < haveItemID && haveItemID < 510)
+            haveNumObj.GetComponent<Text>().text = gameManager.GetDragItemNum(haveItemID).ToString();
+        else haveNumObj.GetComponent<Text>().text = connectionFile.haveNum.ToString();
+
+       itemNameObj.GetComponent<Text>().text = connectionFile.itemName;
     }
 
     public void OnClickButton()
@@ -293,23 +183,23 @@ public class ItemStorageDate : MonoBehaviour
     {
         if (BC.ButtonId == 0)
         {
-            haveItemID = 101;
-            haveKindID = 1;
+            haveItemID = 506;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 1)
         {
-            haveItemID = 102;
-            haveKindID = 1;
+            haveItemID = 507;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 2)
         {
-            haveItemID = 103;
-            haveKindID = 1;
+            haveItemID = 508;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 3)
         {
-            haveItemID = 104;
-            haveKindID = 1;
+            haveItemID = 509;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 4)
         {
@@ -341,39 +231,40 @@ public class ItemStorageDate : MonoBehaviour
             haveItemID = 100;
             haveKindID = 1;
         }
+
     }
 
     public void Item()     // 道具
     {
         if (BC.ButtonId == 0)
         {
-            haveItemID = 108;
-            haveKindID = 1;
+            haveItemID = 608;
+            haveKindID = 6;
         }
         if (BC.ButtonId == 1)
         {
-            haveItemID = 109;
-            haveKindID = 1;
+            haveItemID = 609;
+            haveKindID = 6;
         }
         if (BC.ButtonId == 2)
         {
-            haveItemID = 110;
-            haveKindID = 1;
+            haveItemID = 610;
+            haveKindID = 6;
         }
         if (BC.ButtonId == 3)
         {
-            haveItemID = 111;
-            haveKindID = 1;
+            haveItemID = 611;
+            haveKindID = 6;
         }
         if (BC.ButtonId == 4)
         {
-            haveItemID = 112;
-            haveKindID = 1;
+            haveItemID = 612;
+            haveKindID = 6;
         }
         if (BC.ButtonId == 5)
         {
-            haveItemID = 113;
-            haveKindID = 1;
+            haveItemID = 613;
+            haveKindID = 6;
         }
         if (BC.ButtonId == 6)
         {
@@ -590,18 +481,18 @@ public class ItemStorageDate : MonoBehaviour
         }
         if (BC.ButtonId == 5)
         {
-            haveItemID = 100;
-            haveKindID = 1;
+            haveItemID = 519;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 6)
         {
-            haveItemID = 100;
-            haveKindID = 1;
+            haveItemID = 520;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 7)
         {
-            haveItemID = 100;
-            haveKindID = 1;
+            haveItemID = 521;
+            haveKindID = 5;
         }
         if (BC.ButtonId == 8)
         {

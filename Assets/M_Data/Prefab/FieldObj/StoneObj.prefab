@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2621226446725089770}
   - component: {fileID: 7172360972321981604}
   - component: {fileID: 4198709748107986547}
+  - component: {fileID: 1358003034187721911}
   m_Layer: 0
   m_Name: StoneObj
   m_TagString: Ore
@@ -148,6 +149,45 @@ MonoBehaviour:
   reFleshCount: 60
   nowCount: 0
   can: 0
+--- !u!205 &1358003034187721911
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163445711417123640}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.029836655, y: 1.1150188, z: -0.20948148}
+  m_Size: 6
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.4
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8824453505477473288}
+    - renderer: {fileID: 1849718762929121205}
+    - renderer: {fileID: 2360297045714638887}
+    - renderer: {fileID: 2118225203816694339}
+    - renderer: {fileID: 6159802676972547684}
+    - renderer: {fileID: 6596609421858586840}
+    - renderer: {fileID: 2857917009294395615}
+    - renderer: {fileID: 346281233591715651}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8824453505477473288}
+    - renderer: {fileID: 1849718762929121205}
+    - renderer: {fileID: 2360297045714638887}
+    - renderer: {fileID: 2118225203816694339}
+    - renderer: {fileID: 6159802676972547684}
+    - renderer: {fileID: 6596609421858586840}
+    - renderer: {fileID: 2857917009294395615}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &2740919661162405800
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +942,12 @@ PrefabInstance:
 --- !u!4 &184231281258900521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 184231281038712980, guid: a6878fec93cbdae4fab0040a75b3ec32,
+    type: 3}
+  m_PrefabInstance: {fileID: 1965051069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &346281233591715651 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 346281235556731902, guid: a6878fec93cbdae4fab0040a75b3ec32,
     type: 3}
   m_PrefabInstance: {fileID: 1965051069}
   m_PrefabAsset: {fileID: 0}

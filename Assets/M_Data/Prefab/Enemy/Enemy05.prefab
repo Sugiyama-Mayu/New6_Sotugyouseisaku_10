@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitFx: {fileID: 7069573434128582415, guid: 1fc59b465e6a1a2488e5350a2820fb44, type: 3}
-  damage: 0
+  damage: 13
   isPlayer: 0
 --- !u!65 &5712317212278700915
 BoxCollider:
@@ -1339,9 +1339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4668450246aeb8143afcbb584116e1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   navController: {fileID: 7153919260703329082}
   damage: {fileID: 0}
-  connectionFile: {fileID: 0}
   connectionQuestFile: {fileID: 0}
   matObj: {fileID: 2577950262113792850}
   fellowMat:
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 02011395aa5d9074d83ff5a9b5eedd6f, type: 2}
   ragDollObj: {fileID: 6404199050482909562}
   dropObj: {fileID: 96899439653154122, guid: f525e23a62f3e3c42aaf0816bf0ae19e, type: 3}
-  dropName: 
+  dropName: "\u722A"
   dropCount: 2
   dropProbability: 5000000028000000
   allyProbability: 100

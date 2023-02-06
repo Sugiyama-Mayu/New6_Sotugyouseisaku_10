@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private GameManager gameManager;
     private EquimentManager equimentManager;
+    private GameOverProcess gameOverProcess;
 
     [Header("HP")]
     [SerializeField] private float maxHp;
@@ -25,19 +26,11 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameOverProcess = GameObject.Find("TitleScriptObj").GetComponent<GameOverProcess>();
         col = GetComponent<CapsuleCollider>();
         ColOffset();
         hp = maxHp;
     }
-    /*
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            DragItem(10);
-        }
-    }
-    */
     private void FixedUpdate()
     {
         AutoRegen();
@@ -76,14 +69,15 @@ public class PlayerManager : MonoBehaviour
         if(regenHp <= hp)
         {
             regenHp = 0;
-            Debug.Log("kanryou");
         }
     }
 
     // 死亡処理
     private void Dead()
     {
-        Debug.Log("dead");
+        gameOverProcess.CallGameOver();
+        gameManager.createManager.AllDestroyEnemy();
+        Debug.Log("PlayerDead");
     }
     public void ColOffset()
     {
@@ -145,6 +139,11 @@ public class PlayerManager : MonoBehaviour
                 Dead();
             }
         }
+    }
+
+    public void SetMaxHp()
+    {
+        hp = maxHp;
     }
 
     // 回復アイテム使用

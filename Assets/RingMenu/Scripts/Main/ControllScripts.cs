@@ -102,12 +102,16 @@ public class ControllScripts : MonoBehaviour
         {
            // Debug.Log("Useitem " + "PosNum:" + posNum + " KintId:"+ ItemKindId);
             
-            if (ItemKindId == 1 && -1 < posNum && posNum < 3)
+            if (ItemKindId == 1 && -1 < posNum && posNum < 4 && 0 < gameManager.GetDragItemNum(506 + posNum))
             {
+                gameManager.UseDragItem(posNum);
                 gameManager.playerManager.DragItem(posNum);
-                Debug.Log(posNum);
-                
+                itemStorage[posNum].ListUpdate();
                 // item消費処理
+            }
+            else
+            {
+                Debug.Log("回復アイテムがありません");
             }
         }
 
@@ -200,6 +204,7 @@ public class ControllScripts : MonoBehaviour
         RingCanvas.SetActive(true);
         RingCmd.Init();
         RotCount = 0;
+        gameManager.DragItemNumUpdate();
         Debug.Log("メニュー表示");
     }
     public void HideRingCommand()
@@ -210,6 +215,7 @@ public class ControllScripts : MonoBehaviour
         Debug.Log("メニュー非表示");
     }
 
+    
 
     public void ResetRing()
     {

@@ -399,6 +399,7 @@ MonoBehaviour:
   weaponManager: {fileID: 995758718}
   controllScripts: {fileID: 0}
   mainSceneObj: {fileID: 0}
+  attackBlockManager: {fileID: 0}
   playerInput: {fileID: 331148928253415502}
   inputActions:
   - {fileID: -944628639613478452, guid: 167ab2ad3f717c544b6b2ff7e91c43cb, type: 3}
@@ -420,11 +421,14 @@ MonoBehaviour:
   UI: {fileID: 0}
   playerYPos: {fileID: 0}
   talkNpc: {fileID: 0}
-  canMove: 0
   maxDistance: 5
   attackBlock1: {fileID: 0}
   attackBlock2: {fileID: 0}
   clearkOperation: {fileID: 0}
+  awayProcessFlag: 0
+  baseQuestButton: {fileID: 0}
+  crystalParent: {fileID: 0}
+  crystalParent_2: {fileID: 0}
 --- !u!135 &1405541212
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -590,7 +594,7 @@ MonoBehaviour:
   weaponManager: {fileID: 995758718}
   weaponManagerVR: {fileID: 0}
   connectionFile: {fileID: 0}
-  haveItem: 0000000000000000000000000000000000000000
+  haveItem: 0000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &331148929508910954
 GameObject:
   m_ObjectHideFlags: 0

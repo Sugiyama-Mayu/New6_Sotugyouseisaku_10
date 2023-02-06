@@ -8,6 +8,7 @@ public class GameOverButton : MonoBehaviour
     // 使用しています。
     // prefabにmainSceneObjアタッチオブジェクトを置いてあるので
     // 必要な場合は基本はシーン1つ使用してください。
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private MainSceneObj mainSceneObj;
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private TitleUI titleUI;
@@ -22,6 +23,7 @@ public class GameOverButton : MonoBehaviour
         //カーソルをを消してプレイヤーを表示してゲーム続行
         mainSceneObj.player.SetActive(true);
         titleSceneButton.VisibleCursor(false);
+        StartCoroutine(gameManager.Continue());
         Debug.Log("つづきから");
     }
     //タイトルへ

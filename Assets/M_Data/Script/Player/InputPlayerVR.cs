@@ -223,7 +223,7 @@ public class InputPlayerVR : MonoBehaviour
             else
             {
                 // トークモードが外れたらすぐにクエスト選択画面に戻る
-                GameObject.Find("Quest_Memo1").GetComponent<QuestData>().ClickBoardBack();
+              //  GameObject.Find("Quest_Memo1").GetComponent<QuestData>().ClickBoardBack();
             }
         }
         else if (lineRenderers[i].enabled == true)
@@ -346,14 +346,11 @@ public class InputPlayerVR : MonoBehaviour
     // 攻撃（左クリック）
     public void OnLAttack(InputAction.CallbackContext context)
     {
+        /*
         if (context.performed)   // 押す（通常）
         {
-            if (weaponManagerVR.wearBow.activeSelf == true)　//　弓_矢切り替え
-            {
-
-            }
         }
-
+        */
 
     }
     // 攻撃（右クリック）

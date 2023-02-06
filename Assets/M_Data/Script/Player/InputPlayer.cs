@@ -48,7 +48,6 @@ public class InputPlayer : MonoBehaviour
     [Header("その他")]
     [SerializeField] private Transform playerYPos;
     [SerializeField] private GameObject talkNpc;
-    [SerializeField] private bool canMove =true;
 
     /// Player Input
     private PlayerInput _playerInput = null;
@@ -117,7 +116,6 @@ public class InputPlayer : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerInput = gameObject.GetComponent<PlayerInput>();
-       // gameCursor = GameObject.Find("CursorObj").GetComponent<GameCursor>();
         
         playerRb = playerObj.GetComponent<Rigidbody>();
         if (gameManager.GetVRMode)
@@ -160,25 +158,13 @@ public class InputPlayer : MonoBehaviour
 
         // action設定
         InputActionSetting();
-        
-        if (SceneManager.GetActiveScene().name == "TitleScene")
-        {
-            SetActionMap(1);
-        }
-        else
-        {
-            SetActionMap(0);
-        }
     }
 
     private void Update()
     {
-        if (gameManager.GetSceneName != "TitleScene"||  canMove)
-        {
-            move();
-            look();
-            RayUpdate();
-        }
+        move();
+        look();
+        RayUpdate();
     }
 
     // 移動処理
@@ -205,10 +191,10 @@ public class InputPlayer : MonoBehaviour
         }
         else 
         {
-                _preRotation.y += _currentLookInputValue.x * _lookSpeed * Time.deltaTime;
-                _preRotation.x -= _currentLookInputValue.y * _lookSpeed * Time.deltaTime;
-                _preRotation.x = Mathf.Clamp(_preRotation.x, -89, 89);
-                transform.localEulerAngles = _preRotation;            
+            _preRotation.y += _currentLookInputValue.x * _lookSpeed * Time.deltaTime;
+            _preRotation.x -= _currentLookInputValue.y * _lookSpeed * Time.deltaTime;
+            _preRotation.x = Mathf.Clamp(_preRotation.x, -89, 89);
+            transform.localEulerAngles = _preRotation;            
         }
     }
 
@@ -309,10 +295,6 @@ public class InputPlayer : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Player");
         weaponManager.WeaponChange();
         if (debugInput)gameCursor.gameObject.SetActive(false);
-
-
-        canMove = true;
-        Debug.Log("ActionMap:Player");
     }
     public void ToUIMode()
     {
@@ -323,20 +305,14 @@ public class InputPlayer : MonoBehaviour
         weaponManager.wearBow.SetActive(false);
         weaponManager.handObj.SetActive(false);
         gameManager.uiManager.uiOpen();
-        canMove = false;
-        Debug.Log("ActionMap:UI");
     }
     public void ToTalkMode()
     {
         _playerInput.SwitchCurrentActionMap("Talk");
-        canMove = false;
-        Debug.Log("ActionMap:Talk");
     }
     public void ToMenuMode()
     {
         _playerInput.SwitchCurrentActionMap("Menu");
-        canMove = false;
-        Debug.Log("ActionMap:Menu");
     }
 
     //--------------------------------------------------------------------------------------------------------------------------
@@ -376,7 +352,7 @@ public class InputPlayer : MonoBehaviour
         // Rayが特定のオブジェクトに当たった時
         if (context.performed && Physics.Raycast(ray, out var hit, maxDistance))
         {
-           // Debug.Log(hit.collider.gameObject.tag + "だよ");
+            // Debug.Log(hit.collider.gameObject.tag + "だよ");
             // M.S 剣の時のみ祠のアタックブロックのクリックフラグをたてる
             if (hit.collider.gameObject.tag == "Shrine_AttackBlock" && weaponManager.wearSword.activeSelf == true)
             {
@@ -396,12 +372,12 @@ public class InputPlayer : MonoBehaviour
                 hit.collider.gameObject.GetComponent<NPCManager>().npcNav.TalkStart(); // Npcがプレイヤーに向かう
                 // playerCamera.transform.LookAt(hit.collider.gameObject.GetComponent<NPCManager>().GetNpcFace);
             }
-            if(hit .collider.gameObject.tag == "Smithy") // 武器強化
+            if (hit.collider.gameObject.tag == "Smithy") // 武器強化
             {
                 SetActionMap(1);
                 gameManager.uiManager.Enhance();
             }
-            if(hit.collider.gameObject.tag == "WarpPoint") // ワープポイント
+            if (hit.collider.gameObject.tag == "WarpPoint") // ワープポイント
             {
                 string str = hit.collider.gameObject.name;
                 str = str.Substring(5);
@@ -414,7 +390,7 @@ public class InputPlayer : MonoBehaviour
             if (hit.collider.gameObject.tag == "Ore")
             {
                 OreStoneObj oreStoneObj = hit.collider.gameObject.GetComponent<OreStoneObj>();
-                if (oreStoneObj.GetSetCanPick)
+                if (oreStoneObj.GetSetCanPick && gameManager.GetTruhasi())
                 {
                     oreStoneObj.GetSetCanPick = false;
                     weaponManager.PickStart(gameManager.GetTruhasi());
@@ -425,13 +401,7 @@ public class InputPlayer : MonoBehaviour
                 {
                     Debug.Log("NowCoolTime");
                 }
-
             }
-            if (hit.collider.gameObject.tag == "RemainsWrap")
-            {
-                hit.collider.gameObject.GetComponent<RemainsNum>().PlayerWarp();
-            }
-
         }
     }
 

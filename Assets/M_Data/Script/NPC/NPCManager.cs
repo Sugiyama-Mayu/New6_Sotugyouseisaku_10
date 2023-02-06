@@ -12,9 +12,7 @@ public class NPCManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!shop) { gameObject.tag = "NPC"; }
-        else { gameObject.tag = "Shop"; }
-        npcNav = gameObject.GetComponent<NPCNavMesh>();
+       // npcNav = gameObject.GetComponent<NPCNavMesh>();
     }
 
     public int GetNpcId

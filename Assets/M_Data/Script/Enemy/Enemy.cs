@@ -5,9 +5,9 @@ using Anim.Nav;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private NavController navController;
     [SerializeField] private WeaponDamage damage;
-    [SerializeField] private ConnectionFile connectionFile;
     [SerializeField] private ConnectionQuestFile connectionQuestFile;
 
     [SerializeField] private GameObject matObj;
@@ -49,7 +49,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject playerObj = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObj();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GameObject playerObj = gameManager.GetComponent<GameManager>().GetPlayerObj();
         fellowManager = playerObj.GetComponentInChildren<FellowManager>();
         createEnemy = homeObj.GetComponent<CreateEnemy>();
 
@@ -63,9 +64,6 @@ public class Enemy : MonoBehaviour
         navController = gameObject.GetComponent<NavController>();
         navController.GetSetSpeed = moveSpeed[0];
 
-        connectionFile = GameObject.Find("Connection").GetComponent<ConnectionFile>();
-        connectionFile.GetEnmName_DropItemName(enemyId);
-        dropName = connectionFile.dropItem;
         enemyName = SettingNameData();
 
         connectionQuestFile = GameObject.Find("ConnectQuestFile").GetComponent<ConnectionQuestFile>();
@@ -104,12 +102,12 @@ public class Enemy : MonoBehaviour
         }
         else if (rnd < allyProbability && fellowManager.GetFellowNum < 100) // 仲間になる・仲間の数が最大になってなければ
         {
-           // DropItem();
+            DropItem();
             FellowMode();
         }
         else // それ以外
         {
-           // DropItem();
+            DropItem();
             Destroy(gameObject);
         }
     }
@@ -117,6 +115,7 @@ public class Enemy : MonoBehaviour
     // 味方にする
     private void FellowMode()
     {
+        Destroy(GetComponent<SphereCollider>());
         AttackCol.layer = LayerMask.NameToLayer("PlayerWeapon");
         bodyCol.layer = LayerMask.NameToLayer("Player");
         ragDollObj.SetActive(false);
@@ -127,26 +126,27 @@ public class Enemy : MonoBehaviour
         hp = maxHp / 2;
         enemyNav.SetIsAiStateRunning = false;
         matObj.GetComponent<Renderer>().material = fellowMat[1];
-
+        matObj.layer = LayerMask.NameToLayer("Outline");
     }
 
     // ドロップ処理
     private void DropItem()
     {
         int count = 0;
-        Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
-        for (int i = 0; i < dropCount; i++)
+
+        Vector3 pos = new Vector3(gameObject.transform.position.x + Random.Range(-0.8f, 0.5f), gameObject.transform.position.y + 0.5f, gameObject.transform.position.z + Random.Range(-0.8f, 0.5f));
+        for (int i = 0; i < dropProbability.Length; i++)
         {
             int rnd = Random.Range(0, 100); // 確率計算
             if (rnd < dropProbability[i])
             {
                 GameObject game = Instantiate(dropObj, pos, gameObject.transform.rotation);  // 生成処理
                 count++;
-                Destroy(game, 3);
+                Destroy(game, 5);
             }
             // Debug.Log(dropItem[i].name + " 確率：" + rnd);
         }
-        connectionFile.SetMaterialNum(true, dropName, count);
+        gameManager.SetMaterial(dropName, count);
         connectionQuestFile.KnockEnemy(SettingNameData());
     }
 

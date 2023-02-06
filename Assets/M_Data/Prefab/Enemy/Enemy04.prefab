@@ -3710,9 +3710,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4668450246aeb8143afcbb584116e1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   navController: {fileID: 947340973808223609}
   damage: {fileID: 0}
-  connectionFile: {fileID: 0}
   connectionQuestFile: {fileID: 0}
   matObj: {fileID: 2223283890852457671}
   fellowMat:
@@ -3720,7 +3720,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d6bf3662aa0b3f64cb2d62580b456042, type: 2}
   ragDollObj: {fileID: 8419138352846862200}
   dropObj: {fileID: 96899439653154122, guid: f525e23a62f3e3c42aaf0816bf0ae19e, type: 3}
-  dropName: 
+  dropName: "\u6BDB\u76AE"
   dropCount: 2
   dropProbability: 5000000028000000
   allyProbability: 100

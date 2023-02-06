@@ -26,13 +26,6 @@ public class WeaponManagerVR : MonoBehaviour
         WeaponChange();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            WeaponChange();
-        }
-    }
 
     // 武器切り替え（数値変更）
     public void WeaponChange(bool b)
@@ -65,7 +58,7 @@ public class WeaponManagerVR : MonoBehaviour
     //　武器切り替え（表示非表示）
     public void WeaponSwitch()
     {
-        Debug.Log(weaopn);
+       // Debug.Log(weaopn);
         switch (weaopn)
         {
             case 0: // 武器なし
@@ -125,11 +118,4 @@ public class WeaponManagerVR : MonoBehaviour
      //   Debug.Log("Sword :" + value[0] +" "+ "Bow :" + value[1]);
 
     }
-
-
-    public void ChangeArrowType()
-    {
-       // bow.arrowObj.GetComponent<Arrow>().SetArrowType();
-    }
-
 }

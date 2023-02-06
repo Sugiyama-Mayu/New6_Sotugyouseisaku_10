@@ -278,8 +278,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -269.99997}
-  m_SizeDelta: {x: 450, y: 120}
+  m_AnchoredPosition: {x: 137, y: -125}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8498112657843658789
 CanvasRenderer:
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88549a825efb18741b4ac32ea5e9a3ab, type: 2}
   m_sharedMaterial: {fileID: -5128018097763764396, guid: 88549a825efb18741b4ac32ea5e9a3ab,
@@ -319,8 +319,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2086,7 +2086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 210}
+  m_AnchoredPosition: {x: 230, y: 210}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8918889131476266832
@@ -2107,7 +2107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8918889131476266833
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8918889131476266846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2694,7 +2694,7 @@ MonoBehaviour:
   equipmentEnhance: {fileID: 8918889131653707750}
   cursorObj: {fileID: 8918889131783225118}
   bgUi: {fileID: 8918889132268420643}
-  controlCanvas: {fileID: 0}
+  controlCanvas: {fileID: 8918889131476266832}
   warpCanvas: {fileID: 8918889131638270721}
   textCanvas: {fileID: 8918889131220822961}
   equipmentCanvas: {fileID: 8918889131653707672}
@@ -3063,6 +3063,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b1651ed4108d65a49b87e6bce52c779f, type: 3}
   - {fileID: 21300000, guid: 2b19feb9215046f4997fee392116125d, type: 3}
   statasText: {fileID: 8918889131235565143}
+  levelText: {fileID: 3425419225784931100}
   parent: {fileID: 8918889132816488683}
   button: []
 --- !u!1 &8918889131674639322
@@ -3271,7 +3272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8918889131783225118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5270,7 +5271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8918889132738492073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5687,7 +5688,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 0}
+  m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &8918889130838693179
@@ -6409,7 +6410,7 @@ PrefabInstance:
     - target: {fileID: 3542184237021184564, guid: 512b94e95f5e7f147bee267d273d0106,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 28312722
+      value: 37316988
       objectReference: {fileID: 0}
     - target: {fileID: 3542184237057776418, guid: 512b94e95f5e7f147bee267d273d0106,
         type: 3}

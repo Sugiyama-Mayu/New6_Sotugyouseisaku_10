@@ -9,19 +9,19 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "18ac4add-ed81-47e2-a4b2-5856e14baae4",
-                    "expectedControlType": "Integer",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "WeaponChange",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "11f879c8-6175-4e24-892e-b2eea8d083bc",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Fire",
@@ -29,7 +29,7 @@
                     "id": "9ec2680a-abce-454b-80c7-cd5fb3e36d06",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "RAttack",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ed18d0f3-2aeb-47d8-a336-2153ad04a9a5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Rote",
@@ -65,22 +65,11 @@
                     "id": "3fa00c16-5b40-433b-9e2b-699a08af1e9f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "1635d3fe-58b6-4ba9-a4e2-f4b964f6b5c8",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "00730148-f427-4a74-9c33-a9f64a5ef7a8",
@@ -149,11 +138,22 @@
                 },
                 {
                     "name": "",
-                    "id": "8255d333-5683-4943-a58a-ccb207ff1dce",
-                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "id": "7e303f14-b8e5-45d1-9dac-9603cf4b8e8c",
+                    "path": "<ViveController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49883126-813c-4baa-93cb-7aada2f1a934",
+                    "path": "<OculusTouchController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -162,7 +162,7 @@
                     "name": "",
                     "id": "9314a9d7-ed29-437a-99c8-883b940a41f1",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press(pressPoint=0.5)",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "LAttack",
@@ -171,19 +171,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d355c492-761e-4aa4-84a0-c28cb978d7bd",
-                    "path": "<XRSimulatedController>{LeftHand}/triggerButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6f9e352b-ce3f-4e87-98d6-d1930a8c0a0a",
-                    "path": "",
+                    "path": "<ViveController>{RightHand}/menu",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -193,23 +182,12 @@
                 },
                 {
                     "name": "",
-                    "id": "b6a26d9c-b925-4c0f-9d4b-2758d9b92c62",
-                    "path": "<XRSimulatedController>{RightHand}/triggerButton",
-                    "interactions": "Press(pressPoint=0.5)",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "867d39fd-79c2-49a4-83f7-a18f8b34e583",
-                    "path": "<XRSimulatedController>/primary2DAxis",
+                    "id": "7a394e76-c93a-41fe-88fb-b4f4cc085b41",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{RightHand}/primarybutton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
-                    "action": "Rote",
+                    "groups": "",
+                    "action": "WeaponChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -248,8 +226,107 @@
                 },
                 {
                     "name": "",
+                    "id": "46bbcb4f-bdee-4af3-b8a6-40c7757aa80f",
+                    "path": "<ViveController>{RightHand}/trackpad",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rote",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d94071d6-63a8-4403-92d4-164b6b44cb88",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rote",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d7480a37-1db1-4d2f-9838-8e4ce909de4b",
                     "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenCloseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7d4fc28-d6e2-4a65-9575-6ff71df21a57",
+                    "path": "<ViveController>{LeftHand}/trackpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1f5280a-685e-4cb6-a6e7-ab13673e3022",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5c2a8e1-29d7-4845-9b7f-07afbb9cb7d6",
+                    "path": "<ViveController>{LeftHand}/triggerPressed",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "399e49fb-f835-405a-9acd-33c6fb436f29",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>/triggerpressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04f06eaa-de49-40d7-901e-3e79efc659cb",
+                    "path": "<ViveController>{RightHand}/trigger",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "070a5461-96f1-48d7-a7a4-7f28fe2ae44b",
+                    "path": "<OculusTouchController>{RightHand}/triggerTouched",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f85883bf-b1d5-4f33-a545-764ddd8842b3",
+                    "path": "<ViveController>{LeftHand}/menu",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -325,11 +402,11 @@
                 },
                 {
                     "name": "",
-                    "id": "2ba520a2-fe4c-4486-8361-05da73e813cf",
-                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "id": "bd80e627-3237-41e7-ad3b-8b31a529180a",
+                    "path": "<ViveController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -347,11 +424,22 @@
                 },
                 {
                     "name": "",
-                    "id": "619224c9-3f07-4118-a30e-34470ce553d3",
-                    "path": "<XRSimulatedController>{LeftHand}/primary2DAxis",
+                    "id": "a0a28202-4987-4148-b4e8-dc3576ee1a86",
+                    "path": "<ViveController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "",
+                    "action": "PageDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "619224c9-3f07-4118-a30e-34470ce553d3",
+                    "path": "<ViveController>{LeftHand}/trackpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -386,11 +474,22 @@
                 },
                 {
                     "name": "",
-                    "id": "c5ac527e-7dbf-4ab0-ae72-c0ae5585d07e",
-                    "path": "<XRSimulatedController>/primary2DAxisClick",
+                    "id": "6360aef1-bfc0-44dc-9fa0-688710abaac0",
+                    "path": "<ViveController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
+                    "groups": "",
+                    "action": "PageUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f726599-4646-4009-a787-051dc7d4691c",
+                    "path": "<OculusTouchController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "PageUp",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -463,6 +562,28 @@
                 },
                 {
                     "name": "",
+                    "id": "a23ee84d-0240-408e-b330-32942324bf07",
+                    "path": "<ViveController>{LeftHand}/trackpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51d8646b-6ca6-4848-acd8-3c78fc22f5ea",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "13e128c8-78df-4668-b3b8-ffd150b12b21",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -476,6 +597,39 @@
                     "name": "",
                     "id": "d17c4613-1ddc-44bc-afc5-e73077c33ed1",
                     "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb6b9190-3bc8-447a-9470-dadf37ce31c5",
+                    "path": "<ViveController>{LeftHand}/triggerPressed",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54358f9d-e1ab-40cf-afc5-b8234fa6cd2c",
+                    "path": "<ViveController>{RightHand}/triggerPressed",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a097e6c-0b8c-4d12-aa94-16500d615830",
+                    "path": "<ViveController>{LeftHand}/menu",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

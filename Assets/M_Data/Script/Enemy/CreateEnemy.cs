@@ -10,13 +10,14 @@ public class CreateEnemy : MonoBehaviour
     [SerializeField] private GameObject[] enemyObj;
     [SerializeField] private List<GameObject> enemySponeObj;
     [SerializeField] private int maxEnemy;
-    [SerializeField] private int maxType;
     [SerializeField] private int enemyNum;
+    private int maxType;
 
-    [SerializeField] private bool createMode;
+
+    // [SerializeField] private bool createMode;
 
     [SerializeField] private int createCount;
-    [SerializeField] private int nowCount;
+    [SerializeField] private float nowCount;
     [SerializeField] private bool debugMode = false;
     [SerializeField] private int debugnum =0;
     private const float spownOffset = 0.3f;
@@ -26,12 +27,12 @@ public class CreateEnemy : MonoBehaviour
     {
         if (renge == 0) Debug.LogError("rengeÇ™Åu0ÅvÇ…Ç»Ç¡ÇƒÇ¢Ç‹Ç∑ÅB");
         if (spownObj == null) spownObj = gameObject.transform;
-        createMode = false;
         nowCount = createCount;
-        maxType = enemyObj.Length * 10;
+        maxType = (enemyObj.Length + 1) * 10;
         Transform cube = transform.GetChild(0);
         cube.gameObject.SetActive(false);
     }
+    /*
     private void FixedUpdate()
     {
         if (!createMode) return;
@@ -46,6 +47,7 @@ public class CreateEnemy : MonoBehaviour
         }
 
     }
+    */
     public void Create()
     {
         Vector3 createPos = gameObject.transform.position;
@@ -76,6 +78,7 @@ public class CreateEnemy : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
+        if (col.gameObject.tag != "Player") return;
         if (enemyNum < maxEnemy && createCount <= nowCount)
         {
             Create();
@@ -83,7 +86,7 @@ public class CreateEnemy : MonoBehaviour
         }
         else
         {
-            nowCount++;
+            nowCount += Time.deltaTime;
         }
 
     }
