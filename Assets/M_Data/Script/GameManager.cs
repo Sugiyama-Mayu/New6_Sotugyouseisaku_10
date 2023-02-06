@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         connectionFile = GameObject.Find("Connection").GetComponent<ConnectionFile>();
         swichMode = GetComponent<SwichMode>();
+        terrainManager.enabled = false;
         materialNum = new int[8]; // 0:çú 1:îÁ 2:âÂ 3:ñ—îÁ 4:í‹ 5:ì∫ 6:ã‚ 7:ã‡
         dragItemNum = new int[4];
 
@@ -75,11 +76,9 @@ public class GameManager : MonoBehaviour
     {
         frameCount = 0;
         prevTime = 0.0f;
-        terrainManager.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         DragItemNumUpdate();
-
     }
 
     // Update is called once per frame
@@ -99,6 +98,7 @@ public class GameManager : MonoBehaviour
         }
         if(terrainManager.enabled == false && titleObj.activeSelf == false)
         {
+            Debug.Log("kuso");
             terrainManager.enabled = true;
         }
 

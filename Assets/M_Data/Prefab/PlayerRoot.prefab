@@ -155,7 +155,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.02
   far clip plane: 450
   field of view: 70
   orthographic: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 167ab2ad3f717c544b6b2ff7e91c43cb,
+  m_Actions: {fileID: -944628639613478452, guid: 89a5ae3a9ad22c140924e73fd4e54c63,
     type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -297,83 +297,71 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 00cb8c48-3891-4028-b121-24a4d5103825
-    m_ActionName: Player/Look[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionId: 18ac4add-ed81-47e2-a4b2-5856e14baae4
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ed36b3a2-33bf-4fcc-9e22-c42a5dbbb8da
-    m_ActionName: Player/WeaponChange[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 77c4698f-a370-4157-b4f0-245339f90385
-    m_ActionName: Player/LAttack[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8aa7402c-b1ca-4eca-bcb9-85fca101d524
-    m_ActionName: Player/RAttack[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0c7b1666-7400-474e-b5b0-f7029f4ad24f
-    m_ActionName: Player/Fire[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b911c0de-b920-429f-a0bb-9913a1861aff
-    m_ActionName: Player/CursorMove[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 88cc5598-0143-4f71-891a-fc8bb8f8236b
-    m_ActionName: UI/CursorMove[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 331148928253415489}
-        m_TargetAssemblyTypeName: InputPlayer, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6d6c6787-2e2f-4992-9f10-176a1fa48cca
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9b353bce-adac-40f0-ba7a-5cadafd58aa5
-    m_ActionName: Talk/PageUp[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3c1c47b4-415a-4a11-ab74-b0bfbdb9725b
-    m_ActionName: UI/PageDown[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b4735f6a-9103-470e-b250-aa28fe76aa6b
-    m_ActionName: UI/Scroll[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 76e439d4-3cff-456a-8dcf-56dcb21c51b3
+    m_ActionId: 1d2ac74f-8f50-46c7-b438-0e1e70f51f4e
     m_ActionName: Player/OpenCloseMenu[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ee592be5-280b-4e17-b435-c769b9cbf8b3
+    m_ActionId: 11f879c8-6175-4e24-892e-b2eea8d083bc
+    m_ActionName: Player/WeaponChange[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a2a327e-c278-4328-ba2d-7762414e17da
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ec2680a-abce-454b-80c7-cd5fb3e36d06
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3826de88-4b5c-4cd5-ba22-c2ce2fbb87ee
+    m_ActionName: Player/LAttack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed18d0f3-2aeb-47d8-a336-2153ad04a9a5
+    m_ActionName: Player/RAttack[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 511eb542-6f57-4bc9-8c04-c07a198fade5
+    m_ActionName: UI/CursorMove[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c446c4b9-1fbb-482d-8418-6d402eceeeb2
+    m_ActionName: UI/Scroll[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c7f07900-51b9-4dea-84ef-9df5861c71ff
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 57fa3f96-fc6e-4e28-9081-a43715d57e35
+    m_ActionName: UI/PageDown[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99a5caab-9b26-4b31-bffb-cd231b7788dc
     m_ActionName: UI/OpenCloseMenu[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 330654ef-6f80-4ad1-9226-61b037db03e5
+    m_ActionId: 57c22ad8-9f94-453b-99aa-9baed952fa71
+    m_ActionName: Talk/PageUp[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d2f998d-9de0-4382-a88d-5724396547e5
     m_ActionName: Menu/LeftClick[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 0117d200-e6ac-4b64-9596-34884c824eb1
+    m_ActionId: 6fe1d590-c75b-427e-8f54-9035e4532a99
     m_ActionName: Menu/MouseScroll[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e50c38ad-fb2d-4a38-a1d1-fab220d21e57
+    m_ActionId: 5cc63d4f-642a-4ed8-a17e-3e76e93471ef
     m_ActionName: Menu/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 439ddfb7-172a-4226-acc7-60ed6615df86
+    m_ActionId: adf62e4c-8fa7-48d6-be49-a7f162cb1a88
     m_ActionName: Menu/MenuClose[/Mouse/middleButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
@@ -404,7 +392,7 @@ MonoBehaviour:
   inputActions:
   - {fileID: -944628639613478452, guid: 167ab2ad3f717c544b6b2ff7e91c43cb, type: 3}
   - {fileID: -944628639613478452, guid: 89a5ae3a9ad22c140924e73fd4e54c63, type: 3}
-  debugInput: 1
+  debugInput: 0
   cursorObj: {fileID: 0}
   control: {fileID: 0}
   vrRot: {fileID: 331148928253415492}

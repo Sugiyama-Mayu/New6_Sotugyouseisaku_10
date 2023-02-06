@@ -153,6 +153,7 @@ public class UIManager : MonoBehaviour
             case 1:
                 if (warpPoint.GetBool(warpPoint.GetSetSpriteNum) == true)
                 {
+                    Debug.Log("fd");
                     gameManager.StartWrap(warpPoint);
                 }
                 break;

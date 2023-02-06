@@ -569,6 +569,15 @@ public class ConnectionFile : MonoBehaviour
             case "爪":
                 id = 505;
                 break;
+            case "銅":
+                id = 519;
+                break;
+            case "銀":
+                id = 520;
+                break;
+            case "金":
+                id = 521;
+                break;
         }
         if (id >= 0)
         {
@@ -628,7 +637,7 @@ public class ConnectionFile : MonoBehaviour
     //         int honeNum、kawaNum、kibaNum、kegawaNum、tumeNum 各素材の足す数又は引く数
     //         (変数に対応する素材について→ honeNum(骨)、kawaNum(皮)、kibaNum(牙)、kegawaNum(毛皮)、tumeNum(爪))
     // 戻り値：なし
-    public void SetAllMaterialNum(bool minusOrPlusMode, int honeNum, int kawaNum, int kibaNum, int kegawaNum, int tumeNum)
+    public void SetAllMaterialNum(bool minusOrPlusMode, int honeNum, int kawaNum, int kibaNum, int kegawaNum, int tumeNum ,int douNum, int ginNum, int kinNum)
     {
         //(骨or皮or牙or毛皮or爪)
         //501 骨
@@ -641,6 +650,12 @@ public class ConnectionFile : MonoBehaviour
         SetMaterialNum(minusOrPlusMode, "毛皮", kegawaNum);
         //505 爪
         SetMaterialNum(minusOrPlusMode, "爪", tumeNum);
+        //519 銅
+        SetMaterialNum(minusOrPlusMode, "銅", douNum);
+        //520 銀
+        SetMaterialNum(minusOrPlusMode, "銀", ginNum);
+        //521 金
+        SetMaterialNum(minusOrPlusMode, "金", kinNum);
     }
     // 祠のクリア数を返す
     // 引  数：なし

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3952911377614193132}
   - component: {fileID: 185120929973350646}
   - component: {fileID: 7409370396491468442}
-  m_Layer: 17
+  m_Layer: 0
   m_Name: DropObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b4ea94246473c7042b74d6f7fde7555c,
         type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4ea94246473c7042b74d6f7fde7555c, type: 3}
@@ -240,6 +240,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Drop_FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214027894803957379, guid: 93a44de028114e344bc597ae166306a0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93a44de028114e344bc597ae166306a0, type: 3}

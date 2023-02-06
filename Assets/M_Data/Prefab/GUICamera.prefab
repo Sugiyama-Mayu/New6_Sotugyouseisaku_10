@@ -3033,11 +3033,11 @@ MonoBehaviour:
   equimentManager: {fileID: 0}
   weaponImage: {fileID: 8918889131207726475}
   weaponSprites:
-  - {fileID: 21300000, guid: d9e505b08e7018e4a89a69a88f1a15f8, type: 3}
-  - {fileID: 21300000, guid: 6480cc64590de9a4c8363f4293f6321e, type: 3}
-  - {fileID: 21300000, guid: 3d3dcf31848e1414fb2ea0baed58aac1, type: 3}
-  - {fileID: 21300000, guid: 5638f611ae5010d4d9b44a65500b1346, type: 3}
-  - {fileID: 21300000, guid: 334c6f7eed818df4b8a297d86ee79423, type: 3}
+  - {fileID: 21300000, guid: 67b4fa7b77ef58f4d926ad7aab8c51d3, type: 3}
+  - {fileID: 21300000, guid: 509c010852cb0154e86ab31a5cffd2ea, type: 3}
+  - {fileID: 21300000, guid: eb50baa80d6dd32498cc5d676d5bd3b9, type: 3}
+  - {fileID: 21300000, guid: de5cfa84d3a65064b9a37f7d58315ed1, type: 3}
+  - {fileID: 21300000, guid: e96a1f4ae0a0dc749b983675ab1ed17b, type: 3}
   itemImage:
   - {fileID: 8918889131950033340}
   - {fileID: 8918889132247324350}
@@ -4042,7 +4042,7 @@ GameObject:
   - component: {fileID: 8918889131976333711}
   - component: {fileID: 8918889131976333710}
   m_Layer: 5
-  m_Name: Warp
+  m_Name: WarpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6410,7 +6410,7 @@ PrefabInstance:
     - target: {fileID: 3542184237021184564, guid: 512b94e95f5e7f147bee267d273d0106,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 37316988
+      value: 38544656
       objectReference: {fileID: 0}
     - target: {fileID: 3542184237057776418, guid: 512b94e95f5e7f147bee267d273d0106,
         type: 3}

@@ -29,7 +29,7 @@ public class Compass : MonoBehaviour
         directionText[1] = GameObject.Find("East");
         directionText[2] = GameObject.Find("South");
         directionText[3] = GameObject.Find("West");
-        warpPointText = GameObject.Find("Warp");
+        warpPointText = GameObject.Find("WarpText");
     }
 
     // Update is called once per frame

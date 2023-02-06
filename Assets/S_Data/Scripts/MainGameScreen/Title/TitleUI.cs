@@ -22,7 +22,7 @@ public class TitleUI : MonoBehaviour
     void Start()
     {
         // 今はスクリプトで設定↓最初はタイトルからスタート
-        moveSpeed = 2.0f;    
+        moveSpeed = 1.2f;    
         titleCameraPos = mainSceneObj.switchTitleCamera.transform.position;
         titleCameraAngle = mainSceneObj.switchTitleCamera.transform.localEulerAngles;
         TitleControl(true);

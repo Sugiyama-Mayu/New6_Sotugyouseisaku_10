@@ -37,6 +37,7 @@ public class WarpPoint : MonoBehaviour
 
     public void PlayerWarp()
     {
+        Debug.Log(warpNum);
         Vector3 warpPos =  new Vector3 (warpPoint[warpNum].position.x, warpPoint[warpNum].position.y + 0.5f, warpPoint[warpNum].position.z - 3f);
         playerPos.position = warpPos;
         warpNum = 0;
