@@ -532,6 +532,15 @@ public class ConnectionFile : MonoBehaviour
             case "’Ü":
                 id = 505;
                 break;
+            case "“º":
+                id = 519;
+                break;
+            case "‹â":
+                id = 520;
+                break;
+            case "‹à":
+                id = 521;
+                break;
         }
         if (id >= 0)
         {

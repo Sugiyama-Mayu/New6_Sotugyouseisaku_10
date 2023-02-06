@@ -167,9 +167,9 @@ public class EquimentManager : MonoBehaviour
         haveItem[2] = connectionFile.GetMaterialNum("‰å");
         haveItem[3] = connectionFile.GetMaterialNum("–Ñ”ç");
         haveItem[4] = connectionFile.GetMaterialNum("’Ü");
-      /*  haveItem[5] = connectionFile.GetMaterialNum("“º");
+        haveItem[5] = connectionFile.GetMaterialNum("“º");
         haveItem[6] = connectionFile.GetMaterialNum("‹â");
-        haveItem[7] = connectionFile.GetMaterialNum("‹à");*/
+        haveItem[7] = connectionFile.GetMaterialNum("‹à");
     }
 
     // ƒAƒCƒeƒ€‚Ìè‚¿‚Ì”‚ğæ“¾

@@ -2568,7 +2568,7 @@ PrefabInstance:
     - target: {fileID: 473308932972402029, guid: 1d8dd1f610b4e354e86a999f30a868ef,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 14556
+      value: 14562
       objectReference: {fileID: 0}
     - target: {fileID: 2147211653104320608, guid: 1d8dd1f610b4e354e86a999f30a868ef,
         type: 3}
@@ -3748,7 +3748,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3856
+  m_Name: pb_Mesh-679408
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3929,6 +3929,12 @@ Mesh:
 --- !u!1 &1349849462 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8918889131476266832, guid: d4f633292e7e9f143902b52a010499ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 8918889132819299878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1349849463 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8918889131476266833, guid: d4f633292e7e9f143902b52a010499ba,
     type: 3}
   m_PrefabInstance: {fileID: 8918889132819299878}
   m_PrefabAsset: {fileID: 0}
@@ -6591,6 +6597,11 @@ PrefabInstance:
       objectReference: {fileID: 1137623351}
     - target: {fileID: 331148928253415489, guid: 9fe296bc70d887546824a4321bb6c456,
         type: 3}
+      propertyPath: debugInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 331148928253415489, guid: 9fe296bc70d887546824a4321bb6c456,
+        type: 3}
       propertyPath: gameCursor
       value: 
       objectReference: {fileID: 1137623355}
@@ -8231,11 +8242,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3425419225784931100, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_text
+      value: +2
+      objectReference: {fileID: 0}
     - target: {fileID: 3623057602412208729, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1880355329}
+    - target: {fileID: 3944094352507222941, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5399287786457151858, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -8274,7 +8295,7 @@ PrefabInstance:
     - target: {fileID: 5399287787568060175, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 38887990
+      value: 203628.75
       objectReference: {fileID: 0}
     - target: {fileID: 6070842896609330618, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
@@ -8321,6 +8342,12 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1880355329}
+    - target: {fileID: 8918889131207726475, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67b4fa7b77ef58f4d926ad7aab8c51d3,
+        type: 3}
     - target: {fileID: 8918889131220822975, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
       propertyPath: gameManager
@@ -8423,6 +8450,16 @@ PrefabInstance:
       objectReference: {fileID: 390232694}
     - target: {fileID: 8918889131521400198, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
+      propertyPath: cursorObj
+      value: 
+      objectReference: {fileID: 1137623351}
+    - target: {fileID: 8918889131521400198, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: gameCursor
+      value: 
+      objectReference: {fileID: 1137623355}
+    - target: {fileID: 8918889131521400198, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1880355329}
@@ -8431,11 +8468,26 @@ PrefabInstance:
       propertyPath: equimentManager
       value: 
       objectReference: {fileID: 232385002}
+    - target: {fileID: 8918889131638270721, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8918889131638270735, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
       propertyPath: waprParent
       value: 
       objectReference: {fileID: 1635066706}
+    - target: {fileID: 8918889131653707672, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918889131653707748, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8918889131653707750, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
       propertyPath: equimentManager
@@ -8443,9 +8495,29 @@ PrefabInstance:
       objectReference: {fileID: 232385002}
     - target: {fileID: 8918889131783225117, guid: d4f633292e7e9f143902b52a010499ba,
         type: 3}
+      propertyPath: controlObj
+      value: 
+      objectReference: {fileID: 1349849463}
+    - target: {fileID: 8918889131783225117, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1880355329}
+    - target: {fileID: 8918889131783225118, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918889131783225118, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918889132268420643, guid: d4f633292e7e9f143902b52a010499ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4f633292e7e9f143902b52a010499ba, type: 3}
 --- !u!1001 &8974359462900139472

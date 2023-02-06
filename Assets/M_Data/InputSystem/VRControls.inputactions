@@ -160,6 +160,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ceef6cf9-2a53-4612-8132-e72a52fc6fa6",
+                    "path": "<OculusTouchController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9314a9d7-ed29-437a-99c8-883b940a41f1",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Press",
@@ -341,15 +352,6 @@
             "id": "1e85dd26-51cd-410c-97ff-2f235930bacd",
             "actions": [
                 {
-                    "name": "CursorMove",
-                    "type": "Value",
-                    "id": "511eb542-6f57-4bc9-8c04-c07a198fade5",
-                    "expectedControlType": "Vector3",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Click",
                     "type": "Button",
                     "id": "c7f07900-51b9-4dea-84ef-9df5861c71ff",
@@ -378,17 +380,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "907e871a-4ad8-40ee-a406-1575e2fac7a7",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CursorMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "533b671f-cc2b-43c4-9822-272056e46b2a",
@@ -437,6 +428,17 @@
                     "name": "",
                     "id": "619224c9-3f07-4118-a30e-34470ce553d3",
                     "path": "<ViveController>{LeftHand}/trackpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "873e600f-0aaf-44e8-86b6-6b2fad4c9b89",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -551,17 +553,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cff8fea0-4fb1-4d5e-9584-cfe9985e12fb",
-                    "path": "<Mouse>/scroll",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseScroll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a23ee84d-0240-408e-b330-32942324bf07",
                     "path": "<ViveController>{LeftHand}/trackpad",
                     "interactions": "",
@@ -620,6 +611,17 @@
                     "id": "54358f9d-e1ab-40cf-afc5-b8234fa6cd2c",
                     "path": "<ViveController>{RightHand}/triggerPressed",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a2b8a07-133a-455e-b993-542900b4bbe8",
+                    "path": "<OculusTouchController>{RightHand}/secondaryButton",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "RightClick",

@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public EquimentManager equimentManager;
     public EquipmentEnhance equipmentEnhance;
 
-    public Transform cursorObj;
+    public GameObject cursorObj;
 
     [Header("UIオブジェクト")]
     public GameObject bgUi;
@@ -83,8 +83,8 @@ public class UIManager : MonoBehaviour
     {
         textCanvas.SetActive(true);
         talkNPC.SetText(obj);
-        if(cursorObj !=null || controlCanvas !=null)
-            cursorObj.position = controlCanvas.transform.position;
+        if (cursorObj != null || controlCanvas != null)
+            gameCursor.SetiingCursor();
     }
 
     // ワープポイント
@@ -109,15 +109,15 @@ public class UIManager : MonoBehaviour
     // UI表示
     public void uiOpen()
     {
-        if (controlCanvas != null)
-            controlCanvas.SetActive(false);
+        if (controlCanvas != null) controlCanvas.SetActive(false);
+        if(cursorObj !=null) cursorObj.SetActive(false);
     }
 
     // UI非表示
     public void uiClose()
     {
-        if(controlCanvas != null)
-        controlCanvas.SetActive(true);
+        if (controlCanvas != null) controlCanvas.SetActive(true);
+        if (cursorObj != null) cursorObj.SetActive(true);
 
         uiNum = 0;
         bgUi.SetActive(false);
@@ -137,12 +137,6 @@ public class UIManager : MonoBehaviour
             case 2:
                 equipmentEnhance.NumUpDown(b);
                 break;
-            case 3:
-
-                break;
-            default:
-                return;
-                
         }
     }
     // 決定処理
@@ -151,20 +145,11 @@ public class UIManager : MonoBehaviour
         switch (uiNum)
         {
             case 1:
-                if (warpPoint.GetBool(warpPoint.GetSetSpriteNum) == true)
-                {
-                    Debug.Log("fd");
-                    gameManager.StartWrap(warpPoint);
-                }
+                if (warpPoint.GetBool(warpPoint.GetSetSpriteNum) == true) gameManager.StartWrap(warpPoint);
                 break;
             case 2:
                 equipmentEnhance.WeaponUpgrade();
                 break;
-            case 3:
-                break;
-            default:
-                return;
-                
         }
     }
 
