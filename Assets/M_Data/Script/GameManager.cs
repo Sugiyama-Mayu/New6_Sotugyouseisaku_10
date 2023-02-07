@@ -395,6 +395,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void GameStart()
+    {
+        saveData.ResetGameData();
+    }
+
+    public void GameContinue()
+    {
+        saveData.DataLoad();
+    }
+
     public bool GetVRMode
     {
         get

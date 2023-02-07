@@ -8,6 +8,7 @@ public class TitleSceneButton : MonoBehaviour
 {
     [SerializeField] MainSceneObj mainSceneObj;
     [SerializeField] TitleUI titleUI;
+    [SerializeField] GameManager gameManager;
     private bool visibleCursor;
 
     // カーソルの表示・非表示処理
@@ -30,12 +31,15 @@ public class TitleSceneButton : MonoBehaviour
     // はじめから
     public void StartGame()
     {
-        titleUI.TitleControl(false);  // タイトル画面をやめる               
+        titleUI.TitleControl(false);  // タイトル画面をやめる
+        gameManager.GameStart();
         Debug.Log("はじめから");
     }
     // 続きから
     public void ContinueGame()
     {
+        titleUI.TitleControl(false);  // タイトル画面をやめる               
+        gameManager.GameContinue();
         Debug.Log("つづきから");
     }
     // オプション

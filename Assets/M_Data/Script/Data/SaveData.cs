@@ -28,7 +28,7 @@ public class SaveData : MonoBehaviour
     {
         filePath = Application.dataPath + "/"+ "SaveData" + "/"+ "savedata.json";
         playData = LoadPlayerData();
-        DataLoad();
+       // DataLoad();
     }
 
     private void OnApplicationQuit()
@@ -63,8 +63,19 @@ public class SaveData : MonoBehaviour
         return JsonUtility.FromJson<PlayerData>(datastr);
     }
 
-    private void DataLoad()
+    // 初めから
+    public void ResetGameData()
     {
+        playData.weaponNum = new int[5];
+        SavePlayerData(playData);
+        Debug.Log("データリセット");
+    }
+
+    // 続きから
+    public void DataLoad()
+    {
+        Debug.Log("データロード");
+
         int i = 0;
         gameManager.playerManager.PlayerPos = playData.pos;  // 座標
         i = 0;
@@ -91,10 +102,5 @@ public class SaveData : MonoBehaviour
         }
     }
 
-    public void ResetGameData()
-    {
-        playData.weaponNum = new int[5];
-        SavePlayerData(playData);
-    }
 
 }
