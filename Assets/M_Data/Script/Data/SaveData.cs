@@ -10,10 +10,8 @@ public class SaveData : MonoBehaviour
     {
         public string name = "";
         public Vector3 pos = Vector3.zero;
-     //   public int money = 0;
-        public int[] weaponNum = {0 ,0 ,0 ,0};
+        public int[] weaponNum = {0 ,0 ,0 , 0, 0};
         public bool[] warp = { true, true, true, true, true, true };
-        //public int[] enemyNum = { 0, 0, 0, 0, 0 };
     }
     [SerializeField] private GameManager gameManager;
 
@@ -30,13 +28,12 @@ public class SaveData : MonoBehaviour
     {
         filePath = Application.dataPath + "/"+ "SaveData" + "/"+ "savedata.json";
         playData = LoadPlayerData();
-        SaveLoad();
-       // SavePlayerData(playData);
+        DataLoad();
     }
 
-    private void Update()
+    private void OnApplicationQuit()
     {
-        
+        SavePlayerData(playData);
     }
 
     // json‘‚«‚İˆ—
@@ -66,14 +63,10 @@ public class SaveData : MonoBehaviour
         return JsonUtility.FromJson<PlayerData>(datastr);
     }
 
-    private void SaveLoad()
+    private void DataLoad()
     {
         int i = 0;
         gameManager.playerManager.PlayerPos = playData.pos;  // À•W
-        for (i = 0; i < 4; i++) // •Šíî•ñ
-        {
-            gameManager.playerManager.SetEquipmentNum(i, playData.weaponNum[i]);    
-        }
         i = 0;
         foreach(bool b in playData.warp)
         {
@@ -83,7 +76,25 @@ public class SaveData : MonoBehaviour
             }
             i++;
         }
+        gameManager.equimentManager.SetEquimentLevel = playData.weaponNum;
+    }
 
+    public int[] SaveEquimentLevel
+    {
+        set
+        {
+            for(int i=0; i<playData.weaponNum.Length; i++)
+            {
+                playData.weaponNum[i] = value[i];
+            }
+            Debug.Log(playData.weaponNum[0]+""+playData.weaponNum[1] + "" + playData.weaponNum[2] + "" + playData.weaponNum[3] + "" + playData.weaponNum[4]);
+        }
+    }
+
+    public void ResetGameData()
+    {
+        playData.weaponNum = new int[5];
+        SavePlayerData(playData);
     }
 
 }

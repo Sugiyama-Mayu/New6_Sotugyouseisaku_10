@@ -578,6 +578,18 @@ public class ConnectionFile : MonoBehaviour
             case "爪":
                 id = 505;
                 break;
+            case "薬草":
+                id = 506;
+                break;
+            case "回復薬":
+                id = 507;
+                break;
+            case "上回復薬":
+                id = 508;
+                break;
+            case "完全回復薬":
+                id = 509;
+                break;
             case "銅":
                 id = 519;
                 break;
@@ -666,6 +678,7 @@ public class ConnectionFile : MonoBehaviour
         //521 金
         SetMaterialNum(minusOrPlusMode, "金", kinNum);
     }
+
     // 祠のクリア数を返す
     // 引  数：なし
     // 戻り値：int   祠のクリア数

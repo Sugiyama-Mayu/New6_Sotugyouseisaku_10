@@ -13,8 +13,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float hp;
     [SerializeField] private float regenHp;
 
-    [SerializeField] private int[] equipmentNum = { 0, 0, 0, 0 };
-
     // 防具
     [SerializeField] private float defense;
     [SerializeField] private float e;
@@ -91,13 +89,6 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-
-    // 防御力
-    public void DefenseValue()
-    {
-        equimentManager.GetDefenseValue(equipmentNum[2],equipmentNum[3]);
-    }
-
     // ゲッター
     public float GetHp
     {
@@ -113,18 +104,13 @@ public class PlayerManager : MonoBehaviour
             return maxHp;
         }
     }
-
+    /*
     public int GetEquipmentNum(int i)
     {
         return equipmentNum[i];
     }
-
+    */
     // セッター
-    // 
-    public void SetEquipmentNum(int type ,int id)
-    {
-        equipmentNum[type] = id;
-    }
     // ダメージ
     public float SetDamege
     {

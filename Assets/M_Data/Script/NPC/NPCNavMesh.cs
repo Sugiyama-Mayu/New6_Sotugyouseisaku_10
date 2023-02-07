@@ -26,7 +26,7 @@ public class NPCNavMesh : MonoBehaviour
         GameObject playerObj = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObj();
         player = playerObj.transform;
 
-        navController = gameObject.GetComponent<NavController>();
+        //navController = gameObject.GetComponent<NavController>();
         agent = GetComponent<NavMeshAgent>();
         // éüÇÃñ⁄ìIínê›íË
         GotoNextPoint();
@@ -53,6 +53,7 @@ public class NPCNavMesh : MonoBehaviour
         if (npcRoot.localRotation != Quaternion.identity) npcRoot.localRotation = Quaternion.identity;
         agent.nextPosition = transform.position;
     }
+
 
     public void GotoNextPoint()
     {

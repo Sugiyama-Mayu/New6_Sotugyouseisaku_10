@@ -18,11 +18,6 @@ public class ListViewController : MonoBehaviour
         GameObject.Destroy(item);
     }
 
-    void Update()
-    {
-     //   UpdateListView();
-    }
-
     private void UpdateListView()
     {
         // item”‚É‡‚í‚¹‚ÄContent‚Ì‚‚³‚ğ•ÏX‚·‚é.

@@ -195,9 +195,6 @@ public class EquipmentEnhance :MonoBehaviour
             statasText.text = str;
         }
     }
-
-
-
     public UIButton[] GetChildren(Transform parent)
     {
         // 子オブジェクトを格納する配列作成
@@ -239,7 +236,9 @@ public class EquipmentEnhance :MonoBehaviour
            // equimentManager.SetMaterialNum(name, int.Parse(value));
             equimentManager.connectionFile.SetMaterialNum(false, name, int.Parse(value));
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        equimentManager.SaveLevel();
+        yield return new WaitForSeconds(1f);
 
         EquipmentImage();
         itemImageUpdate();

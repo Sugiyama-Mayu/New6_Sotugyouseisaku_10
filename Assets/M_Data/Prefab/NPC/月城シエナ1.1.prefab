@@ -46,12 +46,12 @@ GameObject:
   - component: {fileID: 4505921924601189321}
   - component: {fileID: 915983402624229981}
   - component: {fileID: 5288919598069856100}
-  - component: {fileID: 9067165703453363719}
   - component: {fileID: 4566563777944850697}
   - component: {fileID: 7041552605726706335}
   - component: {fileID: 2392451523405340038}
   - component: {fileID: 6654894064830258692}
   - component: {fileID: 6375905877678493506}
+  - component: {fileID: -7620949059408856536}
   m_Layer: 0
   m_Name: "\u6708\u57CE\u30B7\u30A8\u30CA1.1"
   m_TagString: NPC
@@ -125,10 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcNav: {fileID: 4505921924601189321}
-  npcHead: {fileID: 4990983207955261652}
   shop: 0
   npcID: 0
-  npcName: 
 --- !u!114 &4505921924601189321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,28 +188,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &9067165703453363719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91616836898849366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aacc0710dfa63024b9064ff37615cb74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 1.5
-  angularSpeed: 200
-  turnAngle: 120
-  turnAngularSpeed: 600
-  speedDownDistance: 1
-  stopDistance: 0.2
-  gravity: 20
-  Speed2Anim: 1
-  stopSpeed: 0.01
-  averageSpeed: 0.5
 --- !u!114 &4566563777944850697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +413,27 @@ MonoBehaviour:
   Head: {fileID: 0}
   m_yaw: 0
   m_pitch: 0
+--- !u!114 &-7620949059408856536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91616836898849366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacc0710dfa63024b9064ff37615cb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 1.5
+  angularSpeed: 200
+  turnAngle: 45
+  turnAngularSpeed: 1000
+  speedDownDistance: 0.5
+  stopDistance: 0.01
+  gravity: 20
+  stopSpeed: 0.01
+  averageSpeed: 0.5
 --- !u!1 &354664608225736812
 GameObject:
   m_ObjectHideFlags: 0

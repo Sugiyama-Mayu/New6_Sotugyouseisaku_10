@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     // データの読み込み
     public DataManager dataRead;
-   // public SaveData saveData;
+    public SaveData saveData;
 
     public UIManager uiManager;
     public TerrainManager terrainManager;
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public InputPlayer inputPlayer;
     public InputPlayerVR inputPlayerVR;
     public CreateManager createManager;
+    public EquimentManager equimentManager;
+
     [SerializeField] private ConnectionFile connectionFile;
     
 
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         connectionFile = GameObject.Find("Connection").GetComponent<ConnectionFile>();
         swichMode = GetComponent<SwichMode>();
+        saveData = GetComponent<SaveData>();
         terrainManager.enabled = false;
         materialNum = new int[8]; // 0:骨 1:皮 2:牙 3:毛皮 4:爪 5:銅 6:銀 7:金
         dragItemNum = new int[4];
@@ -301,11 +304,26 @@ public class GameManager : MonoBehaviour
         return b;
     }
 
+    // アイテム使用
     public void UseDragItem(int num)
     {
         dragItemNum[num]--;
+        switch (num)
+        {
+            case 0:
+                connectionFile.SetMaterialNum(false, "薬草", 1);
+                break;
+            case 1:
+                connectionFile.SetMaterialNum(false, "回復薬", 1);
+                break;
+            case 2:
+                connectionFile.SetMaterialNum(false, "上回復薬", 1);
+                break;
+            case 3:
+                connectionFile.SetMaterialNum(false, "完全回復薬", 1);
+                break;
+        }
     } 
-
 
     // アクションマップ変更
     public void SetiingActionMap(int i)
@@ -344,6 +362,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 回復アイテム数取得
     public void DragItemNumUpdate()
     {
         string array = "";
@@ -355,7 +374,6 @@ public class GameManager : MonoBehaviour
         dragItemNum[2] = connectionFile.haveNum;
         connectionFile.TranslationDataArray(connectionFile.ReadFile(509, array), 5);
         dragItemNum[3] = connectionFile.haveNum;
-
     }
 
     // メニュー用
@@ -376,16 +394,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    public int[] GetDragItemList
-    {
-        get
-        {
-            return dragItemNum;
-        }
-    }
-
-
 
     public bool GetVRMode
     {

@@ -21,11 +21,6 @@ public class TalkNPC : MonoBehaviour
         textCount = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void TextCountUp()
     {

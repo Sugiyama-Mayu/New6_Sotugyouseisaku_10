@@ -278,7 +278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 137, y: -125}
+  m_AnchoredPosition: {x: 100, y: -125}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8498112657843658789
@@ -309,11 +309,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88549a825efb18741b4ac32ea5e9a3ab, type: 2}
-  m_sharedMaterial: {fileID: -5128018097763764396, guid: 88549a825efb18741b4ac32ea5e9a3ab,
-    type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9606ae20395cb9847b2993b64c0f16f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1398,7 +1397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 67b4fa7b77ef58f4d926ad7aab8c51d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2687,12 +2686,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   playerControl: {fileID: 8918889131674639321}
-  gameCursor: {fileID: 0}
+  gameCursor: {fileID: 8918889131783225117}
   talkNPC: {fileID: 8918889131220822975}
   warpPoint: {fileID: 8918889131638270735}
   equimentManager: {fileID: 0}
   equipmentEnhance: {fileID: 8918889131653707750}
-  cursorObj: {fileID: 8918889131783225118}
+  cursorObj: {fileID: 8918889131783225105}
   bgUi: {fileID: 8918889132268420643}
   controlCanvas: {fileID: 8918889131476266832}
   warpCanvas: {fileID: 8918889131638270721}
@@ -2854,7 +2853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8918889131638270734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2934,7 +2933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8918889131653707673
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3000,7 +2999,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8918889131653707751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3066,6 +3065,7 @@ MonoBehaviour:
   levelText: {fileID: 3425419225784931100}
   parent: {fileID: 8918889132816488683}
   button: []
+  wait: 0
 --- !u!1 &8918889131674639322
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,7 +3290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 720, y: -300}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8918889131783225115
@@ -3345,6 +3345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   cursorObj: {fileID: 8918889131783225118}
+  controlObj: {fileID: 8918889131476266833}
+  maxMinOffset: 180
   cursorSensitivity: 30
 --- !u!54 &8918889131783225116
 Rigidbody:
@@ -4426,7 +4428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8918889132268420640
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6410,7 +6412,7 @@ PrefabInstance:
     - target: {fileID: 3542184237021184564, guid: 512b94e95f5e7f147bee267d273d0106,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 69412.37
+      value: 219516.1
       objectReference: {fileID: 0}
     - target: {fileID: 3542184237057776418, guid: 512b94e95f5e7f147bee267d273d0106,
         type: 3}

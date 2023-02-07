@@ -52,20 +52,6 @@ public class Bow : MonoBehaviour
         CreateArrow();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            drawBow = true;
-        }
-        if (Input.GetKeyUp(KeyCode.U))
-        {
-            ArrowShot();
-        }
-        */
-    }
 
     private void FixedUpdate()
     {

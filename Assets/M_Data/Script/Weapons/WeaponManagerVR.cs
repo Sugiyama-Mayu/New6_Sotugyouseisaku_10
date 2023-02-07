@@ -96,8 +96,8 @@ public class WeaponManagerVR : MonoBehaviour
         }
 
         // 各武器表示
-        wearSword = swordObj[playerManager.GetEquipmentNum(0)];
-        wearBow = bowObj[playerManager.GetEquipmentNum(1)];
+        wearSword = swordObj[0];
+        wearBow = bowObj[0];
         bow = wearBow.GetComponent<Bow>();
 
         // ダメージ設定
@@ -111,7 +111,7 @@ public class WeaponManagerVR : MonoBehaviour
     public void SetLevel()
     {
         // ダメージ格納配列
-        int[] value =equimentManager.GetWeaponDamege(playerManager.GetEquipmentNum(0),playerManager.GetEquipmentNum(1));
+        int[] value =equimentManager.GetWeaponDamege(0,0);
 
         wearSword.GetComponent<WeaponDamage>().SetiingDamege = value[0];
         wearBow.GetComponent<Bow>().SetDamege = value[1];
