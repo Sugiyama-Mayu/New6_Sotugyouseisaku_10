@@ -35,6 +35,7 @@ public class InputPlayerVR : MonoBehaviour
 
     [Header("その他")]
     [SerializeField] private Transform playerYPos;
+    [SerializeField] private float rotCamera;
     bool bowString = false;
 
     /// Player Input
@@ -75,13 +76,14 @@ public class InputPlayerVR : MonoBehaviour
     private const string MENU_LEFTCLICK = "LeftClick";
     private const string MENU_RIGHTCLICK = "RightClick";
     private const string MENU_MOUSESCROLL = "MouseScroll";
-
+ 
+    /*
     // M.Sヒットしたゲームオブジェクトの保存(運ぶ処理に使用)
     private GameObject hitObj;
     private bool hitObjFlag = false;
     private bool huntSelectOrder;
     private GameObject huntTarget;
-
+    */
 
 
     private void Awake()
@@ -158,7 +160,10 @@ public class InputPlayerVR : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, maxDistance))
         {
-            if (lineRenderers[i].enabled == false) lineRenderers[i].enabled = true;
+            if (lineRenderers[i].enabled == false && hit.collider.tag == "WarpPoint" || hit.collider.tag == "Ore" ||hit.collider.tag == "NPC" ) 
+            {
+                lineRenderers[i].enabled = true; 
+            }
         }
         else if (lineRenderers[i].enabled == true) lineRenderers[i].enabled = false;
     }
@@ -175,7 +180,6 @@ public class InputPlayerVR : MonoBehaviour
         playerRb.velocity = Vector3.zero;
         weaponManagerVR.wearSword.SetActive(false);
         weaponManagerVR.wearBow.SetActive(false);
-        //gameManager.uiManager.uiOpen();
     }
     public void ToTalkMode()
     {
@@ -205,8 +209,8 @@ public class InputPlayerVR : MonoBehaviour
         Quaternion q = transform.rotation;
         Quaternion rot = Quaternion.identity;
 
-        if (_currentRoteInputValue > 0.5f) rot = Quaternion.AngleAxis(2, Vector3.up);
-        else if(_currentRoteInputValue < -0.5f) rot = Quaternion.AngleAxis(-2, Vector3.up);
+        if (_currentRoteInputValue > 0.5f) rot = Quaternion.AngleAxis(rotCamera, Vector3.up);
+        else if(_currentRoteInputValue < -0.5f) rot = Quaternion.AngleAxis(-rotCamera, Vector3.up);
         transform.rotation = q * rot;
 
     }
@@ -275,31 +279,40 @@ public class InputPlayerVR : MonoBehaviour
     // 攻撃（右クリック）
     public void OnRAttack(InputAction.CallbackContext context)
     {
+        if (weaponManagerVR.wearBow.activeSelf == false) return;   // 押す（通常）
         var value = context.ReadValue<float>();
 
-        if (!context.performed || weaponManagerVR.wearBow.activeSelf == false) return;   // 押す（通常）
-        if (value == 1 || bowString == false)
+        if (context.performed) 
         {
-            Debug.Log(value);
-            if (!bowString) // 弓攻撃
+            //     Debug.Log(value);
+            if (!bowString)
             {
-                _moveSpeed = setSpeed[1];
-                weaponManagerVR.bow.SwitchDrawBow(true);
-                Debug.Log("hipparu");
-                bowString = true;
+                if (0.9f <= value)
+                {
+                    _moveSpeed = setSpeed[1];
+                    weaponManagerVR.bow.SwitchDrawBow(true);
+                    Debug.Log("hipparu");
+                    bowString = true;
+                    return;
+                }
+
             }
-        }else if(value != 1 && bowString)
-        {
-            Debug.Log(value);
-            // 離す（弓のみ）
-            if (bowString)
+            else
             {
-                _moveSpeed = setSpeed[0];
-                weaponManagerVR.bow.ArrowShot();
-                Debug.Log("hanasu");
-                bowString = false;
+                Debug.Log(value);
+                if (value < 0.9f)
+                {
+                    // 離す（弓のみ）
+                    _moveSpeed = setSpeed[0];
+                    weaponManagerVR.bow.ArrowShot();
+                    Debug.Log("hanasu");
+                    bowString = false;
+                }
+
             }
+
         }
+
     }
 
     // ホイールクリック
@@ -347,7 +360,6 @@ public class InputPlayerVR : MonoBehaviour
     {
         if (context.performed)
         {
-            //if () { }
             SetActionMap(0);
             gameManager.uiManager.uiClose();
 

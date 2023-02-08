@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private GameManager gameManager;
-    private EquimentManager equimentManager;
     private GameOverProcess gameOverProcess;
 
     [Header("HP")]
@@ -24,7 +23,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameOverProcess = GameObject.Find("TitleScriptObj").GetComponent<GameOverProcess>();
+        if(gameManager.GetSetXRMode != true) gameOverProcess = GameObject.Find("TitleScriptObj").GetComponent<GameOverProcess>();
         col = GetComponent<CapsuleCollider>();
         ColOffset();
         hp = maxHp;
@@ -73,7 +72,8 @@ public class PlayerManager : MonoBehaviour
     // 死亡処理
     private void Dead()
     {
-        gameOverProcess.CallGameOver();
+        if (gameManager.GetSetXRMode) StartCoroutine(gameManager.Continue());
+        else gameOverProcess.CallGameOver();
         gameManager.createManager.AllDestroyEnemy();
         Debug.Log("PlayerDead");
     }
@@ -104,12 +104,7 @@ public class PlayerManager : MonoBehaviour
             return maxHp;
         }
     }
-    /*
-    public int GetEquipmentNum(int i)
-    {
-        return equipmentNum[i];
-    }
-    */
+
     // セッター
     // ダメージ
     public float SetDamege

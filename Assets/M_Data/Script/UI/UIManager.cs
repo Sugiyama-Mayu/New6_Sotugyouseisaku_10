@@ -13,10 +13,10 @@ public class UIManager : MonoBehaviour
     public EquimentManager equimentManager;
     public EquipmentEnhance equipmentEnhance;
 
-    public GameObject cursorObj;
 
     [Header("UIオブジェクト")]
     public GameObject bgUi;
+    public GameObject cursorObj;
     public GameObject controlCanvas;
     public GameObject warpCanvas;
     public GameObject textCanvas;
@@ -47,20 +47,27 @@ public class UIManager : MonoBehaviour
         imageCount = 0;
         maxHp = gameManager.playerManager.GetMaxHp;
         ChengeSceneImage.gameObject.SetActive(true);
-        uiClose();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Hp();
+        if (gameManager.GetSetXRMode)
+        {
+            controlCanvas.SetActive(false);
+            cursorObj.SetActive(false);
+        }
+        else
+        {
+            controlCanvas.SetActive(true);
+            cursorObj.SetActive(true);
+        }
+
+        uiClose();
     }
 
     private void FixedUpdate()
     {
         if (imageCount <= 1) { imageCount -= 0.01f; }
         SplaterImage.color = new Vector4(SplaterImage.color.r, SplaterImage.color.g, SplaterImage.color.b, imageCount);
-
+        
+        Hp();
         BlackOut();
 
     }
@@ -83,8 +90,7 @@ public class UIManager : MonoBehaviour
     {
         textCanvas.SetActive(true);
         talkNPC.SetText(obj);
-        if (cursorObj != null || controlCanvas != null)
-            gameCursor.SetiingCursor();
+        if (gameManager.GetSetXRMode == false) gameCursor.SetiingCursor();
     }
 
     // ワープポイント
@@ -109,15 +115,18 @@ public class UIManager : MonoBehaviour
     // UI表示
     public void uiOpen()
     {
-        if (controlCanvas != null) controlCanvas.SetActive(false);
-        if(cursorObj !=null) cursorObj.SetActive(false);
+        controlCanvas.SetActive(false);
+        cursorObj.SetActive(false);
     }
 
     // UI非表示
     public void uiClose()
     {
-        if (controlCanvas != null) controlCanvas.SetActive(true);
-        if (cursorObj != null) cursorObj.SetActive(true);
+        if (gameManager.GetSetXRMode == false)
+        {
+            controlCanvas.SetActive(true);
+            cursorObj.SetActive(true);
+        }
 
         uiNum = 0;
         bgUi.SetActive(false);

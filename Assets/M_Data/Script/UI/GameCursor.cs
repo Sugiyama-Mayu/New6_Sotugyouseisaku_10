@@ -9,9 +9,7 @@ public class GameCursor : MonoBehaviour
     public Transform cursorObj;
     public Transform controlObj;
 
-    private float screenLimit;
     private Vector2 homePos;
-    [SerializeField] private float maxMinOffset=180.0f; 
 
 
     [SerializeField] private float cursorSensitivity;
@@ -22,14 +20,7 @@ public class GameCursor : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cursorObj = GameObject.Find("CursorObj").GetComponent<Transform>();
         homePos = controlObj.localPosition;
-        if (gameManager.GetVRMode != true)
-        {
-            screenLimit = 2.0f;
-        }
-        else
-        {
-            screenLimit = 1.5f;
-        }
+
         SetiingCursor();
     }
 

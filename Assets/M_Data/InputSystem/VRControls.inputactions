@@ -47,7 +47,7 @@
                     "id": "ed18d0f3-2aeb-47d8-a336-2153ad04a9a5",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -172,7 +172,7 @@
                 {
                     "name": "",
                     "id": "9314a9d7-ed29-437a-99c8-883b940a41f1",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -194,7 +194,7 @@
                 {
                     "name": "",
                     "id": "7a394e76-c93a-41fe-88fb-b4f4cc085b41",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{RightHand}/primarybutton",
+                    "path": "<OculusTouchController>/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -294,7 +294,7 @@
                     "name": "",
                     "id": "a5c2a8e1-29d7-4845-9b7f-07afbb9cb7d6",
                     "path": "<ViveController>{LeftHand}/triggerPressed",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "LAttack",
@@ -304,7 +304,7 @@
                 {
                     "name": "",
                     "id": "399e49fb-f835-405a-9acd-33c6fb436f29",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>/triggerpressed",
+                    "path": "<OculusTouchController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -326,7 +326,7 @@
                 {
                     "name": "",
                     "id": "070a5461-96f1-48d7-a7a4-7f28fe2ae44b",
-                    "path": "<OculusTouchController>{RightHand}/triggerTouched",
+                    "path": "<OculusTouchController>{RightHand}/trigger",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",

@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
     float prevTime;
     float fps;
 
-    bool b = false;
-    float timeCount = 0;
     [SerializeField] float refreshCount;
     [SerializeField] int[] materialNum;
     [SerializeField] int[] dragItemNum;
@@ -101,7 +99,6 @@ public class GameManager : MonoBehaviour
         }
         if(terrainManager.enabled == false && titleObj.activeSelf == false)
         {
-            Debug.Log("kuso");
             terrainManager.enabled = true;
         }
 
@@ -162,7 +159,6 @@ public class GameManager : MonoBehaviour
         Resources.UnloadUnusedAssets();
         yield return new WaitForSeconds(1.0f);
         uiManager.SetBlackOut = false;
-
     }
 
     /// <summary>
@@ -257,7 +253,6 @@ public class GameManager : MonoBehaviour
     // ëfçﬁÉLÉÖÅ[
     public void SetMaterial(string itemName, int itemCount)
     {
-        b = true;
         switch (itemName)
         {
             case "çú":

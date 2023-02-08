@@ -4306,12 +4306,12 @@ PrefabInstance:
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: debugMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: createCount
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
@@ -4503,7 +4503,7 @@ PrefabInstance:
     - target: {fileID: 2621226446725089770, guid: 9178a36a924058e43b828148b0cef854,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.16
+      value: -13.15
       objectReference: {fileID: 0}
     - target: {fileID: 2621226446725089770, guid: 9178a36a924058e43b828148b0cef854,
         type: 3}
@@ -5654,6 +5654,29 @@ PrefabInstance:
       propertyPath: spownOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 5903721221478559008, guid: 911f9a4771c5e0c4e9e9b6f9c9666609,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 8120841256101967049, guid: d40cc14d0f55b6047b09f3e4e4b1caab,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 2220683815079410314, guid: ed091609edafeb84fa9631b38e9e49f6,
+        type: 3}
     - target: {fileID: 4347707367180421435, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: m_Size.x
@@ -6604,6 +6627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
       propertyPath: createCount
       value: 15
       objectReference: {fileID: 0}
@@ -6612,6 +6640,35 @@ PrefabInstance:
       propertyPath: spownOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 5903721221478559008, guid: 911f9a4771c5e0c4e9e9b6f9c9666609,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 4094422501843506859, guid: cb68c3850da0e264f92a3872960354c6,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 8120841256101967049, guid: d40cc14d0f55b6047b09f3e4e4b1caab,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[3]
+      value: 
+      objectReference: {fileID: 2220683815079410314, guid: ed091609edafeb84fa9631b38e9e49f6,
+        type: 3}
     - target: {fileID: 4347707367180421435, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: m_Size.x
@@ -9290,6 +9347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
       propertyPath: createCount
       value: 15
       objectReference: {fileID: 0}
@@ -9298,6 +9360,29 @@ PrefabInstance:
       propertyPath: spownOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 4094422501843506859, guid: cb68c3850da0e264f92a3872960354c6,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 8120841256101967049, guid: d40cc14d0f55b6047b09f3e4e4b1caab,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 2220683815079410314, guid: ed091609edafeb84fa9631b38e9e49f6,
+        type: 3}
     - target: {fileID: 4347707367180421435, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: m_Size.x
@@ -9485,6 +9570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
       propertyPath: createCount
       value: 15
       objectReference: {fileID: 0}
@@ -9492,6 +9582,11 @@ PrefabInstance:
         type: 3}
       propertyPath: spownOffset
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421435, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
@@ -10906,7 +11001,7 @@ PrefabInstance:
     - target: {fileID: 473308934475270174, guid: 0f7524a964f36214595f8a8cd96ce319,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 14568
+      value: 14583
       objectReference: {fileID: 0}
     - target: {fileID: 473308934475270174, guid: 0f7524a964f36214595f8a8cd96ce319,
         type: 3}
@@ -16090,6 +16185,11 @@ PrefabInstance:
       objectReference: {fileID: 192348636}
     - target: {fileID: 5288919598069856100, guid: 79bae54f0340010488353f35056c7aaf,
         type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288919598069856100, guid: 79bae54f0340010488353f35056c7aaf,
+        type: 3}
       propertyPath: m_SlopeLimit
       value: 60
       objectReference: {fileID: 0}
@@ -16165,33 +16265,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79bae54f0340010488353f35056c7aaf, type: 3}
---- !u!1 &91616837622702225 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 91616836898849366, guid: 79bae54f0340010488353f35056c7aaf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1597973191}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1688134495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91616837622702225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aacc0710dfa63024b9064ff37615cb74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 1.5
-  angularSpeed: 200
-  turnAngle: 45
-  turnAngularSpeed: 1000
-  speedDownDistance: 0.5
-  stopDistance: 0.01
-  gravity: 20
-  stopSpeed: 0.01
-  averageSpeed: 0.5
 --- !u!4 &6865260407572525413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6865260408796009378, guid: 79bae54f0340010488353f35056c7aaf,
@@ -16223,7 +16296,7 @@ PrefabInstance:
     - target: {fileID: 2621226446725089770, guid: 9178a36a924058e43b828148b0cef854,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5843163
+      value: 1.914
       objectReference: {fileID: 0}
     - target: {fileID: 2621226446725089770, guid: 9178a36a924058e43b828148b0cef854,
         type: 3}
@@ -16800,6 +16873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
       propertyPath: createCount
       value: 15
       objectReference: {fileID: 0}
@@ -16808,6 +16886,23 @@ PrefabInstance:
       propertyPath: spownOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 8120841256101967049, guid: d40cc14d0f55b6047b09f3e4e4b1caab,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 2220683815079410314, guid: ed091609edafeb84fa9631b38e9e49f6,
+        type: 3}
     - target: {fileID: 4347707367180421435, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: m_Size.x
@@ -18031,6 +18126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: renge
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: debugMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
@@ -19958,9 +20058,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
       propertyPath: createCount
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[0]
+      value: 
+      objectReference: {fileID: 4094422501843506859, guid: cb68c3850da0e264f92a3872960354c6,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[1]
+      value: 
+      objectReference: {fileID: 8120841256101967049, guid: d40cc14d0f55b6047b09f3e4e4b1caab,
+        type: 3}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.data[2]
+      value: 
+      objectReference: {fileID: 2220683815079410314, guid: ed091609edafeb84fa9631b38e9e49f6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b920afc291546554aa872dc7164042cf, type: 3}
 --- !u!114 &9166422657549255158 stripped
@@ -20111,12 +20239,17 @@ PrefabInstance:
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: createCount
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
         type: 3}
       propertyPath: spownOffset
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347707367180421434, guid: b920afc291546554aa872dc7164042cf,
+        type: 3}
+      propertyPath: enemyObj.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4347707367180421435, guid: b920afc291546554aa872dc7164042cf,
         type: 3}

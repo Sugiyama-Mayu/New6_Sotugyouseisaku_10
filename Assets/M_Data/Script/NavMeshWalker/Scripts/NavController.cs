@@ -43,9 +43,10 @@ namespace Anim.Nav
         /*
         [TooltipAttribute("移動速度とアニメーション速度の変換率"), SerializeField]
         float Speed2Anim = 1f;
-        */
         [TooltipAttribute("アニメを停止とみなす速度"), SerializeField]
         float stopSpeed = 0.01f;
+        */
+
         [TooltipAttribute("アニメの平均化係数"), SerializeField]
         float averageSpeed = 0.5f;
 

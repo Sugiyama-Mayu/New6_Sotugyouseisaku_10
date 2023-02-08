@@ -29,8 +29,6 @@ public class CreateEnemy : MonoBehaviour
         if (spownObj == null) spownObj = gameObject.transform;
         nowCount = createCount;
         maxType = (enemyObj.Length + 1) * 10;
-        Transform cube = transform.GetChild(0);
-        cube.gameObject.SetActive(false);
     }
     /*
     private void FixedUpdate()

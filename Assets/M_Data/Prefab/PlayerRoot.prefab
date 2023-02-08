@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 1405541211}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +392,7 @@ MonoBehaviour:
   inputActions:
   - {fileID: -944628639613478452, guid: 167ab2ad3f717c544b6b2ff7e91c43cb, type: 3}
   - {fileID: -944628639613478452, guid: 89a5ae3a9ad22c140924e73fd4e54c63, type: 3}
-  debugInput: 0
+  debugInput: 1
   cursorObj: {fileID: 0}
   control: {fileID: 0}
   vrRot: {fileID: 331148928253415492}
@@ -428,7 +428,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 13
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1405541211
 MonoBehaviour:
@@ -663,7 +663,6 @@ MonoBehaviour:
   maxHp: 20
   hp: 20
   regenHp: 0
-  equipmentNum: 00000000000000000000000000000000
   defense: 0
   e: 0
 --- !u!1 &4415079233454371617
