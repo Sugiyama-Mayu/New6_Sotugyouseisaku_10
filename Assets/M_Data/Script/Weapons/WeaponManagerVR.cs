@@ -8,7 +8,7 @@ public class WeaponManagerVR : MonoBehaviour
     public EquimentManager equimentManager;
     public Bow bow;
 
-    private int weaopn = 0;
+    public int weaopn = 0;
 
     public GameObject wearSword;
     public GameObject wearBow;

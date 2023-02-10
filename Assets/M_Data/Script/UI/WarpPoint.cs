@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WarpPoint : MonoBehaviour
 {
     private Transform playerPos;
+    [SerializeField] private RingSound ringSound;
 
     [Header("ÉAÉCÉRÉì")]
     [SerializeField] private RectTransform warpIcon;
@@ -37,7 +38,8 @@ public class WarpPoint : MonoBehaviour
 
     public void PlayerWarp()
     {
-        Debug.Log(warpNum);
+        if (warpNum == 0) ringSound.RingBGM(3);
+        else ringSound.RingBGM(1);
         Vector3 warpPos =  new Vector3 (warpPoint[warpNum].position.x, warpPoint[warpNum].position.y + 0.5f, warpPoint[warpNum].position.z - 3f);
         playerPos.position = warpPos;
         warpNum = 0;
@@ -47,18 +49,6 @@ public class WarpPoint : MonoBehaviour
     public void WarpOpen()
     {
         int i = 0;
-        foreach(bool b in flag) 
-        {
-            if(b == true)
-            {
-                buttonImage[i].sprite =buttonSprite[1];
-            }
-            else
-            {
-                buttonImage[i].sprite = buttonSprite[1];
-            }
-            i++;
-        }
 
         for (i = 0; i < buttonImage.Length; i++)
         {
@@ -100,12 +90,6 @@ public class WarpPoint : MonoBehaviour
             warpNum--;
             if (warpNum < 0) warpNum = warpMaxNum;
         }
-        /*
-        if (!flag[warpNum])
-        {
-            
-        }
-        */
         for (int i = 0; i < buttonImage.Length; i++)
         {
             //Ç∑Ç◊Çƒè¡Ç∑

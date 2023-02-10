@@ -10,6 +10,7 @@ public class InputPlayerVR : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private WeaponManagerVR weaponManagerVR;
     [SerializeField] private ControllScripts controllScripts;
+    [SerializeField] private RingSound ringSound;
 
     [Header("Input")]
     [SerializeField] private PlayerInput playerInput;
@@ -49,6 +50,7 @@ public class InputPlayerVR : MonoBehaviour
     private Vector2 _currentMoveInputValue;      // 現在の移動入力値
     private float _currentRoteInputValue = 0;      // 現在の移動入力値
     private Vector2 mouseDelta;
+    private int inputCount;
 
 
 
@@ -253,9 +255,27 @@ public class InputPlayerVR : MonoBehaviour
                 gameManager.uiManager.WapePoint(i);
                 SetActionMap(1);
             }
+
+            if (hit.collider.gameObject.tag == "Ore")
+            {
+                OreStoneObj oreStoneObj = hit.collider.gameObject.GetComponent<OreStoneObj>();
+                if (oreStoneObj.GetSetCanPick && gameManager.GetTruhasi())
+                {
+                    ringSound.RingSE(1);
+
+                    oreStoneObj.GetSetCanPick = false;
+                    gameManager.GetTruhasi();                    //
+                    Debug.Log("Pick");
+                }
+                else
+                {
+                    Debug.Log("NowCoolTime");
+                }
+
+            }
         }
 
-    }
+        }
 
     // 武器切り替え（マウスホイール）
     public void OnWeaponChange(InputAction.CallbackContext context)
@@ -269,11 +289,12 @@ public class InputPlayerVR : MonoBehaviour
     // 攻撃（左クリック）
     public void OnLAttack(InputAction.CallbackContext context)
     {
-        /*
+        if (weaponManagerVR.wearBow.activeSelf == false) return;   // 押す（通常）
         if (context.performed)   // 押す（通常）
         {
+            weaponManagerVR.bow.ChengeArrow();
+
         }
-        */
 
     }
     // 攻撃（右クリック）
@@ -291,7 +312,7 @@ public class InputPlayerVR : MonoBehaviour
                 {
                     _moveSpeed = setSpeed[1];
                     weaponManagerVR.bow.SwitchDrawBow(true);
-                    Debug.Log("hipparu");
+                    ringSound.RingSE(14);
                     bowString = true;
                     return;
                 }
@@ -299,13 +320,13 @@ public class InputPlayerVR : MonoBehaviour
             }
             else
             {
-                Debug.Log(value);
                 if (value < 0.9f)
                 {
                     // 離す（弓のみ）
                     _moveSpeed = setSpeed[0];
                     weaponManagerVR.bow.ArrowShot();
-                    Debug.Log("hanasu");
+                    ringSound.StopSE(1);
+                    ringSound.RingSE(13);
                     bowString = false;
                 }
 
@@ -323,7 +344,6 @@ public class InputPlayerVR : MonoBehaviour
             SetActionMap(3);
             controllScripts.OpenCloseMenu();
         }
-
     }
 
 
@@ -341,17 +361,30 @@ public class InputPlayerVR : MonoBehaviour
     {
         if (!context.performed) return;
 
-        var mouseDelta = Input.mouseScrollDelta;
+        var mouseDelta = context.ReadValue<Vector2>();
+        //       Debug.Log(mouseDelta);
         if (mouseDelta != Vector2.zero)
         {
             // Debug.Log($"[frame: {Time.frameCount}] Input.mouseScrollDelta = {mouseDelta.ToString("F3")}");
-            if (0 < mouseDelta.y)
+            if (mouseDelta.y < -0.7f)
             { // +
-                gameManager.uiManager.SetUINum(false);
+                inputCount++;
+                if (3 < inputCount)
+                {
+                    gameManager.uiManager.SetUINum(true);
+                    inputCount = 0;
+
+                }
             }
-            else
+            else if (0.7f < mouseDelta.y)
             { // -
-                gameManager.uiManager.SetUINum(true);
+                inputCount++;
+                if (3 < inputCount)
+                {
+                    gameManager.uiManager.SetUINum(false);
+                    inputCount = 0;
+
+                }
             }
         }
     }

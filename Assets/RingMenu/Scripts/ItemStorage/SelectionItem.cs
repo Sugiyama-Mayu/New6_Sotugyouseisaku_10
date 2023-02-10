@@ -40,10 +40,10 @@ public class SelectionItem : MonoBehaviour
     public void ItemScroll(float scroll)
     {
         pos = SelectMove.position;
-        if (scroll > 0)
+        if (scroll > 0.7f)
         {
             XScrollCount++;
-            if (XScrollCount > 1)
+            if (XScrollCount > 3)
             {
                 if (n_PosNum > 0)
                 {
@@ -57,10 +57,10 @@ public class SelectionItem : MonoBehaviour
             }
 
         }
-        if (scroll < 0)
+        if (scroll < -0.7f)
         {
             YScrollCount++;
-            if (YScrollCount > 1)
+            if (YScrollCount > 3)
             {
                 if (n_PosNum < 9)
                 {

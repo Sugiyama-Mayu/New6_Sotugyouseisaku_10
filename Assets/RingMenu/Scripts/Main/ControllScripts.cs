@@ -8,16 +8,9 @@ public class ControllScripts : MonoBehaviour
     [SerializeField] private Anime anime;
     [SerializeField] private SelectionItem selectionItem;
     [SerializeField] private ItemStorageDate[] itemStorage;
-    [SerializeField] private RingSound ringSound;
 
     [SerializeField] GameObject RingCanvas;
     [SerializeField] GameObject RingCommand;
-    /*
-    [SerializeField] GameObject Equipment;
-    [SerializeField] GameObject Belongings;
-    [SerializeField] GameObject Settings;
-    */
-
 
     public Takap.Samples.RingCmdControl RingCmd;
     //public Takap.Samples.Equipment EqRing;
@@ -29,16 +22,18 @@ public class ControllScripts : MonoBehaviour
     public int XScrollCount;public int YScrollCount;
     public int ItemKindId;    // アイテム種類ID
     public int MenuCou;
+    public bool inputAccept;
 
     void Start()
     {
         RingCanvas.SetActive(false);
         MenuCou = 0;
+        inputAccept = true;
     }
     //左クリック
     public void MouseLeftClick()
     {
-        if (RingCanvas.activeSelf == false) return;
+        if (RingCanvas.activeSelf == false || !inputAccept) return;
         int posNum = selectionItem.GetPosNum;
         if (MenuCou == 0  )
         {
@@ -92,6 +87,8 @@ public class ControllScripts : MonoBehaviour
             }
             HideRing();
             anime.SetListBool = true;
+            inputAccept = false;
+            Invoke("SetInputAccept", 1.0f);
             MenuCou = 1;
             for(int i = 0; i < itemStorage.Length; i++)
             {
@@ -101,15 +98,13 @@ public class ControllScripts : MonoBehaviour
         }
         else if(MenuCou == 1)
         {
-           // Debug.Log("Useitem " + "PosNum:" + posNum + " KintId:"+ ItemKindId);
-            
+           // Debug.Log("Useitem " + "PosNum:" + posNum + " KintId:"+ ItemKindId);      
             if (ItemKindId == 1 && -1 < posNum && posNum < 4 && 0 < gameManager.GetDragItemNum(506 + posNum))
             {
-                ringSound.GetComponent<RingSound>().RingSE(3);
+                // item消費処理
                 gameManager.UseDragItem(posNum);
                 gameManager.playerManager.DragItem(posNum);
                 itemStorage[posNum].ListUpdate();
-                // item消費処理
             }
             else
             {
@@ -122,10 +117,13 @@ public class ControllScripts : MonoBehaviour
     //右クリック
     public void MouseRightClick()
     {
+        if (!inputAccept) return;
         if (MenuCou == 1 && RingCanvas.activeSelf == true)
         {
             Invoke("ResetRing", 2.0f);
             anime.SetListBool = false;
+            inputAccept = false;
+            Invoke("SetInputAccept", 1.0f);
             MenuCou = 0;
         }
 
@@ -134,6 +132,8 @@ public class ControllScripts : MonoBehaviour
     //ホイールクリック
     public void OpenCloseMenu()
     {
+        if (!inputAccept) return;
+        SetRingCount %= 2;
         if (MenuCou == 0)
         {
             if (SetRingCount % 2 == 0)
@@ -144,13 +144,22 @@ public class ControllScripts : MonoBehaviour
             {
                 HideRingCommand();
             }
-            SetRingCount++;
         }
+        else
+        {
+            anime.SetListBool = false;
+            inputAccept = false;
+            MenuCou = 0;
+            Invoke("SetInputAccept", 1.0f);
+            Invoke("HideRingCommand", 1.5f);
+        }
+        SetRingCount++;
+
     }
+
     // マウススクロール
     public void MouseScroll(float scroll)
     {
- //       var scroll = Input.GetAxis("Mouse ScrollWheel");
         if(MenuCou == 0)
         {
             if (scroll > 0)
@@ -181,16 +190,27 @@ public class ControllScripts : MonoBehaviour
 
     public void StickScroll(Vector2 scroll) // VR
     {
-        //       var scroll = Input.GetAxis("Mouse ScrollWheel");
         if (MenuCou == 0)
         {
-            if (scroll.x > 0.65)
+            if (scroll.x > 0.7f)
             {
-                RingCmd.TurnRight();
+                XScrollCount++;
+                if (XScrollCount > 10)
+                {
+                    RingCmd.TurnRight();
+                    Debug.Log("右回転");
+                    XScrollCount = 0;
+                }
             }
-            else if (scroll.x < 0.65)
+            else if (scroll.x < -0.7f)
             {
-                RingCmd.TurnLeft();
+                YScrollCount++;
+                if (YScrollCount > 10)
+                {
+                    RingCmd.TurnLeft();
+                    Debug.Log("左回転");
+                    YScrollCount = 0;
+                }
             }
         }
         else if (MenuCou == 1)
@@ -227,6 +247,11 @@ public class ControllScripts : MonoBehaviour
     public void HideRing()
     {
         RingCommand.SetActive(false);
+    }
+
+    public void SetInputAccept()
+    {
+        inputAccept = true;
     }
 
     public bool RingCanvasActveSelf

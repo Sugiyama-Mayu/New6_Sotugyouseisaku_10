@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public InputPlayerVR inputPlayerVR;
     public CreateManager createManager;
     public EquimentManager equimentManager;
+    public RingSound ringSound;
 
     [SerializeField] private ConnectionFile connectionFile;
     
@@ -294,6 +295,7 @@ public class GameManager : MonoBehaviour
         {
             b = true;
             Mining(num); // 採取処理
+            ringSound.RingSE(1);
         }
         else b = false;
         return b;
@@ -318,6 +320,7 @@ public class GameManager : MonoBehaviour
                 connectionFile.SetMaterialNum(false, "完全回復薬", 1);
                 break;
         }
+        ringSound.RingSE(3);
     } 
 
     // アクションマップ変更

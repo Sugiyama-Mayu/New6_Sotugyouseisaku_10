@@ -154,9 +154,11 @@ public class UIManager : MonoBehaviour
         switch (uiNum)
         {
             case 1:
+                gameManager.ringSound.RingSE(0);
                 if (warpPoint.GetBool(warpPoint.GetSetSpriteNum) == true) gameManager.StartWrap(warpPoint);
                 break;
             case 2:
+                gameManager.ringSound.RingSE(0);
                 equipmentEnhance.WeaponUpgrade();
                 break;
         }

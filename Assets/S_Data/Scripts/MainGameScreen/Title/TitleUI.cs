@@ -26,7 +26,7 @@ public class TitleUI : MonoBehaviour
         moveSpeed = 1.2f;    
         titleCameraPos = mainSceneObj.switchTitleCamera.transform.position;
         titleCameraAngle = mainSceneObj.switchTitleCamera.transform.localEulerAngles;
-        TitleControl(true);
+        if(GameObject.Find("GameManager").GetComponent<GameManager>().GetSetXRMode==false) TitleControl(true);
     }
     void Update()
     {

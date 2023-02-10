@@ -396,7 +396,7 @@ public class InputPlayer : MonoBehaviour
                 OreStoneObj oreStoneObj = hit.collider.gameObject.GetComponent<OreStoneObj>();
                 if (oreStoneObj.GetSetCanPick && gameManager.GetTruhasi())
                 {
-                    ringSound.GetComponent<RingSound>().RingSE(1);
+                    ringSound.RingSE(1);
                     oreStoneObj.GetSetCanPick = false;
                     weaponManager.PickStart(gameManager.GetTruhasi());
                     //

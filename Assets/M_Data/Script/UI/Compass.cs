@@ -25,7 +25,14 @@ public class Compass : MonoBehaviour
     void Start()
     {
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerDirection = gameManager.GetPlayerObj().transform;
+        if (gameManager.GetSetXRMode == false)
+        {
+            playerDirection = gameManager.GetPlayerObj().transform;
+        }
+        else
+        {
+            playerDirection = GameObject.Find("VRCamera").transform;
+        }
 
         targetWarpPoint = warpPos[0];
         directionText[0] = GameObject.Find("North");
