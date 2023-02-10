@@ -10,11 +10,13 @@ public class GameOverProcess : MonoBehaviour
     // 必要な場合は基本はシーン1つ使用してください。
     [SerializeField]private MainSceneObj mainSceneObj;
     [SerializeField] private TitleSceneButton titleSceneButton;
+    [SerializeField] private RingSound ringSound;
     // ゲームオーバー画面の表示
     // 引  数：なし
     // 戻り値：なし
     public void CallGameOver()
     {
+        ringSound.RingBGM(5);
         // ゲーム中のものを非表示
         mainSceneObj.player.SetActive(false);
         mainSceneObj.questCanvas.SetActive(false);

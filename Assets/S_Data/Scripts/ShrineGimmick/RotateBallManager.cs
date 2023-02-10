@@ -10,8 +10,11 @@ public class RotateBallManager : MonoBehaviour
     // ゴールに触れた場合
     private void OnCollisionEnter(Collision collision)
     {
-        // 祠クリアフラグtrue
-        shrineClearScript.shrineClearFlag = true;
-        rotateBall.SetActive(false);  // ボールを消す
+        if (collision.gameObject.tag == "Ball")
+        {
+            // 祠クリアフラグtrue
+            shrineClearScript.shrineClearFlag = true;
+            rotateBall.SetActive(false);  // ボールを消す
+        }
     }
 }

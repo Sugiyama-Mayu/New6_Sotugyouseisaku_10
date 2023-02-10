@@ -22,6 +22,7 @@ public class SpreadArrow : MonoBehaviour
     private bool initialFlag;
     private float burnTime;  // オブジェクトが消えるまでの時間
     [SerializeField] private GameObject destroyCollider;
+    [SerializeField] RingSound ringSound;
     public SpreadArrowManager spreadArrowManager;
     void Start()
     {
@@ -153,6 +154,7 @@ public class SpreadArrow : MonoBehaviour
                                             collision.gameObject.tag = "DoneFireObj";
                                             //collScript.burnFlag = true;
                                             collScript.burnFlag = true;
+                                            ringSound.RingSE(17);
                                         }
                                         break;
                                     case 2: // 電気
@@ -170,6 +172,7 @@ public class SpreadArrow : MonoBehaviour
                                             //spreadDoneFlag = true;
                                             spreadArrowManager.doneEffect++;
                                             collScript.keepElectricFlag = true;
+                                            ringSound.RingSE(16);
 
                                         }
                                         break;

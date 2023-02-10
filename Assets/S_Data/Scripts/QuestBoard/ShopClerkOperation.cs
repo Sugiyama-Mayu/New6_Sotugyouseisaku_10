@@ -8,6 +8,7 @@ public class ShopClerkOperation : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Canvas shopStage;
     [SerializeField] private Camera shopCamera;
+    [SerializeField] private RingSound ringSound;
 
     private bool withinRange;  // プレイキャラが範囲内にいるかどうか
     public bool talkMode;      // 店員と話し中かどうか
@@ -29,6 +30,7 @@ public class ShopClerkOperation : MonoBehaviour
                 // 話していなかった場合
                 if (talkMode == false)
                 {
+                    ringSound.RingSE(4);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     shopCamera.gameObject.SetActive(true);

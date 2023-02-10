@@ -19,6 +19,7 @@ public class ShrineWarpPoint : MonoBehaviour
     private float nowAlpha;  //祠テキスト透明度
     private float nowAlphaC; //祠クリアテキスト透明度
     private bool getJewelFlag = false;
+    [SerializeField]private GameObject ball;
 
     //初期処理
     //引  数：int shrineID  祠ID番号
@@ -56,6 +57,7 @@ public class ShrineWarpPoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        GameObject soundObj = GameObject.Find("SoundObj");
         if (other.gameObject.tag == "Player")
         {
             player.transform.position = new Vector3(warpPos.transform.position.x, warpPos.transform.position.y, warpPos.transform.position.z);
@@ -65,18 +67,22 @@ public class ShrineWarpPoint : MonoBehaviour
                 scr.menuOffMode = true;
                 inShrine = true;
                 shrineTextObj.SetActive(true);
+                soundObj.GetComponent<RingSound>().RingBGM(2);
                 if (rotateShrineFlag == true)
                 {
                     rotateBall.rotateModeAllow = true; //玉回転モードを許可にする
+                    ball.SetActive(true);
                 }
             }
             else //出口ワープ
             {
                 scr.menuOffMode = false;
+                soundObj.GetComponent<RingSound>().RingBGM(1);
                 if (rotateShrineFlag == true)
                 {
                     rotateBall.rotateModeAllow = false; //玉回転モードを非許可にする
                     rotateBall.RotateBallModeOff();     //玉回転モードを戻す
+                    ball.SetActive(false);
                 }
             }
 

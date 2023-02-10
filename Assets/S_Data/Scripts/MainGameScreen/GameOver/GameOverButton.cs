@@ -13,10 +13,12 @@ public class GameOverButton : MonoBehaviour
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private TitleUI titleUI;
     [SerializeField] private TitleSceneButton titleSceneButton;
-
+    [SerializeField] private RingSound ringSound;
     //続けてゲームを遊ぶ
     public void ContinueGame()
     {
+        ringSound.RingBGM(1);
+        ringSound.RingSE(0);
         //ゲームオーバー表示キャンバスとカメラを非表示
         mainSceneObj.gameOverCanvas.gameObject.SetActive(false);
         mainSceneObj.switchTitleCamera.gameObject.SetActive(false);
@@ -29,6 +31,7 @@ public class GameOverButton : MonoBehaviour
     //タイトルへ
     public void ToTitle()
     {
+        ringSound.RingSE(0);
         mainSceneObj.gameOverCanvas.gameObject.SetActive(false);
         titleUI.TitleControl(true);
         Debug.Log("タイトルへ");

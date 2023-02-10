@@ -14,7 +14,7 @@ public class InputPlayer : MonoBehaviour
     [SerializeField] private ControllScripts controllScripts;
     [SerializeField] private MainSceneObj mainSceneObj;
     [SerializeField] private AttackBlockManager attackBlockManager;
-
+    [SerializeField] private RingSound ringSound;
 
     [Header("Input")]
     [SerializeField] private PlayerInput playerInput;
@@ -392,6 +392,7 @@ public class InputPlayer : MonoBehaviour
                 OreStoneObj oreStoneObj = hit.collider.gameObject.GetComponent<OreStoneObj>();
                 if (oreStoneObj.GetSetCanPick && gameManager.GetTruhasi())
                 {
+                    ringSound.GetComponent<RingSound>().RingSE(1);
                     oreStoneObj.GetSetCanPick = false;
                     weaponManager.PickStart(gameManager.GetTruhasi());
                     //
@@ -434,11 +435,13 @@ public class InputPlayer : MonoBehaviour
             if (weaponManager.wearSword.activeSelf == true) // åï_é„çUåÇ
             {
                 weaponManager.SwordAttack();
+                ringSound.RingSE(15);
             }
             else if(weaponManager.wearBow.activeSelf == true) // ã|çUåÇ
             {
                 _moveSpeed = setSpeed[1];
                 weaponManager.bow.SwitchDrawBow(true);
+                ringSound.RingSE(14);
             }
         }
         // ó£Ç∑Åiã|ÇÃÇ›Åj
@@ -446,6 +449,8 @@ public class InputPlayer : MonoBehaviour
         {
             _moveSpeed = setSpeed[0];
             weaponManager.bow.ArrowShot();
+            ringSound.StopSE(1);
+            ringSound.RingSE(13);
         }
     }
     // çUåÇÅiç∂ÉNÉäÉbÉNÅj
@@ -456,6 +461,7 @@ public class InputPlayer : MonoBehaviour
             if (weaponManager.wearSword.activeSelf == true) // åï_ã≠çUåÇ
             {
                 weaponManager.StrengthAttack();
+                ringSound.RingSE(15);
             }
             else if(weaponManager.wearBow.activeSelf == true)Å@//Å@ã|_ñÓêÿÇËë÷Ç¶
             {

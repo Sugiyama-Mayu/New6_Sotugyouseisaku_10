@@ -12,8 +12,6 @@ public class Arrow : MonoBehaviour
     public GameObject arrowCollObj;
     public bool electArrowStanSwitch;  // 電気の矢のスタンスイッチ
 
-    // public static GameObject collObj;
-
     // Start is called before the first frame update
     void Start()
     {

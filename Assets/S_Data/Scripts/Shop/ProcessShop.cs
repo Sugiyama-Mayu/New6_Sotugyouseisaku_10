@@ -9,6 +9,7 @@ public class ProcessShop : MonoBehaviour
 {
     [SerializeField] private ConnectionFile connectionFile;
     [SerializeField] private SaveDataFile saveDataFile;
+    [SerializeField] private TitleUI titleUI;
     // 持ち物表示オブジェクト
     public GameObject haveNumObj;  // 所持数
     public GameObject buyNumObj;   // 売っている数
@@ -81,6 +82,8 @@ public class ProcessShop : MonoBehaviour
     [SerializeField] private Color sellButtonNormalColor;
     [SerializeField] private Color buyButtonSelectColor;
     [SerializeField] private Color sellButtonSelectColor;
+
+    [SerializeField] private RingSound ringSound;
     private void Start()
     {
         arrayFlag = false;
@@ -107,6 +110,10 @@ public class ProcessShop : MonoBehaviour
     // 買うモードに切り替える
     public void BuyModeSwitch()
     {
+        if (titleUI.titleMode == false)
+        {
+            ringSound.RingSE(0);
+        }
         buyMode = true;
         buyModeObj.SetActive(true);
         sellModeObj.SetActive(false);
@@ -114,6 +121,10 @@ public class ProcessShop : MonoBehaviour
     // 売るモードに切り替える
     public void SellModeSwitch()
     {
+        if (titleUI.titleMode == false)
+        {
+            ringSound.RingSE(0);
+        }
         buyMode = false;
         sellModeObj.SetActive(true);
         buyModeObj.SetActive(false);
@@ -129,6 +140,7 @@ public class ProcessShop : MonoBehaviour
     // 購入ボタンを押した場合
     public void BuyClick()
     {
+        ringSound.RingSE(5);
         nowShopItem.GetComponent<ShopItemData>().UpdateShop();
         int buyCommaNum = 0;  // カンマの数を数える用変数
         int haveCommaNum = 0;
@@ -265,6 +277,7 @@ public class ProcessShop : MonoBehaviour
     // 売るボタンを押した時
     public void SellClick()
     {
+        ringSound.RingSE(5);
         int budgedNum = 0;
         // ゲーム情報の更新
         nowShopItem.GetComponent<ShopItemData>().UpdateShop();

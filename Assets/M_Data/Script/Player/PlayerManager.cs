@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     private GameManager gameManager;
     private EquimentManager equimentManager;
     private GameOverProcess gameOverProcess;
+    [SerializeField] private RingSound ringSound;
 
     [Header("HP")]
     [SerializeField] private float maxHp;
@@ -137,6 +138,11 @@ public class PlayerManager : MonoBehaviour
             {
                 hp = 0;
                 Dead();
+                ringSound.RingSE(10);
+            }
+            else
+            {
+                ringSound.RingSE(9);
             }
         }
     }

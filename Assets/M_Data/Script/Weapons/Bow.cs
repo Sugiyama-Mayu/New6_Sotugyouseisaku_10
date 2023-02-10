@@ -12,7 +12,7 @@ public class Bow : MonoBehaviour
 
     [Header("–î‚ÌŽí—Þ")]
     [SerializeField] private GameObject[] arrowType;
-    [SerializeField] private int arrowNum;
+    [SerializeField] public int arrowNum;
 
     [SerializeField] private int arrowDamege;
 

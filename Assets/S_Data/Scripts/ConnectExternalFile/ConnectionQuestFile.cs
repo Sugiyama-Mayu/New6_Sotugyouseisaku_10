@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class ConnectionQuestFile : MonoBehaviour
 {
     [SerializeField] private SaveDataFile saveDataFile;
+    [SerializeField] private RingSound ringSound;
     string dataPath;        //  テキストファイルへのパス
     //TranslationQuestDataArrayを呼び出すと各変数がここに格納される
     public int questIdNum;  // クエストID
@@ -47,7 +48,7 @@ public class ConnectionQuestFile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            KnockEnemy('O');
+            KnockEnemy('S');
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -60,6 +61,7 @@ public class ConnectionQuestFile : MonoBehaviour
             TranslationHuntConfirmQuestDataArray(ReadQuestFile(nowOrderReceivedQuestID));
             if (huntConfirmResolutionFlag == false)
             {
+                ringSound.RingSE(6);
                 WriteQuestFile(nowOrderReceivedQuestID, false, true); // クエストクリア済みを書き込み
                 saveDataFile.haveMoney = saveDataFile.haveMoney + SEnmReward; // 所持金に報酬を足す
             }
@@ -69,6 +71,7 @@ public class ConnectionQuestFile : MonoBehaviour
             TranslationHuntConfirmQuestDataArray(ReadQuestFile(nowOrderReceivedQuestID));
             if (huntConfirmResolutionFlag == false)
             {
+                ringSound.RingSE(6);
                 WriteQuestFile(nowOrderReceivedQuestID, false, true); // クエストクリア済みを書き込み
                 saveDataFile.haveMoney = saveDataFile.haveMoney + GEnmReward; // 所持金に報酬を足す
             }
@@ -78,6 +81,7 @@ public class ConnectionQuestFile : MonoBehaviour
             TranslationHuntConfirmQuestDataArray(ReadQuestFile(nowOrderReceivedQuestID));
             if (huntConfirmResolutionFlag == false)
             {
+                ringSound.RingSE(6);
                 WriteQuestFile(nowOrderReceivedQuestID, false, true); // クエストクリア済みを書き込み
                 saveDataFile.haveMoney = saveDataFile.haveMoney + BEnmReward; // 所持金に報酬を足す
             }
@@ -87,6 +91,7 @@ public class ConnectionQuestFile : MonoBehaviour
             TranslationHuntConfirmQuestDataArray(ReadQuestFile(nowOrderReceivedQuestID));
             if (huntConfirmResolutionFlag == false)
             {
+                ringSound.RingSE(6);
                 WriteQuestFile(nowOrderReceivedQuestID, false, true); // クエストクリア済みを書き込み
                 saveDataFile.haveMoney = saveDataFile.haveMoney + OEnmReward; // 所持金に報酬を足す
                 saveDataFile.WriteSaveData();
@@ -97,6 +102,7 @@ public class ConnectionQuestFile : MonoBehaviour
             TranslationHuntConfirmQuestDataArray(ReadQuestFile(nowOrderReceivedQuestID));
             if (huntConfirmResolutionFlag == false)
             {
+                ringSound.RingSE(6);
                 WriteQuestFile(nowOrderReceivedQuestID, false, true); // クエストクリア済みを書き込み
                 saveDataFile.haveMoney = saveDataFile.haveMoney + HEnmReward; // 所持金に報酬を足す
             }

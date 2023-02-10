@@ -9,6 +9,7 @@ public class ClerkOperation : MonoBehaviour
     [SerializeField] private Animator clerkAnim;  // 店員アニメーション
     [SerializeField] private GameObject player;
     [SerializeField] private Vector3 fronBoardPos;
+    [SerializeField] private RingSound ringSound;
 
     private bool withinRange;  // プレイキャラが範囲内にいるかどうか
     public bool talkMode;      // 店員と話し中かどうか
@@ -30,6 +31,7 @@ public class ClerkOperation : MonoBehaviour
                 // 話していなかった場合
                 if (talkMode == false)
                 {
+                    ringSound.RingSE(7);
                     savePos = player.transform.position;
                     clerkAnim.SetBool("talk", true);
                     player.transform.position = fronBoardPos;

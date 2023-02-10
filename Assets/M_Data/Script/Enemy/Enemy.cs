@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private BoxCollider swordCol;
 
-
+    private RingSound ringSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +73,8 @@ public class Enemy : MonoBehaviour
         ragDollObj.SetActive(false);
         deadOnes = false;
         hp = maxHp;
+
+        ringSound = GameObject.Find("SoundObj").GetComponent<RingSound>();
     }
 
     // éÄñSèàóù
@@ -213,6 +215,12 @@ public class Enemy : MonoBehaviour
             {
                 hp = 0;
                 Dead();
+                ringSound.RingSE(10);
+            }
+            else
+            {
+
+                ringSound.RingSE(9);
             }
         }
     }

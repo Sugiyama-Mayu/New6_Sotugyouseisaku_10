@@ -8,6 +8,7 @@ public class ControllScripts : MonoBehaviour
     [SerializeField] private Anime anime;
     [SerializeField] private SelectionItem selectionItem;
     [SerializeField] private ItemStorageDate[] itemStorage;
+    [SerializeField] private RingSound ringSound;
 
     [SerializeField] GameObject RingCanvas;
     [SerializeField] GameObject RingCommand;
@@ -104,6 +105,7 @@ public class ControllScripts : MonoBehaviour
             
             if (ItemKindId == 1 && -1 < posNum && posNum < 4 && 0 < gameManager.GetDragItemNum(506 + posNum))
             {
+                ringSound.GetComponent<RingSound>().RingSE(3);
                 gameManager.UseDragItem(posNum);
                 gameManager.playerManager.DragItem(posNum);
                 itemStorage[posNum].ListUpdate();

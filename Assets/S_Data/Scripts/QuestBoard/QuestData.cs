@@ -12,7 +12,9 @@ public class QuestData : MonoBehaviour
     [SerializeField] private Text questNameText;         // クエスト名
     [SerializeField] private Text questExplanationText;  // クエスト説明
     [SerializeField] private ConnectionQuestFile connectionQuestFile;
-    [SerializeField] private VillageColl villageColl;
+    [SerializeField] private RingSound ringSound;
+    [SerializeField] private ClerkOperation clerkOperation;
+
     // クエストボードで使用するオブジェクト
     [SerializeField] private GameObject confirmationBack;
     [SerializeField] private GameObject confirmationButtons;
@@ -65,6 +67,7 @@ public class QuestData : MonoBehaviour
         if (connectionQuestFile.TranslationQuestDataArray(connectionQuestFile.ReadQuestFile(questID))) {
             connectionQuestFile.WriteQuestFile(connectionQuestFile.questIdNum, true, connectionQuestFile.resolutionFlag);
             connectionQuestFile.AllocationOrderReceivedID(questID);
+            ringSound.RingSE(8);
             return true;
         } 
         return false;
@@ -72,6 +75,7 @@ public class QuestData : MonoBehaviour
     // クリック(内容確認)
     public void ClickConfirmation()
     {
+        ringSound.RingSE(0);
         // クエスト選択画面オブジェを切り返る
         confirmationBack.SetActive(false);
         buttonTexts.SetActive(false);
@@ -102,6 +106,10 @@ public class QuestData : MonoBehaviour
     // 戻り値：なし
     public void ClickBoardBack()
     {
+        if (clerkOperation.talkMode == true)
+        {
+            ringSound.RingSE(0);
+        }
         // オブジェクトの表示・非表示処理
         confirmationBack.SetActive(true);
         buttonTexts.SetActive(true);

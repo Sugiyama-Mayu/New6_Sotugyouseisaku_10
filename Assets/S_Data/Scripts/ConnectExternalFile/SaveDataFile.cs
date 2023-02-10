@@ -22,6 +22,7 @@ public class SaveDataFile : MonoBehaviour
     bool doneWarp4;   // ワープ行った済み4
     bool doneWarp5;   // ワープ行った済み5
     bool doneWarp6;   // ワープ行った済み6
+    public bool doneGameClear; // ゲームクリア処理済みフラグ
 
     void Start()
     {
@@ -47,8 +48,8 @@ public class SaveDataFile : MonoBehaviour
             if (saveReadData[i] == '\n')
             {
                 //ワープポイント6行った済みかどうか
-                int warp6 = Convert.ToInt32(numS);
-                doneWarp6 = Convert.ToBoolean(warp6);
+                int doneC = Convert.ToInt32(numS);
+                doneGameClear = Convert.ToBoolean(doneC);
                 numS = "";
                 fs.Close();
                 break;
@@ -105,6 +106,10 @@ public class SaveDataFile : MonoBehaviour
                         int warp5 = Convert.ToInt32(numS);
                         doneWarp5 = Convert.ToBoolean(warp5);
                         break;
+                    case 15:
+                        int warp6 = Convert.ToInt32(numS);
+                        doneWarp6 = Convert.ToBoolean(warp6);
+                        break;
                 }
                 numS = "";
             }
@@ -128,6 +133,7 @@ public class SaveDataFile : MonoBehaviour
         int warp4 = Convert.ToInt32(doneWarp4);
         int warp5 = Convert.ToInt32(doneWarp5);
         int warp6 = Convert.ToInt32(doneWarp6);
+        int doneClearInt = Convert.ToInt32(doneGameClear);
         // 所持金を書き込み用文字列にする
         if (haveMoney >= 10000)
         {
@@ -154,7 +160,7 @@ public class SaveDataFile : MonoBehaviour
             haveMoneyStr + ',' + monster1Num.ToString() + ',' + monster2Num.ToString() + ',' +
             monster3Num.ToString() + ',' + monster4Num.ToString() + ',' + monster5Num.ToString() + ',' +
             warp1.ToString() + ',' + warp2.ToString() + ',' + warp3.ToString() + ',' +
-            warp4.ToString() + ',' + warp5.ToString() + ',' + warp6.ToString() + '\n';
+            warp4.ToString() + ',' + warp5.ToString() + ',' + warp6.ToString() + ',' + doneClearInt.ToString() + '\n';
         File.WriteAllText(dataPath, allWriteText);  // データベースに書き込み
     }
 }

@@ -10,6 +10,7 @@ public class GetJewel : MonoBehaviour
     [SerializeField] private ShrineWarpPoint shrineWarpPoint;
     [SerializeField] private ConnectionFile connectionFile;
     [SerializeField] private ShrineText shrineText;
+    [SerializeField] private RingSound ringSound;
     [SerializeField] private int jewelNum;       //獲得宝石数
     [SerializeField] private int shirineJewelId; //祠ID番号
     private string writeStr = "";
@@ -65,6 +66,7 @@ public class GetJewel : MonoBehaviour
             shrineWarpPoint.SetGetJewelFlag(true);              //宝石取得フラグを立てる
             connectionFile.WriteFile(shirineJewelId, writeStr); //テキストファイルに書き込む
             Destroy(this.gameObject); // 宝石を消す
+            ringSound.RingSE(19);
             jewelNum++;
         }
     } 

@@ -51,24 +51,25 @@ public class RotateBall : MonoBehaviour
                     // マウスが接続されていないとMouse.currentがnull
                     return;
                 }
-                // 左クリック&ホールド中はX軸回転、離すとZ軸回転のフラグ処理
-                if (current.leftButton.wasPressedThisFrame)
+                // 左クリック&ホールド中はX軸回転
+                /*if (current.leftButton.wasPressedThisFrame)
                 {
                     boardRoateChangeFlag = true;
-                }
+                }*/
                 if (current.leftButton.wasReleasedThisFrame)
                 {
                     boardRoateChangeFlag = false;
                 }
 
                 // 板の回転移動処理
-                if (boardRoateChangeFlag == true)
+                /*if (boardRoateChangeFlag == true)
                 {
                     //differenceCursorPosY = cursorPos.y - oldCursorPos.y;
                     rotateBoard.transform.Rotate(new Vector3(cursorPos.y * rotateSpeed * Time.deltaTime, 0.0f, 0.0f));
                     oldCursorPos = cursorPos;
                 }
-                else if (boardRoateChangeFlag == false)
+                else*/
+                if (boardRoateChangeFlag == false)
                 {
                     //differenceCursorPosX = cursorPos.x - oldCursorPos.x;
                     rotateBoard.transform.Rotate(new Vector3(0.0f, 0.0f, cursorPos.x * rotateSpeed * Time.deltaTime));

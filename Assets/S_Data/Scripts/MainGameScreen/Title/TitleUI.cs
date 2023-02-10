@@ -19,6 +19,7 @@ public class TitleUI : MonoBehaviour
     private Vector3 titleCameraPos;
     private Vector3 titleCameraAngle;
     [SerializeField] private TitleSceneButton titleSceneButton;
+    [SerializeField] private RingSound ringSound;
     void Start()
     {
         // 今はスクリプトで設定↓最初はタイトルからスタート
@@ -60,6 +61,7 @@ public class TitleUI : MonoBehaviour
         if (Control == true)
         {
             SetTitleMode(true);
+            ringSound.RingBGM(0);
             mainSceneObj.player.SetActive(false);
             mainSceneObj.questCanvas.SetActive(false);
             mainSceneObj.titleCanvas.gameObject.SetActive(true);
