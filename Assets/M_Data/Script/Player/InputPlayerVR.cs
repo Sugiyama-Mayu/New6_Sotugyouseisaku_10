@@ -35,6 +35,7 @@ public class InputPlayerVR : MonoBehaviour
 
     [Header("その他")]
     [SerializeField] private Transform playerYPos;
+    [SerializeField] private float rotCamera;
     bool bowString = false;
 
     /// Player Input
@@ -75,13 +76,14 @@ public class InputPlayerVR : MonoBehaviour
     private const string MENU_LEFTCLICK = "LeftClick";
     private const string MENU_RIGHTCLICK = "RightClick";
     private const string MENU_MOUSESCROLL = "MouseScroll";
-
+ 
+    /*
     // M.Sヒットしたゲームオブジェクトの保存(運ぶ処理に使用)
     private GameObject hitObj;
     private bool hitObjFlag = false;
     private bool huntSelectOrder;
     private GameObject huntTarget;
-
+    */
 
 
     private void Awake()
@@ -158,84 +160,12 @@ public class InputPlayerVR : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, maxDistance))
         {
-            if (lineRenderers[i].enabled ==false)
-                lineRenderers[i].enabled = true;
-
-            var current = Mouse.current;
-            // M.S 物を運ぶ処理(MoveObjのタグがつくオブジェクト限定)
-            // hitObjFlagで一つずつしか運ばないようにしている
-            if (current.middleButton.wasPressedThisFrame && hit.collider.gameObject.tag == "MoveObj"
-                && hitObjFlag == false)
+            if (lineRenderers[i].enabled == false && hit.collider.tag == "WarpPoint" || hit.collider.tag == "Ore" ||hit.collider.tag == "NPC" ) 
             {
-                hitObjFlag = true;
-                //hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                hitObj = hit.collider.gameObject;
-                //hitObj.transform.parent = playerObj.transform;
-                hitObj.transform.parent = playerCamera.transform;
-                //hitObj.transform.position = 
-                // new Vector3 (playerCamera.transform.localPosition.x, hitObj.transform.localPosition.y, playerCamera.transform.localPosition.z - 0.5f) ;
-
-            }
-            if (hitObjFlag == true)
-            {
-                Debug.Log("運び中");
-            }
-            if (current.middleButton.wasReleasedThisFrame && hitObjFlag == true)
-            {
-                //hitObj.GetComponent<Rigidbody>().isKinematic = false;
-                hitObjFlag = false;
-                //Vector3 dropPos = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z - 5.0f);
-                // hitObj.transform.position = playerObj.transform.forward;
-                hitObj.transform.parent = null;
-            }
-            // 2022.12.18
-            //if (clerkMode == true)
-            //{
-            if (clearkOperation.talkMode == true)
-            {
-                if (huntSelectOrder == true)
-                {
-                    if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "DecideButton" && Input.GetMouseButtonDown(0))
-                    {
-                        if (huntTarget.GetComponent<QuestData>().ClickOrderReceived() == true)
-                        {
-                            huntSelectOrder = false;
-                            huntTarget.GetComponent<QuestData>().ClickBoardBack();
-                        }
-                        else
-                        {
-                            huntSelectOrder = true;
-                        }
-                    }
-                    else if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "BackButton" && Input.GetMouseButtonDown(0))
-                    {
-                        huntTarget.GetComponent<QuestData>().ClickBoardBack();
-                        huntSelectOrder = false;
-                    }
-                }
-                else if (hit.collider.gameObject.tag == "QuestConfirmationButton" && Input.GetMouseButtonDown(0))
-                {
-                    hit.collider.gameObject.GetComponent<QuestData>().ClickConfirmation();
-                    huntTarget = hit.collider.gameObject;
-                    huntSelectOrder = true;
-                }
-            }
-            else
-            {
-                // トークモードが外れたらすぐにクエスト選択画面に戻る
-              //  GameObject.Find("Quest_Memo1").GetComponent<QuestData>().ClickBoardBack();
+                lineRenderers[i].enabled = true; 
             }
         }
-        else if (lineRenderers[i].enabled == true)
-        {
-            lineRenderers[i].enabled = false;
-        }
-        else
-        {
-            Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green, 0.001f, false);
-
-        }
-
+        else if (lineRenderers[i].enabled == true) lineRenderers[i].enabled = false;
     }
 
     // ActionMap切り替え関数
@@ -243,9 +173,6 @@ public class InputPlayerVR : MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("Player");
         weaponManagerVR.WeaponChange();
-
-
-        Debug.Log("ActionMap:Player");
     }
     public void ToUIMode()
     {
@@ -253,18 +180,14 @@ public class InputPlayerVR : MonoBehaviour
         playerRb.velocity = Vector3.zero;
         weaponManagerVR.wearSword.SetActive(false);
         weaponManagerVR.wearBow.SetActive(false);
-        //gameManager.uiManager.uiOpen();
-        Debug.Log("ActionMap:UI");
     }
     public void ToTalkMode()
     {
         _playerInput.SwitchCurrentActionMap("Talk");
-        Debug.Log("ActionMap:Talk");
     }
     public void ToMenuMode()
     {
         _playerInput.SwitchCurrentActionMap("Menu");
-        Debug.Log("ActionMap:Menu");
     }
 
 
@@ -286,8 +209,8 @@ public class InputPlayerVR : MonoBehaviour
         Quaternion q = transform.rotation;
         Quaternion rot = Quaternion.identity;
 
-        if (_currentRoteInputValue > 0.5f) rot = Quaternion.AngleAxis(2, Vector3.up);
-        else if(_currentRoteInputValue < -0.5f) rot = Quaternion.AngleAxis(-2, Vector3.up);
+        if (_currentRoteInputValue > 0.5f) rot = Quaternion.AngleAxis(rotCamera, Vector3.up);
+        else if(_currentRoteInputValue < -0.5f) rot = Quaternion.AngleAxis(-rotCamera, Vector3.up);
         transform.rotation = q * rot;
 
     }
@@ -356,31 +279,40 @@ public class InputPlayerVR : MonoBehaviour
     // 攻撃（右クリック）
     public void OnRAttack(InputAction.CallbackContext context)
     {
+        if (weaponManagerVR.wearBow.activeSelf == false) return;   // 押す（通常）
         var value = context.ReadValue<float>();
 
-        if (!context.performed || weaponManagerVR.wearBow.activeSelf == false) return;   // 押す（通常）
-        if (value == 1)
+        if (context.performed) 
         {
-            Debug.Log(value);
-            if (!bowString) // 弓攻撃
+            //     Debug.Log(value);
+            if (!bowString)
             {
-                _moveSpeed = setSpeed[1];
-                weaponManagerVR.bow.SwitchDrawBow(true);
-                Debug.Log("hipparu");
-                bowString = true;
+                if (0.9f <= value)
+                {
+                    _moveSpeed = setSpeed[1];
+                    weaponManagerVR.bow.SwitchDrawBow(true);
+                    Debug.Log("hipparu");
+                    bowString = true;
+                    return;
+                }
+
             }
-        }else if(value != 1)
-        {
-           // Debug.Log(value);
-            // 離す（弓のみ）
-            if (bowString)
+            else
             {
-                _moveSpeed = setSpeed[0];
-                weaponManagerVR.bow.ArrowShot();
-                Debug.Log("hanasu");
-                bowString = false;
+                Debug.Log(value);
+                if (value < 0.9f)
+                {
+                    // 離す（弓のみ）
+                    _moveSpeed = setSpeed[0];
+                    weaponManagerVR.bow.ArrowShot();
+                    Debug.Log("hanasu");
+                    bowString = false;
+                }
+
             }
+
         }
+
     }
 
     // ホイールクリック
@@ -428,7 +360,6 @@ public class InputPlayerVR : MonoBehaviour
     {
         if (context.performed)
         {
-            //if () { }
             SetActionMap(0);
             gameManager.uiManager.uiClose();
 

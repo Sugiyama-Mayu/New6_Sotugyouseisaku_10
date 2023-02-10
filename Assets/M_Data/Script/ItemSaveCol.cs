@@ -40,7 +40,7 @@ public class ItemSaveCol : MonoBehaviour
     {
         Debug.Log("‘‚«‚İ’†EEE");
         int[] materialNum = gameManager.GetSetMaterial;
-        connectionFile.SetAllMaterialNum(true, materialNum[0], materialNum[1], materialNum[2], materialNum[3], materialNum[4]);
+        connectionFile.SetAllMaterialNum(true, materialNum[0], materialNum[1], materialNum[2], materialNum[3], materialNum[4], materialNum[5], materialNum[6], materialNum[7]);
         gameManager.GetSetMaterial = null;
     }
 

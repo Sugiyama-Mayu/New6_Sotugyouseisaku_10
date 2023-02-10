@@ -13,10 +13,10 @@ public class UIManager : MonoBehaviour
     public EquimentManager equimentManager;
     public EquipmentEnhance equipmentEnhance;
 
-    public Transform cursorObj;
 
     [Header("UIオブジェクト")]
     public GameObject bgUi;
+    public GameObject cursorObj;
     public GameObject controlCanvas;
     public GameObject warpCanvas;
     public GameObject textCanvas;
@@ -47,20 +47,27 @@ public class UIManager : MonoBehaviour
         imageCount = 0;
         maxHp = gameManager.playerManager.GetMaxHp;
         ChengeSceneImage.gameObject.SetActive(true);
-        uiClose();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Hp();
+        if (gameManager.GetSetXRMode)
+        {
+            controlCanvas.SetActive(false);
+            cursorObj.SetActive(false);
+        }
+        else
+        {
+            controlCanvas.SetActive(true);
+            cursorObj.SetActive(true);
+        }
+
+        uiClose();
     }
 
     private void FixedUpdate()
     {
         if (imageCount <= 1) { imageCount -= 0.01f; }
         SplaterImage.color = new Vector4(SplaterImage.color.r, SplaterImage.color.g, SplaterImage.color.b, imageCount);
-
+        
+        Hp();
         BlackOut();
 
     }
@@ -83,8 +90,7 @@ public class UIManager : MonoBehaviour
     {
         textCanvas.SetActive(true);
         talkNPC.SetText(obj);
-        if(cursorObj !=null || controlCanvas !=null)
-            cursorObj.position = controlCanvas.transform.position;
+        if (gameManager.GetSetXRMode == false) gameCursor.SetiingCursor();
     }
 
     // ワープポイント
@@ -109,15 +115,18 @@ public class UIManager : MonoBehaviour
     // UI表示
     public void uiOpen()
     {
-        if (controlCanvas != null)
-            controlCanvas.SetActive(false);
+        controlCanvas.SetActive(false);
+        cursorObj.SetActive(false);
     }
 
     // UI非表示
     public void uiClose()
     {
-        if(controlCanvas != null)
-        controlCanvas.SetActive(true);
+        if (gameManager.GetSetXRMode == false)
+        {
+            controlCanvas.SetActive(true);
+            cursorObj.SetActive(true);
+        }
 
         uiNum = 0;
         bgUi.SetActive(false);
@@ -137,12 +146,6 @@ public class UIManager : MonoBehaviour
             case 2:
                 equipmentEnhance.NumUpDown(b);
                 break;
-            case 3:
-
-                break;
-            default:
-                return;
-                
         }
     }
     // 決定処理
@@ -151,19 +154,11 @@ public class UIManager : MonoBehaviour
         switch (uiNum)
         {
             case 1:
-                if (warpPoint.GetBool(warpPoint.GetSetSpriteNum) == true)
-                {
-                    gameManager.StartWrap(warpPoint);
-                }
+                if (warpPoint.GetBool(warpPoint.GetSetSpriteNum) == true) gameManager.StartWrap(warpPoint);
                 break;
             case 2:
                 equipmentEnhance.WeaponUpgrade();
                 break;
-            case 3:
-                break;
-            default:
-                return;
-                
         }
     }
 

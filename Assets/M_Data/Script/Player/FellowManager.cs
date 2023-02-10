@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,15 +65,26 @@ public class FellowManager : MonoBehaviour
         }
         return near;
     }
-
+    /*
     // コライダーに当たったら
     private void OnTriggerEnter(Collider col)
     {
+
+
         if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             targetList.Add(col.transform.parent);
         }
 
+    }
+    */
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (targetList.Contains(col.transform.parent)) return;
+            else targetList.Add(col.transform.parent);
+        }
     }
 
     // コライダーから抜けたら

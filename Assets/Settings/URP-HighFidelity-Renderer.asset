@@ -17,12 +17,12 @@ MonoBehaviour:
   m_Settings:
     Downsample: 0
     AfterOpaque: 0
-    Source: 1
-    NormalSamples: 1
+    Source: 0
+    NormalSamples: 0
     Intensity: 0.5
-    DirectLightingStrength: 0.25
+    DirectLightingStrength: 0.2
     Radius: 0.25
-    SampleCount: 12
+    SampleCount: 8
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
     _filterMode: 1
     _layerMask:
       serializedVersion: 2
-      m_Bits: 262144
+      m_Bits: 393216
     _renderingLayerMask: 1
   _renderPassEvent: 400
   _shaderPassNames: []

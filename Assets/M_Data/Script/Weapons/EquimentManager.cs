@@ -42,20 +42,6 @@ public class EquimentManager : MonoBehaviour
 
     }
 
-    //デバッグ用
-    /*
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GetItem(0, 0);
-            GetItem(1, 0);
-            GetItem(2, 0);
-            GetItem(3, 0);
-        }
-    }
-    */
-
     // 武器強化
     public void WeaponUpgrade(int i, int id)
     {
@@ -104,7 +90,7 @@ public class EquimentManager : MonoBehaviour
                 value = armorLevel[0, 0];
                 break;
             case 4:
-                value = armorLevel[0, 1];
+                value = armorLevel[1, 0];
                 break;
             case 5:
                 value = pickLevel;
@@ -167,9 +153,9 @@ public class EquimentManager : MonoBehaviour
         haveItem[2] = connectionFile.GetMaterialNum("牙");
         haveItem[3] = connectionFile.GetMaterialNum("毛皮");
         haveItem[4] = connectionFile.GetMaterialNum("爪");
-      /*  haveItem[5] = connectionFile.GetMaterialNum("銅");
+        haveItem[5] = connectionFile.GetMaterialNum("銅");
         haveItem[6] = connectionFile.GetMaterialNum("銀");
-        haveItem[7] = connectionFile.GetMaterialNum("金");*/
+        haveItem[7] = connectionFile.GetMaterialNum("金");
     }
 
     // アイテムの手持ちの数を取得
@@ -254,7 +240,6 @@ public class EquimentManager : MonoBehaviour
             case "金":
                 haveItem[7] -= num;
                 return;
-
         }
     }
 
@@ -328,5 +313,23 @@ public class EquimentManager : MonoBehaviour
                 break;
         }
         return value;
+    }
+
+    public int[] SetEquimentLevel
+    {
+        set
+        {
+            weaponLevel[0, 0] = value[0];
+            weaponLevel[1, 0] = value[1];
+            armorLevel[0, 0] = value[2];
+            armorLevel[1, 0] = value[3];
+            pickLevel = value[4];
+            Debug.Log("剣：" + weaponLevel[0, 0]+" 弓："+ weaponLevel[1, 0] + " 上：" + armorLevel[0, 0] + " 下：" + armorLevel[1, 0] + " つるはし：" + pickLevel);
+        }
+    }
+
+    public void SaveLevel()
+    {
+        gameManager.saveData.SaveEquimentLevel = new int[5] { weaponLevel[0, 0], weaponLevel[1, 0], armorLevel[0, 0], armorLevel[1, 0], pickLevel };
     }
 }

@@ -66,7 +66,7 @@ public class InputPlayer : MonoBehaviour
 
     // Ray
     private Ray ray;
-    [SerializeField] private float maxDistance = 20;
+    [SerializeField] private float maxDistance = 5;
 
     [SerializeField] private GameObject attackBlock1;    // 祠ギミックアタックブロック
     [SerializeField] private GameObject attackBlock2;
@@ -131,6 +131,14 @@ public class InputPlayer : MonoBehaviour
             pcCamera.SetActive(true);
             phoneVrCamera.SetActive(false);
         }
+        _moveSpeed = setSpeed[0];
+
+    }
+
+    // Start
+    private void Start()
+    {
+        Invoke("ReSetRot",0.2f);
 
         if (!debugInput)
         {
@@ -144,13 +152,9 @@ public class InputPlayer : MonoBehaviour
             cursorObj.SetActive(false);
             control.SetActive(false);
         }
-        _moveSpeed = setSpeed[0];
-    }
 
-    // Start
-    private void Start()
-    {
-        Invoke("ReSetRot",0.2f);
+
+
         playerMap = playerInput.actions.FindActionMap("Player");
         UIMap = playerInput.actions.FindActionMap("UI");
         talkMap = playerInput.actions.FindActionMap("Talk");
@@ -490,6 +494,7 @@ public class InputPlayer : MonoBehaviour
     {
         if (context.performed)
         {
+            Debug.Log("Click");
             gameManager.uiManager.Click();      
         }
     }

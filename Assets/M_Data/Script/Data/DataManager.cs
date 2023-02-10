@@ -10,7 +10,6 @@ public class DataManager : MonoBehaviour
 
 
     public List<string[]> NPCText;
-    public List<string[]> weaponData;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +18,6 @@ public class DataManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     /// <summary>
     /// CSV“Ç‚İ‚İ List‚ğ“n‚·‚Æ‚»‚ÌList‚Éƒf[ƒ^‚ğ“n‚·

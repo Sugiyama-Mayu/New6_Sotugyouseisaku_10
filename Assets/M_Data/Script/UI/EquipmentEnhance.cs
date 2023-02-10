@@ -29,7 +29,7 @@ public class EquipmentEnhance :MonoBehaviour
     private int id =10;
     private int num;
     private bool canEnhance;
-    private bool wait;
+    [SerializeField]private bool wait;
 
     private static readonly Regex regex = new Regex("[^0-9]");
 
@@ -42,21 +42,8 @@ public class EquipmentEnhance :MonoBehaviour
             buttonImage[i].sprite = buttonSprite[1];
         }
         button = GetChildren(parent);
-        equimentManager.GetItemDataBase();
 
-        itemImageUpdate();
     }
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            //WeaponUpgrade();
-            itemImageUpdate();
-        }
-    }
-    */
 
     // ウェポンアップグレード
     public void WeaponUpgrade()
@@ -152,7 +139,7 @@ public class EquipmentEnhance :MonoBehaviour
             // 必要アイテムのデータ変換 例:骨10
             string value = regex.Replace(str[i], string.Empty);
             string name = str[i].Replace(value, "");
-            //           Debug.Log(str[i] + " 数値:" + value + ", 名前:" + name);
+            //Debug.Log(str[i] + " 数値:" + value + ", 名前:" + name);
 
             // 文字表示
             int itemh = int.Parse(value);
@@ -183,11 +170,11 @@ public class EquipmentEnhance :MonoBehaviour
         int j = id % 10;
 
         string level = equimentManager.GetLevel(i);
-        if(level == "0")levelText.text = "";
-        else levelText.text = "+"+ level;
+        if (level == "0") levelText.text = "";
+        else levelText.text = "+" + level;
 
         //equimentManager.GetItemDataBase();
-        
+
         if (i != 5)
         {   // 数値取得（攻撃・防御）
             int[] a = equimentManager.GetState(i, j);
@@ -208,9 +195,6 @@ public class EquipmentEnhance :MonoBehaviour
             statasText.text = str;
         }
     }
-
-
-
     public UIButton[] GetChildren(Transform parent)
     {
         // 子オブジェクトを格納する配列作成
@@ -232,9 +216,10 @@ public class EquipmentEnhance :MonoBehaviour
 
     public void OpenUI()
     {
-        ImageUpdate();
         EquipmentImage();
         equimentManager.GetItemDataBase();
+        Invoke("ImageUpdate", 0.02f);
+
     }
 
     private IEnumerator ItemDBUpdate()
@@ -248,39 +233,16 @@ public class EquipmentEnhance :MonoBehaviour
             string value = regex.Replace(str[num], string.Empty);
             string name = str[num].Replace(value, "");
              Debug.Log(str[num] + " 数値:" + value + ", 名前:" + name);
-            equimentManager.SetMaterialNum(name, int.Parse(value));
-            //equimentManager.connectionFile.SetMaterialNum(false, name, int.Parse(value));
+           // equimentManager.SetMaterialNum(name, int.Parse(value));
+            equimentManager.connectionFile.SetMaterialNum(false, name, int.Parse(value));
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        equimentManager.SaveLevel();
+        yield return new WaitForSeconds(1f);
 
         EquipmentImage();
         itemImageUpdate();
         wait = false;
 
     }
-
-
-    private IEnumerator ItemDBUpdate1()
-    {
-        string[] str;
-        str = equimentManager.GetItem(id / 10, 0);
-
-        for (int num = 0; num < str.Length; num++)
-        {
-            // 必要アイテムのデータ変換 例:骨10
-            string value = regex.Replace(str[num], string.Empty);
-            string name = str[num].Replace(value, "");
-            // Debug.Log(str[i] + " 数値:" + value + ", 名前:" + name);
-            equimentManager.SetMaterialNum(name, int.Parse(value));
-            //equimentManager.connectionFile.SetMaterialNum(false, name, int.Parse(value));
-            // equimentManager.SetItemDataBase(name, int.Parse(value));
-            yield return new WaitForSeconds(4f);
-        }
-        yield return new WaitForSeconds(3f);
-        EquipmentImage();
-        itemImageUpdate();
-        wait = false;
-
-    }
-
 }

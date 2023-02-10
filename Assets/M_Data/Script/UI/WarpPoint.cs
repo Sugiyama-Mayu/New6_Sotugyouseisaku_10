@@ -21,15 +21,15 @@ public class WarpPoint : MonoBehaviour
     [SerializeField] private int warpNum;
     [SerializeField] private int warpMaxNum;
 
-    private void Awake()
+    private void Start()
     {
         warpNum = 0;
         buttonImage[warpNum].sprite = buttonSprite[0];
         warpPoint = new Transform[warpMaxNum];
 
         GameObject playerObj = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObj();
-        waprParent = GameObject.Find("WarpPoint").transform;
         playerPos = playerObj.transform;
+        waprParent = GameObject.Find("WarpPoint").transform;
         warpPoint = GetChildren(waprParent);
         warpMaxNum = warpPoint.Length - 1;
     }
@@ -37,6 +37,7 @@ public class WarpPoint : MonoBehaviour
 
     public void PlayerWarp()
     {
+        Debug.Log(warpNum);
         Vector3 warpPos =  new Vector3 (warpPoint[warpNum].position.x, warpPoint[warpNum].position.y + 0.5f, warpPoint[warpNum].position.z - 3f);
         playerPos.position = warpPos;
         warpNum = 0;

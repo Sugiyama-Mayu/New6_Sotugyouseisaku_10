@@ -24,17 +24,21 @@ public class Compass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerDirection = gameManager.GetPlayerObj().transform;
+
         targetWarpPoint = warpPos[0];
         directionText[0] = GameObject.Find("North");
         directionText[1] = GameObject.Find("East");
         directionText[2] = GameObject.Find("South");
         directionText[3] = GameObject.Find("West");
-        warpPointText = GameObject.Find("Warp");
+        warpPointText = GameObject.Find("WarpText");
     }
 
     // Update is called once per frame
     void Update()
     {
+
         playerForwrd = playerDirection.forward;
         playerForwrd.y = 0;
 

@@ -12,18 +12,6 @@ public class RemainsWarp : MonoBehaviour
     [SerializeField] public int inRemainsNum; // “ü‚Á‚Ä‚«‚½âK‚ð•Û‘¶
     [SerializeField] public bool inRemains; // âK‚É“ü‚Á‚½‚©
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // âK•\Ž¦
     public void SettingRemains(int i)
     {

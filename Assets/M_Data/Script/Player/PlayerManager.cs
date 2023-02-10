@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private GameManager gameManager;
-    private EquimentManager equimentManager;
     private GameOverProcess gameOverProcess;
     [SerializeField] private RingSound ringSound;
 
@@ -13,8 +12,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
     [SerializeField] private float regenHp;
-
-    [SerializeField] private int[] equipmentNum = { 0, 0, 0, 0 };
 
     // 防具
     [SerializeField] private float defense;
@@ -27,7 +24,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameOverProcess = GameObject.Find("TitleScriptObj").GetComponent<GameOverProcess>();
+        if(gameManager.GetSetXRMode != true) gameOverProcess = GameObject.Find("TitleScriptObj").GetComponent<GameOverProcess>();
         col = GetComponent<CapsuleCollider>();
         ColOffset();
         hp = maxHp;
@@ -76,7 +73,8 @@ public class PlayerManager : MonoBehaviour
     // 死亡処理
     private void Dead()
     {
-        gameOverProcess.CallGameOver();
+        if (gameManager.GetSetXRMode) StartCoroutine(gameManager.Continue());
+        else gameOverProcess.CallGameOver();
         gameManager.createManager.AllDestroyEnemy();
         Debug.Log("PlayerDead");
     }
@@ -92,13 +90,6 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-
-    // 防御力
-    public void DefenseValue()
-    {
-        equimentManager.GetDefenseValue(equipmentNum[2],equipmentNum[3]);
-    }
-
     // ゲッター
     public float GetHp
     {
@@ -115,17 +106,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public int GetEquipmentNum(int i)
-    {
-        return equipmentNum[i];
-    }
-
     // セッター
-    // 
-    public void SetEquipmentNum(int type ,int id)
-    {
-        equipmentNum[type] = id;
-    }
     // ダメージ
     public float SetDamege
     {

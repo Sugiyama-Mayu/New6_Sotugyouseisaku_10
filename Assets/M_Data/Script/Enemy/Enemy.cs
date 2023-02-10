@@ -125,7 +125,8 @@ public class Enemy : MonoBehaviour
         enemyAnim.SetResetAttackTrigger();
         enemyNav.GetSetFellowMode = true;
         deadOnes = false;
-        hp = maxHp / 2;
+       // hp = maxHp / 2;
+        hp = maxHp * 20;
         enemyNav.SetIsAiStateRunning = false;
         matObj.GetComponent<Renderer>().material = fellowMat[1];
         matObj.layer = LayerMask.NameToLayer("Outline");

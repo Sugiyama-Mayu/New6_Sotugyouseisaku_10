@@ -13,19 +13,6 @@ public class Anime : MonoBehaviour
         Anim = gameObject.GetComponent<Animator>();
     }
 
-    void Update()
-    {/*
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Anim.SetBool("ListBool", false);
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Anim.SetBool("ListBool", true);
-        }
-*/
-    }
-
     public bool SetListBool
     {
         set

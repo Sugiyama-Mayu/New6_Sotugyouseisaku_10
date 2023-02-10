@@ -7,8 +7,9 @@ public class GameCursor : MonoBehaviour
     public GameManager gameManager;
 
     public Transform cursorObj;
+    public Transform controlObj;
 
-    private float screenLimit;
+    private Vector2 homePos;
 
 
     [SerializeField] private float cursorSensitivity;
@@ -18,15 +19,9 @@ public class GameCursor : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cursorObj = GameObject.Find("CursorObj").GetComponent<Transform>();
-        if (gameManager.GetVRMode != true)
-        {
-            screenLimit = 2.0f;
-        }
-        else
-        {
-            screenLimit = 1.5f;
-        }
+        homePos = controlObj.localPosition;
 
+        SetiingCursor();
     }
 
     // Update is called once per frame
@@ -34,8 +29,13 @@ public class GameCursor : MonoBehaviour
     {
         Vector2 cursorPos = cursorObj.localPosition;
         cursorPos += gameManager.inputPlayer.GetCurosorMove * cursorSensitivity * Time.deltaTime;
-        cursorPos.x = Mathf.Clamp(cursorPos.x, Screen.width / screenLimit * -1, Screen.width / screenLimit);
-        cursorPos.y = Mathf.Clamp(cursorPos.y, Screen.height / screenLimit * -1, Screen.height / screenLimit);
+        cursorPos.x = Mathf.Clamp(cursorPos.x, homePos.x - 180.0f, homePos.x + 180.0f);
+        cursorPos.y = Mathf.Clamp(cursorPos.y, homePos.y - 180.0f, homePos.y + 180.0f);
         cursorObj.localPosition = new Vector3(cursorPos.x, cursorPos.y, 0.0f);
+    }
+
+    public void SetiingCursor()
+    {
+        cursorObj.localPosition = controlObj.localPosition;
     }
 }

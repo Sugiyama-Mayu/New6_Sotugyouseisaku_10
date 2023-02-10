@@ -71,17 +71,6 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "9ff00722-9d60-4712-846f-c6f41e370650",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "WASD",
                     "id": "3815a076-45f2-44f9-8fc4-31d2b08a36c5",
                     "path": "2DVector",
@@ -209,15 +198,6 @@
             "id": "f07cbd9c-6f2e-44dc-8088-358f39204b57",
             "actions": [
                 {
-                    "name": "CursorMove",
-                    "type": "Value",
-                    "id": "88cc5598-0143-4f71-891a-fc8bb8f8236b",
-                    "expectedControlType": "Vector3",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Click",
                     "type": "Button",
                     "id": "6d6c6787-2e2f-4992-9f10-176a1fa48cca",
@@ -255,17 +235,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "9c9c64b8-e3f9-429c-9209-82ead7f46462",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CursorMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "06acc0e0-df14-4c27-bf60-018499330cb0",

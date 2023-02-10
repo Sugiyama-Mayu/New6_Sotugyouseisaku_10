@@ -31,6 +31,7 @@ public class Bow : MonoBehaviour
     [Header("XRóp")]
     [SerializeField] private Transform handTrans;
     [SerializeField] private bool xrMode = false;
+    private const float maxDistance = 0.5f;
 
 
     private Vector3 reSetString;
@@ -52,20 +53,6 @@ public class Bow : MonoBehaviour
         CreateArrow();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            drawBow = true;
-        }
-        if (Input.GetKeyUp(KeyCode.U))
-        {
-            ArrowShot();
-        }
-        */
-    }
 
     private void FixedUpdate()
     {
@@ -86,8 +73,6 @@ public class Bow : MonoBehaviour
         else
         {
             power = Mathf.Abs(bowString.transform.localPosition.y) / maxString * maxPower;
-            Debug.Log("Pos" + bowString.transform.localPosition.y / maxString);
-            Debug.Log(power);
         }
         drawBow = false;
         // êeéqä÷åW
@@ -127,11 +112,11 @@ public class Bow : MonoBehaviour
         else
         {
             // XR
-            if (handTrans.localPosition.z < 0) stringIndex = Mathf.Abs(handTrans.localPosition.z);
-            else stringIndex = 0;
-            stringIndex /= 10;
-            if (maxString < stringIndex) stringIndex = maxString;
-            else if (stringIndex < minString) stringIndex = minString;
+            float distance = Vector3.Distance(gameObject.transform.position ,handTrans.transform.position);
+            if (maxDistance < distance) distance = maxDistance;
+            float f = (distance * 10) /(maxDistance * 10);
+            stringIndex = maxString * f;
+            //Debug.Log("String:" + stringIndex);
         }
 
         // ï˚å¸
