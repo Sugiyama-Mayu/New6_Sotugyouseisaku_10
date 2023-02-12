@@ -140,7 +140,6 @@ public class ProcessShop : MonoBehaviour
     // 購入ボタンを押した場合
     public void BuyClick()
     {
-        ringSound.RingSE(5);
         nowShopItem.GetComponent<ShopItemData>().UpdateShop();
         int buyCommaNum = 0;  // カンマの数を数える用変数
         int haveCommaNum = 0;
@@ -262,6 +261,7 @@ public class ProcessShop : MonoBehaviour
             connectionFile.WriteFile(buyId, buyTranslateArray);
             haveTranslateArray = haveTranslateArray + "\n";
             connectionFile.WriteFile(haveId, haveTranslateArray);
+            ringSound.RingSE(5);
 
             // 所持金の書き込み
             saveDataFile.haveMoney = budgedNum;
@@ -277,7 +277,6 @@ public class ProcessShop : MonoBehaviour
     // 売るボタンを押した時
     public void SellClick()
     {
-        ringSound.RingSE(5);
         int budgedNum = 0;
         // ゲーム情報の更新
         nowShopItem.GetComponent<ShopItemData>().UpdateShop();
@@ -345,6 +344,7 @@ public class ProcessShop : MonoBehaviour
                         break;
                 }
             }
+            ringSound.RingSE(5);
             // 持っている数の書き込み
             haveTranslateArray = haveTranslateArray + "\n";
             connectionFile.WriteFile(haveId, haveTranslateArray);

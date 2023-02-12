@@ -31,8 +31,8 @@ public class ShopClerkOperation : MonoBehaviour
                 if (talkMode == false)
                 {
                     ringSound.RingSE(4);
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
+                    //Cursor.lockState = CursorLockMode.None;
+                    //Cursor.visible = true;
                     shopCamera.gameObject.SetActive(true);
                     clerkAnim.SetBool("talk", true);
                     shopStage.gameObject.SetActive(true);
@@ -42,8 +42,8 @@ public class ShopClerkOperation : MonoBehaviour
                 // òbÇµíÜÇÃèÍçá
                 else if (talkMode == true)
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
+                    //Cursor.lockState = CursorLockMode.Locked;
+                    //Cursor.visible = false;
                     shopCamera.gameObject.SetActive(false);
                     clerkAnim.SetBool("talk", false);
                     shopStage.gameObject.SetActive(false);

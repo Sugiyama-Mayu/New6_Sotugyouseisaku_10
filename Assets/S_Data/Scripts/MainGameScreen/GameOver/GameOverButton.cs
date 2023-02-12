@@ -11,9 +11,10 @@ public class GameOverButton : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private MainSceneObj mainSceneObj;
     [SerializeField] private GameObject gameOverCanvas;
-    [SerializeField] private TitleUI titleUI;
     [SerializeField] private TitleSceneButton titleSceneButton;
     [SerializeField] private RingSound ringSound;
+    [SerializeField] private GameOverProcess gameOverProcess;
+    [SerializeField] private TitleUI titleUI;
     //続けてゲームを遊ぶ
     public void ContinueGame()
     {
@@ -24,8 +25,9 @@ public class GameOverButton : MonoBehaviour
         mainSceneObj.switchTitleCamera.gameObject.SetActive(false);
         //カーソルをを消してプレイヤーを表示してゲーム続行
         mainSceneObj.player.SetActive(true);
-        titleSceneButton.VisibleCursor(false);
+        //titleSceneButton.VisibleCursor(false);
         StartCoroutine(gameManager.Continue());
+        gameOverProcess.gameOverMode = false;
         Debug.Log("つづきから");
     }
     //タイトルへ
@@ -34,6 +36,7 @@ public class GameOverButton : MonoBehaviour
         ringSound.RingSE(0);
         mainSceneObj.gameOverCanvas.gameObject.SetActive(false);
         titleUI.TitleControl(true);
+        gameOverProcess.gameOverMode = false;
         Debug.Log("タイトルへ");
     }
 }
