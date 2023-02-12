@@ -20,7 +20,7 @@ public class CreateEnemy : MonoBehaviour
     [SerializeField] private float nowCount;
     [SerializeField] private bool debugMode = false;
     [SerializeField] private int debugnum =0;
-    private const float spownOffset = 0.3f;
+    private const float spownOffset = 0.5f;
 
     // Start is called before the first frame update
     void Start()

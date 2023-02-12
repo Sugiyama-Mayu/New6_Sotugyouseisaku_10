@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataRead: {fileID: 7013697438454885904}
-  saveData: {fileID: 0}
+  saveData: {fileID: 7013697438454885906}
   uiManager: {fileID: 0}
   terrainManager: {fileID: 0}
   playerManager: {fileID: 0}
@@ -72,13 +72,14 @@ MonoBehaviour:
   inputPlayerVR: {fileID: 0}
   createManager: {fileID: 0}
   equimentManager: {fileID: 0}
+  ringSound: {fileID: 0}
   connectionFile: {fileID: 0}
   playerObj: {fileID: 0}
   pcPhoneObj: {fileID: 0}
   xrObj: {fileID: 0}
   titleObj: {fileID: 0}
   phoneVrMode: 0
-  XRMode: 0
+  XRMode: 1
   startPos: {x: 737, y: 45, z: 801.5}
   startRot: {x: 0, y: -0.1305262, z: 0, w: 0.9914449}
   refreshCount: 20

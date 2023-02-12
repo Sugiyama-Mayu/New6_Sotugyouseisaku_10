@@ -20,6 +20,9 @@ public class TitleSceneButton : MonoBehaviour
         // 初期位置の保存
         initialPlayerPos = mainSceneObj.player.transform.position;
         initialPlayerRotate = mainSceneObj.player.transform.localEulerAngles;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     // カーソルの表示・非表示処理
     // 引  数：bool visible  true 表示  false 非表示

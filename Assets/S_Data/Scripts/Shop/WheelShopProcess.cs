@@ -40,33 +40,17 @@ public class WheelShopProcess : MonoBehaviour
         sOldButton = 0;
         buyOrSellswichMode = true;
 }
-    private void Update()
-    {
-        // Xの値は常に0 上に回すと+の値
-        // ボタンは上から順に0,1,2...
-        //var current = Mouse.current;
-        Vector2 wheelRotateNum = Mouse.current.scroll.ReadValue();
-        if (buyOrSellswichMode == true)  //買う
-        {
-            BuyModeProcess(wheelRotateNum);
-        }
-        else
-        {
-            SellModeProcess(wheelRotateNum);
-        }
-        ShopModeChange(); //売買モードセレクト
-    }
     //買うモード時の処理
     //引  数：なし
     //戻り値：なし
-    private void BuyModeProcess(Vector2 wheelRotateNum)
+    private void BuyModeProcess(float wheelRotateNum)
     {
         //ホイールの回転によってボタンを選択
-        if (wheelRotateNum.y > 0.0f)
+        if (wheelRotateNum > 0.0f)
         {
             bSelectButton--;
         }
-        else if (wheelRotateNum.y < 0.0f)
+        else if (wheelRotateNum < 0.0f)
         {
             bSelectButton++;
         }
@@ -154,75 +138,20 @@ public class WheelShopProcess : MonoBehaviour
                 buyTuruhashi.GetComponent<Image>().color = new Color(0.97f, 0.71f, 0.71f, 1.0f);
                 break;
         }
-        //購入処理
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            switch (bSelectButton)
-            {
-                case 0:
-                    //processShop.SetItemImage(buyYakusou.GetComponent<ShopItemData>().buyItemID);
-                    buyYakusou.GetComponent<ShopItemData>().UpdateShop();
-                    buyYakusou.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 1:
-                    //processShop.SetItemImage(buyKaihukuyaku.GetComponent<ShopItemData>().buyItemID);
-                    buyKaihukuyaku.GetComponent<ShopItemData>().UpdateShop();
-                    buyKaihukuyaku.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 2:
-                    //processShop.SetItemImage(buyJoukaihukuyaku.GetComponent<ShopItemData>().buyItemID);
-                    buyJoukaihukuyaku.GetComponent<ShopItemData>().UpdateShop();
-                    buyJoukaihukuyaku.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 3:
-                    //processShop.SetItemImage(buyKanzenkaihukuyaku.GetComponent<ShopItemData>().buyItemID);
-                    buyKanzenkaihukuyaku.GetComponent<ShopItemData>().UpdateShop();
-                    buyKanzenkaihukuyaku.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 4:
-                    //processShop.SetItemImage(buyDou.GetComponent<ShopItemData>().buyItemID);
-                    buyDou.GetComponent<ShopItemData>().UpdateShop();
-                    buyDou.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 5:
-                    //processShop.SetItemImage(buyGin.GetComponent<ShopItemData>().buyItemID);
-                    buyGin.GetComponent<ShopItemData>().UpdateShop();
-                    buyGin.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 6:
-                    //processShop.SetItemImage(buyKin.GetComponent<ShopItemData>().buyItemID);
-                    buyKin.GetComponent<ShopItemData>().UpdateShop();
-                    buyKin.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-                case 7:
-                    //processShop.SetItemImage(buyTuruhashi.GetComponent<ShopItemData>().buyItemID);
-                    buyTuruhashi.GetComponent<ShopItemData>().UpdateShop();
-                    buyTuruhashi.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
-                    processShop.BuyClick();
-                    break;
-            }
-        }
         //ボタン数字の更新
         bOldButton = bSelectButton;
     }
     //売るモード時の処理
     //引  数：なし
     //戻り値：なし
-    private void SellModeProcess(Vector2 wheelRotateNum)
+    private void SellModeProcess(float wheelRotateNum)
     {
         //ホイールの回転によってボタンを選択
-        if (wheelRotateNum.y > 0.0f) 
+        if (wheelRotateNum > 0.0f) 
         {
             sSelectButton--;
         }
-        else if (wheelRotateNum.y < 0.0f)
+        else if (wheelRotateNum < 0.0f)
         {
             sSelectButton++;
         }
@@ -302,9 +231,113 @@ public class WheelShopProcess : MonoBehaviour
                 sellKin.GetComponent<Image>().color = new Color(0.7f, 0.8f, 0.9f, 1.0f);
                 break;
         }
-        //売る処理
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        //ボタン数字の更新
+        sOldButton = sSelectButton;
+    }
+    // 買うモード、売るモードの変更
+    // 引  数：なし
+    // 戻り値：なし
+    private void ShopModeChange()
+    {
+        if(buyOrSellswichMode == false)
         {
+            buyOrSellswichMode = true;
+        }
+        else 
+        {
+            buyOrSellswichMode = false;
+        }
+        if (buyOrSellswichMode == false)
+        {
+            processShop.SellModeSwitch();
+        }
+        else
+        {
+            processShop.BuyModeSwitch();
+        }
+    }
+
+    // スクロール処理
+    public void WheelScroll(float f)
+    {
+        if (buyOrSellswichMode == true)  //買う
+        {
+            BuyModeProcess(f);
+        }
+        else
+        {
+            SellModeProcess(f);
+        }
+
+    }
+
+    // モード変更
+    public void ShopMode()
+    {
+        ShopModeChange(); //売買モードセレクト
+    }
+
+
+    public void ShopClick()
+    {
+        if (buyOrSellswichMode)
+        {
+            //購入処理
+            switch (bSelectButton)
+            {
+                case 0:
+                    //processShop.SetItemImage(buyYakusou.GetComponent<ShopItemData>().buyItemID);
+                    buyYakusou.GetComponent<ShopItemData>().UpdateShop();
+                    buyYakusou.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 1:
+                    //processShop.SetItemImage(buyKaihukuyaku.GetComponent<ShopItemData>().buyItemID);
+                    buyKaihukuyaku.GetComponent<ShopItemData>().UpdateShop();
+                    buyKaihukuyaku.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 2:
+                    //processShop.SetItemImage(buyJoukaihukuyaku.GetComponent<ShopItemData>().buyItemID);
+                    buyJoukaihukuyaku.GetComponent<ShopItemData>().UpdateShop();
+                    buyJoukaihukuyaku.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 3:
+                    //processShop.SetItemImage(buyKanzenkaihukuyaku.GetComponent<ShopItemData>().buyItemID);
+                    buyKanzenkaihukuyaku.GetComponent<ShopItemData>().UpdateShop();
+                    buyKanzenkaihukuyaku.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 4:
+                    //processShop.SetItemImage(buyDou.GetComponent<ShopItemData>().buyItemID);
+                    buyDou.GetComponent<ShopItemData>().UpdateShop();
+                    buyDou.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 5:
+                    //processShop.SetItemImage(buyGin.GetComponent<ShopItemData>().buyItemID);
+                    buyGin.GetComponent<ShopItemData>().UpdateShop();
+                    buyGin.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 6:
+                    //processShop.SetItemImage(buyKin.GetComponent<ShopItemData>().buyItemID);
+                    buyKin.GetComponent<ShopItemData>().UpdateShop();
+                    buyKin.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+                case 7:
+                    //processShop.SetItemImage(buyTuruhashi.GetComponent<ShopItemData>().buyItemID);
+                    buyTuruhashi.GetComponent<ShopItemData>().UpdateShop();
+                    buyTuruhashi.GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.4f, 1.0f);
+                    processShop.BuyClick();
+                    break;
+            }
+        }
+        else
+        {
+            //売る処理
             switch (sSelectButton)
             {
                 case 0:
@@ -350,34 +383,8 @@ public class WheelShopProcess : MonoBehaviour
                     processShop.SellClick();
                     break;
             }
+
         }
-        //ボタン数字の更新
-        sOldButton = sSelectButton;
-    }
-    // 買うモード、売るモードの変更
-    // 引  数：なし
-    // 戻り値：なし
-    private void ShopModeChange()
-    {
-        var middleButtonState = Mouse.current;
-        if (middleButtonState.middleButton.wasPressedThisFrame)
-        {
-            if(buyOrSellswichMode == false)
-            {
-                buyOrSellswichMode = true;
-            }
-            else {
-                buyOrSellswichMode = false;
-            }
-            if (buyOrSellswichMode == false)
-            {
-                processShop.SellModeSwitch();
-            }
-            else
-            {
-                processShop.BuyModeSwitch();
-            }
-        }      
     }
 }
  

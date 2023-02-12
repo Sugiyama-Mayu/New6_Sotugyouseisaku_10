@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 // クエストボードにいる店員の処理
 public class ClerkOperation : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private Animator clerkAnim;  // 店員アニメーション
     [SerializeField] private GameObject player;
     [SerializeField] private Vector3 fronBoardPos;
     [SerializeField] private RingSound ringSound;
+    [SerializeField] private BoxCollider boxCollider;
 
     private bool withinRange;  // プレイキャラが範囲内にいるかどうか
     public bool talkMode;      // 店員と話し中かどうか
@@ -17,38 +19,11 @@ public class ClerkOperation : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         withinRange = false;
         talkMode = false;
     }
-    void Update()
-    {
-        // クエストボード範囲内にいる場合
-        if (withinRange == true)
-        {
-            // 右クリック
-            if (Input.GetMouseButtonDown(1))
-            {
-                // 話していなかった場合
-                if (talkMode == false)
-                {
-                    ringSound.RingSE(7);
-                    savePos = player.transform.position;
-                    clerkAnim.SetBool("talk", true);
-                    player.transform.position = fronBoardPos;
-                    talkMode = true;
-                    return;
-                }
-                // 話し中の場合
-                if (talkMode == true)
-                {
-                    clerkAnim.SetBool("talk", false);
-                    player.GetComponentInChildren<InputPlayer>().SetHuntSelectOrder(false);
-                    player.GetComponentInChildren<InputPlayer>().awayProcessFlag = true;
-                    talkMode = false;
-                }
-            }
-        }
-    }
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
@@ -62,10 +37,57 @@ public class ClerkOperation : MonoBehaviour
         if (other.gameObject == player)
         {
             clerkAnim.SetBool("talk", false);
-            player.GetComponentInChildren<InputPlayer>().SetHuntSelectOrder(false);
-            player.GetComponentInChildren<InputPlayer>().awayProcessFlag = true;
+            if(gameManager.GetSetXRMode == false)
+            {
+                player.GetComponentInChildren<InputPlayer>().SetHuntSelectOrder(false);
+                player.GetComponentInChildren<InputPlayer>().awayProcessFlag = true;
+            }
+            else
+            {
+                player.GetComponentInChildren<InputPlayerVR>().SetHuntSelectOrder(false);
+                player.GetComponentInChildren<InputPlayerVR>().awayProcessFlag = true;
+            }
             withinRange = false;
             talkMode = false;
         }
     }     
+
+    public void QuestBoardStartEnd()
+    {
+        // クエストボード範囲内にいる場合
+        if (withinRange == true)
+        {
+            // 話していなかった場合
+            if (talkMode == false)
+            {
+                gameManager.SetiingActionMap(4);
+                ringSound.RingSE(7);
+                savePos = player.transform.position;
+                clerkAnim.SetBool("talk", true);
+                player.transform.position = fronBoardPos;
+                talkMode = true;
+                boxCollider.enabled = false;
+                return;
+            }
+            // 話し中の場合
+            if (talkMode == true)
+            {
+                clerkAnim.SetBool("talk", false);
+                if(gameManager.GetSetXRMode == false)
+                {
+                    player.GetComponentInChildren<InputPlayer>().SetHuntSelectOrder(false);
+                    player.GetComponentInChildren<InputPlayer>().awayProcessFlag = true;
+                }
+                else
+                {
+                    player.GetComponentInChildren<InputPlayerVR>().SetHuntSelectOrder(false);
+                    player.GetComponentInChildren<InputPlayerVR>().awayProcessFlag = true;
+                }
+                talkMode = false;
+                boxCollider.enabled = true;
+            }
+        }
+
+    }
+
 }

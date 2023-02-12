@@ -141,19 +141,18 @@ public class SpreadArrow : MonoBehaviour
                                         {
                                             // âÑèƒèàóù
                                             ParticleSystem fire_1 = Instantiate(spreadFX_Fire);
-                                            spreadArrowManager.effectObj
-                                                .Add(fire_1);
+                                            spreadArrowManager.effectObj.Add(fire_1);
                                             // âÑèƒà íuÇè≠Çµè„Ç…è„Ç∞ÇÈ
                                             spreadArrowManager.effectObj[spreadArrowManager.doneEffect].transform.position = spreadArrowManager.overObj[spreadArrowManager.doneEffect].transform.position;
                                             spreadArrowManager.effectObj[spreadArrowManager.doneEffect].transform.position += new Vector3(0.0f, 1.0f, 0.0f);
                                             spreadArrowManager.effectObj[spreadArrowManager.doneEffect].Play();
-                                            //Destroy(fire_1.gameObject, 5.0f);
                                             collScript.spreadStartFlag = true;
                                             collScript.spreadDoneFlag = true;
                                             spreadArrowManager.doneEffect++;
                                             collision.gameObject.tag = "DoneFireObj";
                                             //collScript.burnFlag = true;
                                             collScript.burnFlag = true;
+                                            Destroy(fire_1.gameObject,6);
                                             ringSound.RingSE(17);
                                         }
                                         break;

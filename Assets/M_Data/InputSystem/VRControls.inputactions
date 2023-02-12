@@ -73,7 +73,7 @@
                 {
                     "name": "",
                     "id": "7e303f14-b8e5-45d1-9dac-9603cf4b8e8c",
-                    "path": "<ViveController>{LeftHand}/triggerPressed",
+                    "path": "<ViveController>/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -284,7 +284,7 @@
                 {
                     "name": "",
                     "id": "bd80e627-3237-41e7-ad3b-8b31a529180a",
-                    "path": "<ViveController>{LeftHand}/triggerPressed",
+                    "path": "<ViveController>/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -306,7 +306,7 @@
                 {
                     "name": "",
                     "id": "a0a28202-4987-4148-b4e8-dc3576ee1a86",
-                    "path": "<ViveController>{RightHand}/triggerPressed",
+                    "path": "<ViveController>/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -367,7 +367,7 @@
                 {
                     "name": "",
                     "id": "6360aef1-bfc0-44dc-9fa0-688710abaac0",
-                    "path": "<ViveController>{LeftHand}/triggerPressed",
+                    "path": "<ViveController>/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -455,7 +455,7 @@
                 {
                     "name": "",
                     "id": "fb6b9190-3bc8-447a-9470-dadf37ce31c5",
-                    "path": "<ViveController>{LeftHand}/triggerPressed",
+                    "path": "<ViveController>/triggerPressed",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -477,7 +477,7 @@
                 {
                     "name": "",
                     "id": "54358f9d-e1ab-40cf-afc5-b8234fa6cd2c",
-                    "path": "<ViveController>{RightHand}/triggerPressed",
+                    "path": "<ViveController>/gripPressed",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -515,6 +515,219 @@
                     "processors": "",
                     "groups": "",
                     "action": "MenuClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Quest",
+            "id": "fb379412-0c38-46ee-910d-6fbc00a5ada2",
+            "actions": [
+                {
+                    "name": "QuestClick",
+                    "type": "Button",
+                    "id": "3a00f0e5-2928-4b2b-b38b-9a517c351789",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuestClose",
+                    "type": "Button",
+                    "id": "9bdeb57a-f68d-4b6b-a219-0f5111a7d8a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e8bcad77-089b-417c-a236-e0a34f3af178",
+                    "path": "<OculusTouchController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1fce5424-f998-49f1-aa28-25314fd45a0b",
+                    "path": "<ViveController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c940cf7a-9119-4872-9104-9c7745527a52",
+                    "path": "<OculusTouchController>/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "312a739d-976b-4e9b-b632-b4c555321241",
+                    "path": "<ViveController>/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Shop",
+            "id": "ff3fe3a4-f389-42aa-9324-53ca31fa1405",
+            "actions": [
+                {
+                    "name": "ShopClick",
+                    "type": "Button",
+                    "id": "69f52cf2-68b8-48cb-a720-beefc725a729",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShopPageDown",
+                    "type": "Button",
+                    "id": "c88e4d3e-e4c7-4daf-aa75-7002cdc3eaf6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShopScroll",
+                    "type": "Value",
+                    "id": "c84dd211-660a-4039-9a6e-e7b484b8fde8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ModeChange",
+                    "type": "Button",
+                    "id": "c9ab9e34-e4e4-4813-b608-4c678bdb4f4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5cddbdb9-352e-4f29-bd14-d62b68877b10",
+                    "path": "<ViveController>/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopPageDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63622efd-6279-4d60-982d-e448d425659e",
+                    "path": "<OculusTouchController>/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopPageDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47a0de3e-df2b-4222-b1ed-6b6a11e60e15",
+                    "path": "<ViveController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5684707d-9baa-46d4-af8a-b39ac1f3eb96",
+                    "path": "<OculusTouchController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c29b92bf-c3d9-4088-9986-2200141dfd2e",
+                    "path": "<OculusTouchController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ModeChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "491ea249-9151-4113-9f28-3f1db6658ff8",
+                    "path": "<OculusTouchController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ModeChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "291aeeb8-eb92-48c7-8fe1-d472f29e2738",
+                    "path": "<ViveController>{RightHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ModeChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d060d7ca-1f39-4d77-9765-5ce0074140b4",
+                    "path": "<ViveController>{LeftHand}/trackpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac13f3d6-296e-4c3d-a3fe-146fc941c254",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopScroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

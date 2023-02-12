@@ -248,7 +248,6 @@ public class EnemyNavMesh : MonoBehaviour
                     if (!isAiStateRunning) return;
                     attackMode = Random.Range(11, 29);
                     attackMode /= 10;
-                    Debug.Log("AttackMode:" +attackMode);
                     break;
                 case 1: // ãﬂê⁄
                     MeleeAttack(ListSort());

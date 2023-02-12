@@ -427,6 +427,162 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Quest",
+            "id": "7555a40c-b3dd-4965-a3e3-ce7a1ff35abd",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "e1e68dc2-e1b7-4bd4-bb7a-a72106dbb615",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "QuestClick",
+                    "type": "Button",
+                    "id": "66f106b1-bb35-447b-98e0-1774c9716d86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuestClose",
+                    "type": "Button",
+                    "id": "85322ff8-3e0f-4197-b8e5-14f3bc929c98",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8e381bf5-7ced-44eb-9004-f8369fff87d2",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4fe17ac-0389-4162-89bc-a0eb8024f033",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90885de1-cfc5-48ec-9c63-598e267ad3df",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Shop",
+            "id": "2bde095e-86fc-4f33-aec1-30e7e49b5aec",
+            "actions": [
+                {
+                    "name": "ShopClick",
+                    "type": "Button",
+                    "id": "1abf33d9-5a26-4d55-a241-11bb464d43ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShopPageDown",
+                    "type": "Button",
+                    "id": "b889c388-f31f-4233-8980-3f929818a3a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShopScroll",
+                    "type": "Value",
+                    "id": "4ded3eac-bd60-45ed-bd6c-bd5323ca6db1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ModeChange",
+                    "type": "Button",
+                    "id": "4250be24-14b6-4661-8cfb-7a2b715e828f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c7e11c61-12fe-4a8f-a068-03e72f9a09d8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopPageDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71265ecd-62dc-4358-8d4d-fa8f6cfe9195",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ShopClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "deddc033-84ee-4026-9db5-b6ef164000d3",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShopScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1164b4a2-5d17-4143-a08f-ec58caa6ffc1",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ModeChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

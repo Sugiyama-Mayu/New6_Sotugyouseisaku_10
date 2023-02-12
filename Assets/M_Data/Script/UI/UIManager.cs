@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public WarpPoint warpPoint;
     public EquimentManager equimentManager;
     public EquipmentEnhance equipmentEnhance;
+    public ClerkOperation clerkOperation;
 
 
     [Header("UIオブジェクト")]
@@ -112,6 +113,11 @@ public class UIManager : MonoBehaviour
         uiNum = 2;
     }
 
+    public void QuestBorad()
+    {
+        clerkOperation.QuestBoardStartEnd();
+    }
+
     // UI表示
     public void uiOpen()
     {
@@ -146,6 +152,8 @@ public class UIManager : MonoBehaviour
             case 2:
                 equipmentEnhance.NumUpDown(b);
                 break;
+            case 3:
+                break;
         }
     }
     // 決定処理
@@ -160,6 +168,8 @@ public class UIManager : MonoBehaviour
             case 2:
                 gameManager.ringSound.RingSE(0);
                 equipmentEnhance.WeaponUpgrade();
+                break;
+            case 3:
                 break;
         }
     }

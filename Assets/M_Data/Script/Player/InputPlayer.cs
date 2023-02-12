@@ -38,12 +38,12 @@ public class InputPlayer : MonoBehaviour
 
     [Header("移動関係")]
     private float _moveSpeed = 10f;                             // 移動速度
+    [SerializeField] private bool canUpdate;
     [SerializeField] private float[] setSpeed = { 8.0f, 0.5f };
     [SerializeField] private float _lookSpeed = 50f;            // カメラ回転速度
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject playerObj;
     [SerializeField] private Rigidbody playerRb;
-    [SerializeField] private GameObject UI;
 
     [Header("その他")]
     [SerializeField] private Transform playerYPos;
@@ -56,6 +56,8 @@ public class InputPlayer : MonoBehaviour
     InputActionMap UIMap;
     InputActionMap MenuMap;
     InputActionMap talkMap;
+    InputActionMap questMap;
+    InputActionMap shopMap;
 
     private Vector2 _currentMoveInputValue = Vector2.zero;      // 現在の移動入力値
     private Vector2 _currentCursorInputValue = Vector2.zero;    // 現在の移動入力値
@@ -68,9 +70,17 @@ public class InputPlayer : MonoBehaviour
     private Ray ray;
     [SerializeField] private float maxDistance = 5;
 
+    [Header("遺跡ギミック")]
     [SerializeField] private GameObject attackBlock1;    // 祠ギミックアタックブロック
     [SerializeField] private GameObject attackBlock2;
+    [SerializeField] private RotateBall rotateBall;
+
+
+    [Header("ショップ・クエストボード")]
     [SerializeField] private ClerkOperation clearkOperation;
+    [SerializeField] private ShopClerkOperation shopClerkOperation;
+    [SerializeField] private WheelShopProcess wheelShopProcess;
+
     //[SerializeField] private bool clerkMode;
 
     // M.Sヒットしたゲームオブジェクトの保存(運ぶ処理に使用)
@@ -111,6 +121,17 @@ public class InputPlayer : MonoBehaviour
     private const string MENU_LEFTCLICK = "LeftClick";
     private const string MENU_RIGHTCLICK = "RightClick";
     private const string MENU_MOUSESCROLL = "MouseScroll";
+
+    /// Quest
+    private const string QUEST_CLICK = "QuestClick";
+    private const string QUEST_CLOSE = "QuestClose";
+
+    /// Shop
+    private const string SHOP_CLICK = "ShopClick";
+    private const string SHOP_PAGEDOWN = "ShopPageDown";
+    private const string SHOP_SCROLL = "ShopScroll";
+    private const string SHOP_MODECHANGE = "ModeChange";
+
 
     private void Awake()
     {
@@ -159,13 +180,17 @@ public class InputPlayer : MonoBehaviour
         UIMap = playerInput.actions.FindActionMap("UI");
         talkMap = playerInput.actions.FindActionMap("Talk");
         MenuMap = playerInput.actions.FindActionMap("Menu");
+        questMap = playerInput.actions.FindActionMap("Quest");
+        shopMap = playerInput.actions.FindActionMap("Shop");
 
         // action設定
         InputActionSetting();
+        SetActionMap(0);
     }
 
     private void Update()
     {
+        if (!canUpdate) return;
         move();
         look();
         RayUpdate();
@@ -198,7 +223,7 @@ public class InputPlayer : MonoBehaviour
             _preRotation.y += _currentLookInputValue.x * _lookSpeed * Time.deltaTime;
             _preRotation.x -= _currentLookInputValue.y * _lookSpeed * Time.deltaTime;
             _preRotation.x = Mathf.Clamp(_preRotation.x, -89, 89);
-            transform.localEulerAngles = _preRotation;            
+            transform.localEulerAngles = _preRotation;
         }
     }
 
@@ -249,42 +274,6 @@ public class InputPlayer : MonoBehaviour
                 }
 
             }
-            // M.S クエストボードの処理
-            //会話モードならば
-            if (clearkOperation.talkMode == true)
-            {
-                // 選択したボタンがクエスト受注ボタンならば
-                if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "DecideButton" && Input.GetMouseButtonDown(0))
-                {
-                    // 受注処理が終わったら
-                    if (huntTarget.GetComponent<QuestData>().ClickOrderReceived() == true)
-                    {
-                        huntTarget.GetComponent<QuestData>().ClickBoardBack(); //クエスト選択画面に戻る
-                    }
-                }
-                // 選択したボタンがクエスト選択画面に戻るならば
-                else if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "BackButton" && Input.GetMouseButtonDown(0))
-                {
-                    huntTarget.GetComponent<QuestData>().ClickBoardBack(); //クエスト選択画面に戻る
-                }
-                // 選択したボタンがクエスト内容確認ボタンならば
-                else if (hit.collider.gameObject.tag == "QuestConfirmationButton" && Input.GetMouseButtonDown(0))
-                {
-                    hit.collider.gameObject.GetComponent<QuestData>().ClickConfirmation(); //クエストの内容確認表示
-                    // 選択したボタンの更新
-                    huntTarget = hit.collider.gameObject;
-                }
-            }
-            else
-            {
-                //まだトークモードが外れてから処理をしていなかったら
-                if (awayProcessFlag == true)
-                {
-                    // トークモードが外れたらすぐにクエスト選択画面に戻る
-                    baseQuestButton.GetComponent<QuestData>().ClickBoardBack();
-                    awayProcessFlag = false;
-                }
-            }
         }
         else
         {
@@ -298,6 +287,7 @@ public class InputPlayer : MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("Player");
         weaponManager.WeaponChange();
+        canUpdate = true;
         if (debugInput)gameCursor.gameObject.SetActive(false);
     }
     public void ToUIMode()
@@ -318,6 +308,19 @@ public class InputPlayer : MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("Menu");
     }
+
+    public void ToQuestMode()
+    {
+        _playerInput.SwitchCurrentActionMap("Quest");
+    }
+
+    public void ToShopMode()
+    {
+        _playerInput.SwitchCurrentActionMap("Shop");
+        canUpdate = false;
+        gameManager.uiManager.uiClose();
+    }
+
 
     //--------------------------------------------------------------------------------------------------------------------------
     // InputEvent用関数
@@ -356,17 +359,6 @@ public class InputPlayer : MonoBehaviour
         // Rayが特定のオブジェクトに当たった時
         if (context.performed && Physics.Raycast(ray, out var hit, maxDistance))
         {
-            // Debug.Log(hit.collider.gameObject.tag + "だよ");
-            // M.S 剣の時のみ祠のアタックブロックのクリックフラグをたてる
-            if (hit.collider.gameObject.tag == "Shrine_AttackBlock" && weaponManager.wearSword.activeSelf == true)
-            {
-                ParticleSystem effect_c = Instantiate(attackBlockManager.hitEffect);
-                effect_c.transform.position = hit.transform.position;
-                effect_c.Play();
-                Destroy(effect_c.gameObject, 5.0f);
-                hit.collider.gameObject.GetComponent<AttackChangeMaterial>().clickFlag = true;
-            }
-
             // NPC
             if (hit.collider.gameObject.tag == "NPC")
             {
@@ -407,6 +399,29 @@ public class InputPlayer : MonoBehaviour
                     Debug.Log("NowCoolTime");
                 }
             }
+
+            if(hit.collider.gameObject.tag == "Shop" && shopClerkOperation.StartEndShop())
+            {
+                SetActionMap(5);
+
+                transform.localEulerAngles = shopClerkOperation.GetRot();
+                Debug.Log(transform.localEulerAngles);
+                playerRb.isKinematic = true;
+                playerRb.useGravity = false;
+            }
+
+            //
+            if(hit.collider.gameObject.tag == "QuestBoard")
+            {
+                clearkOperation.QuestBoardStartEnd();
+                if (!debugInput) gameManager.uiManager.gameCursor.SetiingCursor();
+                Debug.Log("Quest");
+            }
+            if (rotateBall.GetRotateModeAllow)
+            {
+                rotateBall.StartRotateControll();
+            }
+
         }
     }
 
@@ -522,15 +537,11 @@ public class InputPlayer : MonoBehaviour
     {
         if (context.performed)
         {
-            //if () { }
             SetActionMap(0);
             gameManager.uiManager.uiClose();
 
         }
     }
-
-
-
     //--------------------------------------------------------------------------------------------------------------------------
     // Talk
     public void OnPageUp(InputAction.CallbackContext context)
@@ -540,7 +551,6 @@ public class InputPlayer : MonoBehaviour
             gameManager.uiManager.talkNPC.TextCountUp();
         }
     }
-
     //----------------------------------------------------------------------------------------------------------------------------------------------------
     // Menu
     public void OnMenuClose(InputAction.CallbackContext context)
@@ -576,7 +586,103 @@ public class InputPlayer : MonoBehaviour
         }
     }
 
-    //--------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------------
+    // Quest
+    public void OnQuestClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (Physics.Raycast(ray, out var hit, maxDistance))
+            {
+                // M.S クエストボードの処理
+                //会話モードならば
+                if (clearkOperation.talkMode == true)
+                {
+                    // 選択したボタンがクエスト受注ボタンならば
+                    if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "DecideButton")
+                    {
+                        // 受注処理が終わったら
+                        if (huntTarget.GetComponent<QuestData>().ClickOrderReceived() == true)
+                        {
+                            huntTarget.GetComponent<QuestData>().ClickBoardBack(); //クエスト選択画面に戻る
+                        }
+                    }
+                    // 選択したボタンがクエスト選択画面に戻るならば
+                    else if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "BackButton")
+                    {
+                        huntTarget.GetComponent<QuestData>().ClickBoardBack(); //クエスト選択画面に戻る
+                    }
+                    // 選択したボタンがクエスト内容確認ボタンならば
+                    else if (hit.collider.gameObject.tag == "QuestConfirmationButton")
+                    {
+                        hit.collider.gameObject.GetComponent<QuestData>().ClickConfirmation(); //クエストの内容確認表示
+                                                                                               // 選択したボタンの更新
+                        huntTarget = hit.collider.gameObject;
+                    }
+                }
+                else
+                {
+                    //まだトークモードが外れてから処理をしていなかったら
+                    if (awayProcessFlag == true)
+                    {
+                        // トークモードが外れたらすぐにクエスト選択画面に戻る
+                        baseQuestButton.GetComponent<QuestData>().ClickBoardBack();
+                        awayProcessFlag = false;
+                    }
+                }
+            }
+        }
+    }
+    public void OnQuestClose(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            clearkOperation.QuestBoardStartEnd();
+            SetActionMap(0);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------
+    // Shop
+    public void OnShopClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("shopclick");
+            wheelShopProcess.ShopClick();
+        }
+    }
+    public void OnShopPageDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (shopClerkOperation.StartEndShop())
+            {
+                Debug.Log("shopClose");
+                SetActionMap(0);
+                playerRb.isKinematic = false;
+                playerRb.useGravity = true;
+            }
+        }
+    }
+    public void OnShopScroll(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector2 wheelRotateNum = Mouse.current.scroll.ReadValue();
+            wheelShopProcess.WheelScroll(wheelRotateNum.y);
+        }
+    }
+    public void OnModeChange(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            wheelShopProcess.ShopMode();
+        }
+    }
+
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
     /// ActionMap切り替え 0:Player 1:UI 2:Talk
@@ -597,6 +703,12 @@ public class InputPlayer : MonoBehaviour
                 break;
             case 3:
                 ToMenuMode();
+                break;
+            case 4:
+                ToQuestMode();
+                break;
+            case 5:
+                ToShopMode();
                 break;
             default:
                 Debug.LogWarning("指定範囲外");
@@ -647,11 +759,7 @@ public class InputPlayer : MonoBehaviour
             playerMap[PLAYER_OPENCLOSEMENU].started += OnOpenCloseMenu;
             playerMap[PLAYER_OPENCLOSEMENU].performed += OnOpenCloseMenu;
             playerMap[PLAYER_OPENCLOSEMENU].canceled += OnOpenCloseMenu;
-            /*
-            UIMap[ACTION_CURSORMOVE].started += OnCursorMove;
-            UIMap[ACTION_CURSORMOVE].performed += OnCursorMove;
-            UIMap[ACTION_CURSORMOVE].canceled += OnCursorMove;
-            */
+
             UIMap[UI_CLICK].started += OnClick;
             UIMap[UI_CLICK].performed += OnClick;
             UIMap[UI_CLICK].canceled += OnClick;
@@ -683,6 +791,38 @@ public class InputPlayer : MonoBehaviour
             MenuMap[MENU_MOUSESCROLL].started += OnMouseScroll;
             MenuMap[MENU_MOUSESCROLL].performed += OnMouseScroll;
             MenuMap[MENU_MOUSESCROLL].canceled += OnMouseScroll;
+
+
+            questMap[PLAYER_LOOK].started += OnLook;
+            questMap[PLAYER_LOOK].performed += OnLook;
+            questMap[PLAYER_LOOK].canceled += OnLook;
+
+            questMap[QUEST_CLICK].started += OnQuestClick;
+            questMap[QUEST_CLICK].performed += OnQuestClick;
+            questMap[QUEST_CLICK].canceled += OnQuestClick;
+
+            questMap[QUEST_CLOSE].started += OnQuestClose;
+            questMap[QUEST_CLOSE].performed += OnQuestClose;
+            questMap[QUEST_CLOSE].canceled += OnQuestClose;
+
+
+            shopMap[SHOP_CLICK].started += OnShopClick;
+            shopMap[SHOP_CLICK].performed += OnShopClick;
+            shopMap[SHOP_CLICK].canceled += OnShopClick;
+
+            shopMap[SHOP_PAGEDOWN].started += OnShopPageDown;
+            shopMap[SHOP_PAGEDOWN].performed += OnShopPageDown;
+            shopMap[SHOP_PAGEDOWN].canceled += OnShopPageDown;
+
+            shopMap[SHOP_SCROLL].started += OnShopScroll;
+            shopMap[SHOP_SCROLL].performed += OnShopScroll;
+            shopMap[SHOP_SCROLL].canceled += OnShopScroll;
+
+            shopMap[SHOP_MODECHANGE].started += OnModeChange;
+            shopMap[SHOP_MODECHANGE].performed += OnModeChange;
+            shopMap[SHOP_MODECHANGE].canceled += OnModeChange;
+
+
         }
     }
 

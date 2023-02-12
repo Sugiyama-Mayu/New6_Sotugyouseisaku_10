@@ -16,7 +16,7 @@ public class InputPlayerVR : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
 
     [Header("移動関係")]
-    private float _moveSpeed = 10f;                             // 移動速度
+    private float _moveSpeed = 9f;                             // 移動速度
     [SerializeField] private float[] setSpeed = { 8.0f, 0.5f };
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject playerObj;
@@ -25,19 +25,40 @@ public class InputPlayerVR : MonoBehaviour
     [Header("Ray")]
     Ray[] handRay = new Ray[2];
     bool once = true;
+    bool updateRay = true;
+ 
     [SerializeField] private GameObject[] HandObj;
     [SerializeField] private LineRenderer[] lineRenderers;
     [SerializeField] private float maxDistance;
 
+    [Header("遺跡ギミック")]
     [SerializeField] private GameObject attackBlock1;    // 祠ギミックアタックブロック
     [SerializeField] private GameObject attackBlock2;
+    [SerializeField] private RotateBall rotateBall;
+
+
+    [Header("ショップ・クエストボード")]
     [SerializeField] private ClerkOperation clearkOperation;
+    [SerializeField] private ShopClerkOperation shopClerkOperation;
+    [SerializeField] private WheelShopProcess wheelShopProcess;
 
 
     [Header("その他")]
     [SerializeField] private Transform playerYPos;
     [SerializeField] private float rotCamera;
     bool bowString = false;
+
+    // M.Sヒットしたゲームオブジェクトの保存(運ぶ処理に使用)
+    private GameObject hitObj;
+    private bool hitObjFlag = false;
+    private GameObject huntTarget;
+    public bool awayProcessFlag; //店員とのトークフラグがfalseの時に1回のみ処理するフラグ
+    [SerializeField] private GameObject baseQuestButton; //関数呼び出し用オブジェ
+    [SerializeField] private GameObject crystalParent;   // 宝石ドロップオブジェの初期親(ドロップオブジェ祠)
+    [SerializeField] private GameObject crystalParent_2;   // 宝石ドロップオブジェの初期親(オール祠)
+    private float jewelPosY;      //宝石ドロップオブジェのY座標
+    private bool huntSelectOrder;
+
 
     /// Player Input
     private PlayerInput _playerInput = null;
@@ -46,13 +67,13 @@ public class InputPlayerVR : MonoBehaviour
     InputActionMap UIMap;
     InputActionMap talkMap;
     InputActionMap MenuMap;
+    InputActionMap questMap;
+    InputActionMap shopMap;
 
     private Vector2 _currentMoveInputValue;      // 現在の移動入力値
     private float _currentRoteInputValue = 0;      // 現在の移動入力値
     private Vector2 mouseDelta;
     private int inputCount;
-
-
 
     /// Input Actions
     /// Player
@@ -69,7 +90,6 @@ public class InputPlayerVR : MonoBehaviour
     private const string UI_PAGEDOWN = "PageDown";
     private const string UI_SCROLL = "Scroll";
 
-
     /// Talk
     private const string TALK_PAGEUP = "PageUp";
 
@@ -78,15 +98,16 @@ public class InputPlayerVR : MonoBehaviour
     private const string MENU_LEFTCLICK = "LeftClick";
     private const string MENU_RIGHTCLICK = "RightClick";
     private const string MENU_MOUSESCROLL = "MouseScroll";
- 
-    /*
-    // M.Sヒットしたゲームオブジェクトの保存(運ぶ処理に使用)
-    private GameObject hitObj;
-    private bool hitObjFlag = false;
-    private bool huntSelectOrder;
-    private GameObject huntTarget;
-    */
 
+    /// Quest
+    private const string QUEST_CLICK = "QuestClick";
+    private const string QUEST_CLOSE = "QuestClose";
+
+    /// Shop
+    private const string SHOP_CLICK = "ShopClick";
+    private const string SHOP_PAGEDOWN = "ShopPageDown";
+    private const string SHOP_SCROLL = "ShopScroll";
+    private const string SHOP_MODECHANGE = "ModeChange";
 
     private void Awake()
     {
@@ -103,19 +124,14 @@ public class InputPlayerVR : MonoBehaviour
         UIMap = playerInput.actions.FindActionMap("UI");
         talkMap = playerInput.actions.FindActionMap("Talk");
         MenuMap = playerInput.actions.FindActionMap("Menu");
+        questMap = playerInput.actions.FindActionMap("Quest");
+        shopMap = playerInput.actions.FindActionMap("Shop");
 
 
         // action設定
         InputActionSetting();
-        
-        if (SceneManager.GetActiveScene().name == "TitleScene")
-        {
-            SetActionMap(1);
-        }
-        else
-        {
-            SetActionMap(0);
-        }
+        SetActionMap(0);
+
     }
 
     private void Update()
@@ -131,7 +147,7 @@ public class InputPlayerVR : MonoBehaviour
         cameraForward = playerCamera.transform.eulerAngles.y;
 
         var moveForward = Quaternion.Euler(0, cameraForward, 0) * new Vector3(_currentMoveInputValue.x, 0, _currentMoveInputValue.y);
-        Vector3 vector = moveForward * _moveSpeed;
+        Vector3 vector = moveForward * _moveSpeed ;
         playerRb.velocity = new Vector3(vector.x ,playerRb.velocity.y ,vector.z);
         _currentMoveInputValue = Vector2.zero;
        
@@ -141,31 +157,32 @@ public class InputPlayerVR : MonoBehaviour
     {
         handRay[0] = new Ray(HandObj[0].transform.position, HandObj[0].transform.forward);
         handRay[1] = new Ray(HandObj[1].transform.position, HandObj[1].transform.forward);
-        RayHitCheck(true);
-        RayHitCheck(false);
+        if (updateRay)
+        {
+            RayHitCheck(0);
+            RayHitCheck(1);
+        }
     }
 
-    private void RayHitCheck(bool b)
+    private void RayHitCheck(int i)
     {
-        int i;
         Ray ray;
-        if (b) 
+        if (i == 0) 
         {
-            ray = handRay[0];
-            i = 0;
+            ray = handRay[i];
         }
         else 
         { 
-            ray = handRay[1];
-            i = 1;
+            ray = handRay[i];
         }
 
         if (Physics.Raycast(ray, out var hit, maxDistance))
         {
-            if (lineRenderers[i].enabled == false && hit.collider.tag == "WarpPoint" || hit.collider.tag == "Ore" ||hit.collider.tag == "NPC" ) 
+            if (lineRenderers[i].enabled == false && hit.collider.tag != "Untagged" && hit.collider.tag != "Enemy") 
             {
                 lineRenderers[i].enabled = true; 
             }
+
         }
         else if (lineRenderers[i].enabled == true) lineRenderers[i].enabled = false;
     }
@@ -174,6 +191,7 @@ public class InputPlayerVR : MonoBehaviour
     public void ToPlayerMode()
     {
         _playerInput.SwitchCurrentActionMap("Player");
+        updateRay = true;
         weaponManagerVR.WeaponChange();
     }
     public void ToUIMode()
@@ -191,6 +209,22 @@ public class InputPlayerVR : MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("Menu");
     }
+
+    public void ToQuestMode()
+    {
+        _playerInput.SwitchCurrentActionMap("Quest");
+        updateRay = false;
+        lineRenderers[0].enabled = true;
+        lineRenderers[1].enabled = true;
+
+    }
+
+    public void ToShopMode()
+    {
+        _playerInput.SwitchCurrentActionMap("Shop");
+        gameManager.uiManager.uiClose();
+    }
+
 
 
     //--------------------------------------------------------------------------------------------------------------------------
@@ -259,7 +293,7 @@ public class InputPlayerVR : MonoBehaviour
             if (hit.collider.gameObject.tag == "Ore")
             {
                 OreStoneObj oreStoneObj = hit.collider.gameObject.GetComponent<OreStoneObj>();
-                if (oreStoneObj.GetSetCanPick && gameManager.GetTruhasi())
+                if (oreStoneObj.GetSetCanPick)
                 {
                     ringSound.RingSE(1);
 
@@ -269,13 +303,66 @@ public class InputPlayerVR : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("NowCoolTime");
+                    Debug.Log("NowCoolTime or NoHavePick");
                 }
+            }
 
+            //ショップ
+            if (hit.collider.gameObject.tag == "Shop" && shopClerkOperation.StartEndShop())
+            {
+                SetActionMap(5);
+                playerRb.isKinematic = true;
+                playerRb.useGravity = false;
+            }
+
+
+            // クエストボード
+            if (hit.collider.gameObject.tag == "QuestBoard")
+            {
+                clearkOperation.QuestBoardStartEnd();
+            }
+
+            // ジュエルギミック
+            if (hit.collider.gameObject.tag == "MoveObj" || hit.collider.gameObject.tag == "MoveObj_2")
+            {
+                if (hitObjFlag == false)
+                {
+                    hitObjFlag = true; // 持ち上げるフラグを立てる
+                    hitObj = hit.collider.gameObject; //持ったオブジェクトの保存
+                    hitObj.transform.parent = HandObj[1].transform;   //持ったオブジェクトの親をカメラにする
+                    jewelPosY = hitObj.transform.position.y;            //持ったオブジェクトのY座標の保存
+                    hitObj.GetComponent<BoxCollider>().enabled = false; //もったオブジェクトのコライダーを無効化
+                    return;
+                }
             }
         }
 
+        // 落とす処理(中央ボタン離す)
+        if (hitObjFlag == true)
+        {
+            hitObj.transform.parent = null; //親を戻す
+            hitObjFlag = false; // 持ち上げるフラグをfalse
+            hitObj.GetComponent<BoxCollider>().enabled = true; //コライダーの有効か
+            hitObj.transform.localEulerAngles = new Vector3(-90.0f, 0.0f, 0.0f); //回転角度を戻す
+            hitObj.transform.position =
+                new Vector3(hitObj.transform.position.x, jewelPosY, hitObj.transform.position.z); //Y座標を戻す
+            if (hitObj.gameObject.tag == "MoveObj")
+            {
+                hitObj.transform.parent = crystalParent.transform; //親を戻す
+            }
+            else if (hitObj.gameObject.tag == "MoveObj_2")
+            {
+                hitObj.transform.parent = crystalParent_2.transform; //親を戻す
+            }
         }
+
+        if (rotateBall.GetRotateModeAllow)
+        {
+            playerInput.enabled = false;
+            rotateBall.StartRotateControll();
+        }
+
+    }
 
     // 武器切り替え（マウスホイール）
     public void OnWeaponChange(InputAction.CallbackContext context)
@@ -447,6 +534,135 @@ public class InputPlayerVR : MonoBehaviour
         }
     }
 
+    //----------------------------------------------------------------------------------------------------------------------------------------------------
+    // Quest
+    public void OnQuestClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            for(int i= 0; i<2; i++) 
+            {
+                Ray ray = handRay[i];
+                Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.green, 0.001f, false);
+                if (Physics.Raycast(ray, out var hit, maxDistance))
+                {
+                    // M.S クエストボードの処理
+                    //会話モードならば
+                    if (clearkOperation.talkMode == true)
+                    {
+                        Debug.Log(hit.collider.gameObject.tag);
+                        Debug.Log(hit.collider.gameObject.name);
+                        // 選択したボタンがクエスト受注ボタンならば
+                        if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "DecideButton")
+                        {
+                            Debug.Log("Talkmode");
+                            // 受注処理が終わったら
+                            if (huntTarget.GetComponent<QuestData>().ClickOrderReceived() == true)
+                            {
+                                huntTarget.GetComponent<QuestData>().ClickBoardBack(); //クエスト選択画面に戻る
+                            }
+                        }
+                        // 選択したボタンがクエスト選択画面に戻るならば
+                        else if (hit.collider.gameObject.tag == "HuntSelectButton" && hit.collider.gameObject.name == "BackButton")
+                        {
+                            huntTarget.GetComponent<QuestData>().ClickBoardBack(); //クエスト選択画面に戻る
+                        }
+                        // 選択したボタンがクエスト内容確認ボタンならば
+                        else if (hit.collider.gameObject.tag == "QuestConfirmationButton")
+                        {
+                            hit.collider.gameObject.GetComponent<QuestData>().ClickConfirmation(); //クエストの内容確認表示
+                                                                                                   // 選択したボタンの更新
+                            huntTarget = hit.collider.gameObject;
+                        }
+                    }
+                    else
+                    {
+                        //まだトークモードが外れてから処理をしていなかったら
+                        if (awayProcessFlag == true)
+                        {
+                            // トークモードが外れたらすぐにクエスト選択画面に戻る
+                            baseQuestButton.GetComponent<QuestData>().ClickBoardBack();
+                            awayProcessFlag = false;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    public void OnQuestClose(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            clearkOperation.QuestBoardStartEnd();
+            ToPlayerMode();
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------
+    // Shop
+    public void OnShopClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("shopclick");
+            wheelShopProcess.ShopClick();
+        }
+    }
+    public void OnShopPageDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (shopClerkOperation.StartEndShop())
+            {
+                Debug.Log("shopClose");
+                SetActionMap(0);
+                playerRb.isKinematic = false;
+                playerRb.useGravity = true;
+            }
+        }
+    }
+    public void OnShopScroll(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            var mouseDelta = context.ReadValue<Vector2>();
+            if (mouseDelta != Vector2.zero)
+            {
+                if (mouseDelta.y < -0.7f)
+                { // +
+                    inputCount++;
+                    if (3 < inputCount)
+                    {
+                        wheelShopProcess.WheelScroll(mouseDelta.y);
+                        inputCount = 0;
+
+                    }
+                }
+                else if (0.7f < mouseDelta.y)
+                { // -
+                    inputCount++;
+                    if (3 < inputCount)
+                    {
+                        wheelShopProcess.WheelScroll(mouseDelta.y);
+                        inputCount = 0;
+
+                    }
+                }
+            }
+        }
+    }
+    public void OnModeChange(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("modechage");
+            wheelShopProcess.ShopMode();
+        }
+    }
+
+
     //--------------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -468,6 +684,12 @@ public class InputPlayerVR : MonoBehaviour
                 break;
             case 3:
                 ToMenuMode();
+                break;
+            case 4:
+                ToQuestMode();
+                break;
+            case 5:
+                ToShopMode();
                 break;
             default:
                 Debug.LogWarning("指定範囲外");
@@ -544,6 +766,31 @@ public class InputPlayerVR : MonoBehaviour
             MenuMap[MENU_MOUSESCROLL].performed += OnMouseScroll;
             MenuMap[MENU_MOUSESCROLL].canceled += OnMouseScroll;
 
+            questMap[QUEST_CLICK].started += OnQuestClick;
+            questMap[QUEST_CLICK].performed += OnQuestClick;
+            questMap[QUEST_CLICK].canceled += OnQuestClick;
+
+            questMap[QUEST_CLOSE].started += OnQuestClose;
+            questMap[QUEST_CLOSE].performed += OnQuestClose;
+            questMap[QUEST_CLOSE].canceled += OnQuestClose;
+
+
+            shopMap[SHOP_CLICK].started += OnShopClick;
+            shopMap[SHOP_CLICK].performed += OnShopClick;
+            shopMap[SHOP_CLICK].canceled += OnShopClick;
+
+            shopMap[SHOP_PAGEDOWN].started += OnShopPageDown;
+            shopMap[SHOP_PAGEDOWN].performed += OnShopPageDown;
+            shopMap[SHOP_PAGEDOWN].canceled += OnShopPageDown;
+
+            shopMap[SHOP_SCROLL].started += OnShopScroll;
+            shopMap[SHOP_SCROLL].performed += OnShopScroll;
+            shopMap[SHOP_SCROLL].canceled += OnShopScroll;
+
+            shopMap[SHOP_MODECHANGE].started += OnModeChange;
+            shopMap[SHOP_MODECHANGE].performed += OnModeChange;
+            shopMap[SHOP_MODECHANGE].canceled += OnModeChange;
+
 
         }
     }
@@ -553,6 +800,11 @@ public class InputPlayerVR : MonoBehaviour
     public void ReSetRot()
     {
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
+
+    public void SetHuntSelectOrder(bool flag)
+    {
+        huntSelectOrder = flag;
     }
 
 }

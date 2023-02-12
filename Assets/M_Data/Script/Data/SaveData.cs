@@ -68,13 +68,11 @@ public class SaveData : MonoBehaviour
     {
         playData.weaponNum = new int[5];
         SavePlayerData(playData);
-        Debug.Log("データリセット");
     }
 
     // 続きから
     public void DataLoad()
     {
-        Debug.Log("データロード");
 
         int i = 0;
         gameManager.playerManager.PlayerPos = playData.pos;  // 座標

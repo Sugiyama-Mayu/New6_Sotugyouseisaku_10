@@ -324,7 +324,6 @@ public class EquimentManager : MonoBehaviour
             armorLevel[0, 0] = value[2];
             armorLevel[1, 0] = value[3];
             pickLevel = value[4];
-            Debug.Log("剣：" + weaponLevel[0, 0]+" 弓："+ weaponLevel[1, 0] + " 上：" + armorLevel[0, 0] + " 下：" + armorLevel[1, 0] + " つるはし：" + pickLevel);
         }
     }
 

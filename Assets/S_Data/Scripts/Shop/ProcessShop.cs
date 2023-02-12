@@ -89,8 +89,10 @@ public class ProcessShop : MonoBehaviour
         arrayFlag = false;
         oldImage = yakusou;
         UpdateBudgedDisplay();
-        BuyModeSwitch();
         buyButton.GetComponent<Image>().color = buyButtonSelectColor;
+        buyMode = true;
+        buyModeObj.SetActive(true);
+        sellModeObj.SetActive(false);
 
     }
     private void Update()

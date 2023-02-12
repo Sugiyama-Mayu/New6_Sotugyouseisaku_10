@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 
@@ -76,6 +75,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.unityLogger.logEnabled = false;
         frameCount = 0;
         prevTime = 0.0f;
         Cursor.lockState = CursorLockMode.Locked;
@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
         uiManager.SetBlackOut = true;
         yield return new WaitForSeconds(1.0f);
         playerObj.transform.SetPositionAndRotation(startPos, startRot);
+        terrainManager.DistanceComparison();
         playerManager.SetMaxHp();
         System.GC.Collect();
         Resources.UnloadUnusedAssets();
@@ -396,11 +397,13 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         saveData.ResetGameData();
+        playerManager.SetMaxHp();
     }
 
     public void GameContinue()
     {
         saveData.DataLoad();
+        playerManager.SetMaxHp();
     }
 
     public bool GetVRMode
@@ -419,7 +422,6 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-          //  XrCamera(value);
             XRMode = value;
         }
     }

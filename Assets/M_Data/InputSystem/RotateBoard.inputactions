@@ -13,39 +13,81 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "RotateBallStartEnd",
+                    "type": "Button",
+                    "id": "8942004c-7d42-4f53-b4b2-ea961fa348f5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "b2ad9237-3ec2-4446-bd7d-5804b1680606",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "23f3596a-9799-4cee-83cf-283d72814eed",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "ScaleVector2(x=0.1,y=0.1)",
-                    "groups": "Keyboard&Mouse;Touch",
+                    "groups": "",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "aa1e8f3d-38fb-4a05-b826-49454c9e14d0",
-                    "path": "<Joystick>/{Hatswitch}",
+                    "id": "0762039d-6015-41a8-b1be-936c1de46aaa",
+                    "path": "<ViveController>{LeftHand}/trackpad",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.7,y=0.7)",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e46ced5-5e77-4379-a294-d3adbdfa4681",
+                    "path": "<OpenVROculusTouchController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.7,y=0.7)",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfcc0994-250b-45bd-a33e-385570c16b24",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
-                    "action": "Rotate",
+                    "groups": "",
+                    "action": "RotateBallStartEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d50d680e-c125-4caa-af9d-052ca3c50c96",
+                    "path": "<ViveController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBallStartEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9ba7d85-baf7-42b0-bb22-a8b2e48b5a55",
+                    "path": "<OculusTouchController>/triggerTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBallStartEnd",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

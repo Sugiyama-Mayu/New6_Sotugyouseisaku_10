@@ -15,12 +15,15 @@ public class AttackChangeMaterial : MonoBehaviour
         clickFlag = false;
     }
 
-    private void Update()
+    public void OnTriggerEnter(Collider other)
     {
-        // アタックブロックが剣と接触していたらブロックのマテリアルを変える
-        // ギミック完了フラグをたてる
-        if(clickFlag == true)
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerWeapon"))
         {
+            ParticleSystem effect_c = Instantiate(attackBlockManager.hitEffect);
+            effect_c.transform.position = gameObject.transform.position;
+            effect_c.Play();
+            Destroy(effect_c.gameObject, 5.0f);
+            clickFlag = true;
             this.GetComponent<Renderer>().material = changeMat;
             attackBlockManager.blockjudge[thisObjNum - 1] = 1;
         }

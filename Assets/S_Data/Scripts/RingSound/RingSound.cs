@@ -44,7 +44,7 @@ public class RingSound : MonoBehaviour
     AudioSource audioSorce;
     private void Start()
     {
-        audioSorce = this.GetComponent<AudioSource>();
+        audioSorce = GetComponent<AudioSource>();
         audioSorceArrow = audioSorceArrow.GetComponent<AudioSource>();
         audioSordeDrawShootArrow = audioSordeDrawShootArrow.GetComponent<AudioSource>();
     }

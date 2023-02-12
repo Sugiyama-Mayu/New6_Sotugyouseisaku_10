@@ -26,7 +26,7 @@ public class GetJewel : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // 宝石にプレイヤーが触れたら宝石をゲット
-        if (other.name == "PlayerRoot")
+        if (other.name == "PlayerRoot" || other.name == "PlayerRootXR")
         {
             // 祠クリアフラグを立てる
             shrineClearScript.SetGetJewelFlag(true);

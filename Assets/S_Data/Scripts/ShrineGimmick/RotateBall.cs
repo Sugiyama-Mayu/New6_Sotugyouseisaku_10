@@ -6,9 +6,8 @@ using UnityEngine.InputSystem;
 // 板を傾けて玉を転がす
 public class RotateBall : MonoBehaviour
 {
-    Vector2 oldCursorPos = (new Vector3(0.0f, 0.0f, 0.0f)); // 1つ前の回転角度の保存
-    float differenceCursorPosX;  // 回転角度の差分X
-    float differenceCursorPosY;  // 回転角度の差分Y
+    [SerializeField] PlayerInput bollInput;
+    Vector2 oldCursorPos = Vector2.zero; // 1つ前の回転角度の保存
     float rotateSpeed;           // 板の回転スピード
     bool boardRoateChangeFlag;   // 板の回転方向(XとZ軸)の変更フラグ
     [SerializeField] private GameObject rotateBoard;  // 板のオブジェクト
@@ -19,6 +18,7 @@ public class RotateBall : MonoBehaviour
     public bool rotateModeAllow; // trueでローテートボードモードに変更できるようにする
     void Start()
     {
+        bollInput.enabled = false;
         rotateBoardFlag = false;
         boardRoateChangeFlag = false;
         rotateSpeed = 100.0f;
@@ -28,50 +28,11 @@ public class RotateBall : MonoBehaviour
     {
         if (rotateModeAllow == true)
         {
-            // マウス情報とキーボード情報の取得
-            var current = Mouse.current;
-            //var keyCurrent = Keyboard.current;
-            // 仮でOキーで弾転がしゲームモード、Lキーで通常モードに変更できるようにしてある
-            if (current.middleButton.wasPressedThisFrame && rotateBoardFlag == false)
-            {
-                rotateBoardFlag = true;   // 弾転がしゲームモードON
-                                          // オブジェクトのアクティブ処理
-                VRObj.SetActive(false);
-                rotateBoardCamera.SetActive(true);
-            }
-            else if (current.middleButton.wasPressedThisFrame && rotateBoardFlag == true)
-            {
-                RotateBallModeOff(); // 弾転がしゲームモードOFF
-            }
             // 弾転がしゲームモードならば
             if (rotateBoardFlag == true)
             {
-                if (current == null)
-                {
-                    // マウスが接続されていないとMouse.currentがnull
-                    return;
-                }
-                // 左クリック&ホールド中はX軸回転
-                /*if (current.leftButton.wasPressedThisFrame)
-                {
-                    boardRoateChangeFlag = true;
-                }*/
-                if (current.leftButton.wasReleasedThisFrame)
-                {
-                    boardRoateChangeFlag = false;
-                }
-
-                // 板の回転移動処理
-                /*if (boardRoateChangeFlag == true)
-                {
-                    //differenceCursorPosY = cursorPos.y - oldCursorPos.y;
-                    rotateBoard.transform.Rotate(new Vector3(cursorPos.y * rotateSpeed * Time.deltaTime, 0.0f, 0.0f));
-                    oldCursorPos = cursorPos;
-                }
-                else*/
                 if (boardRoateChangeFlag == false)
                 {
-                    //differenceCursorPosX = cursorPos.x - oldCursorPos.x;
                     rotateBoard.transform.Rotate(new Vector3(0.0f, 0.0f, cursorPos.x * rotateSpeed * Time.deltaTime));
                     oldCursorPos = cursorPos;
                 }
@@ -84,12 +45,45 @@ public class RotateBall : MonoBehaviour
     public void RotateBallModeOff()
     {
         rotateBoardFlag = false;  // 弾転がしゲームモードOFF
+        bollInput.enabled = false;
         // オブジェクトのアクティブ処理
         VRObj.SetActive(true);
+        PlayerInput playerAction = VRObj.GetComponentInChildren<PlayerInput>();
+        playerAction.enabled = true;
         rotateBoardCamera.SetActive(false);
+
     }
     public void onRotate(InputAction.CallbackContext context)
     {
         cursorPos = context.ReadValue<Vector2>();
+    }
+
+    public void OnRotateBallStart(InputAction.CallbackContext context)
+    {
+        if (!context.performed && !rotateModeAllow) return;
+        if (rotateBoardFlag == true)
+        {
+            RotateBallModeOff();
+        }
+
+    }
+    public void StartRotateControll()
+    {
+        rotateBoardFlag = true;   // 弾転がしゲームモードON
+                                  // オブジェクトのアクティブ処理
+        VRObj.SetActive(false);
+        rotateBoardCamera.SetActive(true);
+        Invoke("SetInput", 0.2f);
+    }
+
+    public bool GetRotateModeAllow
+    {
+        get { return rotateModeAllow; }
+    }
+
+    private void SetInput()
+    {
+        bollInput.enabled = true;
+
     }
 }

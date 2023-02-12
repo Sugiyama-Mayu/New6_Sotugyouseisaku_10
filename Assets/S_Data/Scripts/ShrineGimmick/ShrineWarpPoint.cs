@@ -20,6 +20,10 @@ public class ShrineWarpPoint : MonoBehaviour
     private float nowAlphaC; //祠クリアテキスト透明度
     private bool getJewelFlag = false;
     [SerializeField]private GameObject ball;
+    private void Start()
+    {
+        player = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayerObj();
+    }
 
     //初期処理
     //引  数：int shrineID  祠ID番号

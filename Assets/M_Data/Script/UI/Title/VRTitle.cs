@@ -23,9 +23,6 @@ public class VRTitle : MonoBehaviour
 
         }
         image.color = new Vector4(image.color.r, image.color.g, image.color.b, 1);
-
-        yield return new WaitForSeconds(1f);
-
         SceneManager.LoadScene("FieldSceneVR");
 
     }
